@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaloriesCalculator", "CaloriesCalculator\CaloriesCalculator.csproj", "{777CB671-C59B-4A12-A726-C2649B521AE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaloriesCalculator", "CaloriesCalculator\CaloriesCalculator.csproj", "{777CB671-C59B-4A12-A726-C2649B521AE2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2BA49B33-C684-4D48-B50F-FE7A6A4E6F21}"
 	ProjectSection(SolutionItems) = preProject
@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCLibrary", "CCLibrary\CCLibrary.csproj", "{3BE0D8B3-6D0F-47B8-B6F6-5F2DAEB5BA6E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,6 +24,10 @@ Global
 		{777CB671-C59B-4A12-A726-C2649B521AE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{777CB671-C59B-4A12-A726-C2649B521AE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{777CB671-C59B-4A12-A726-C2649B521AE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BE0D8B3-6D0F-47B8-B6F6-5F2DAEB5BA6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BE0D8B3-6D0F-47B8-B6F6-5F2DAEB5BA6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BE0D8B3-6D0F-47B8-B6F6-5F2DAEB5BA6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BE0D8B3-6D0F-47B8-B6F6-5F2DAEB5BA6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
