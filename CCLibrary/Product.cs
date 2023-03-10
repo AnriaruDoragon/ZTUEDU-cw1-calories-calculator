@@ -9,7 +9,7 @@ namespace CCLibrary
         public string Name { get; set; } = "N/D";
         public string Description { get; set; } = string.Empty;
 
-        protected double _netMass = 0;
+        protected double _netMass = 100;
         public double NetMassInGrams
         {
             get { return _netMass; }

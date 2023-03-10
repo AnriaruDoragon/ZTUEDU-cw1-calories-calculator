@@ -16,6 +16,9 @@ namespace CCLibrary
             CaloriesPerServing = caloriesPerServing;
         }
 
+        /// <summary>
+        /// Specifies the amount of calories per serving size (g).
+        /// </summary>
         public double CaloriesPerServing
         {
             get { return _caloriesPerServing; }
