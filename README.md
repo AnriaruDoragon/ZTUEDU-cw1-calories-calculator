@@ -18,7 +18,7 @@
 			- [`EnergyDrink`](#user-content-energydrink-class)
 			- [`AlcoholDrink`](#user-content-alcoholdrink-class)
 - [Виключення](#user-content-cclibraryexceptions)
-	- [`ValueOutOfRangeException](#user-content-valueoutofrangeexception)
+	- [`ValueOutOfRangeException`](#user-content-valueoutofrangeexception)
 	- [`VitaminAlreadyExistsException`](#user-content-vitaminalreadyexistsexception)
 	- [`VitaminNotFoundException`](#user-content-vitaminnotfoundexception)
 
