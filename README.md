@@ -14,7 +14,8 @@
 - [Абстрактний `Product`](#user-content-product-class)
 - [`Consumable`](#user-content-consumable-class)
 - [`Food`](#user-content-food-class)
-- [`Drink`]()
+- [`Drink`](#user-content-drink-class)
+
 
 ## CCLibrary
 
@@ -66,6 +67,10 @@ public abstract double GetCalories();
 public double GetEnergy();
 ```
 
+#### Виключення
+
+- `ValueOutOfRangeException`
+
 ---
 
 ### Consumable class
@@ -103,6 +108,10 @@ internal class Consumable : Product
 public override double GetCalories();
 ```
 
+#### Виключення
+
+- `ValueOutOfRangeException`
+
 ---
 
 ### Food class
@@ -123,7 +132,7 @@ internal class Food : Consumable
 
 #### Властивості
 
-- `readonly Nutritions`
+- `readonly struct Nutritions`
 
 #### Методи
 
@@ -154,3 +163,91 @@ internal class Drink : Consumable
 
 ---
 
+### EnergyDrink class
+Namespace: CCLibrary
+
+#### Означення
+
+Похідний клас від `Drink`. Визначає енергетичні напої.
+
+```cs
+internal class EnergyDrink : Drink
+```
+
+#### Конструктори
+
+- `public EnergyDrink(ulong id, double caloriesPerServing, Dictionary<string, double>? vitamins = null)`
+- `public EnergyDrink(ulong id, string name, double caloriesPerServing, Dictionary<string, double>? vitamins = null)`
+
+#### Поля
+
+- `protected Dictionary<string, double> _vitamins`
+
+#### Методи
+
+##### GetVitamins
+
+Повертає копію словника, що містить в собі вітаміни та їх кількість в мг на 
+`_servingSize` грам цього продукту.
+```cs
+public Dictionary<string, double> GetVitamins();
+```
+
+##### GetVitaminsTotal
+
+Повертає новий словник, що містить в собі загальну кількість вітамінів на всю масу продукту.
+```cs
+public Dictionary<string, double> GetVitaminsTotal();
+```
+
+##### AddVitamin
+
+Додає вказаний вітамін та його кількість у мг в розрахунку на `_servingSize` грам.
+```cs
+public void AddVitamin(string name, double value);
+```
+
+##### RemoveVitamin
+
+Видаляє вказаний вітамін з продукту.
+```cs
+public void RemoveVitamin(string name);
+```
+
+#### Виключення
+
+- `ValueOutOfRangeException`
+- `VitaminAlreadyExistsException`
+- `VitaminNotFoundException`
+
+---
+
+### AlcoholDrink class
+Namespace: CCLibrary
+
+#### Означення
+
+Похідний клас від `Drink`. Визначає алкогольні напої.
+
+```cs
+internal class AlcoholDrink : Drink
+```
+
+#### Конструктори
+
+- `public AlcoholDrink(ulong id, double caloriesPerServing, double alcoholContent)`
+- `public AlcoholDrink(ulong id, string name, double caloriesPerServing, double alcoholContent)`
+
+#### Поля
+
+- `protected double _alcoholContent`
+
+#### Властивості
+
+- `public double AlcoholContent`
+
+#### Виключення
+
+- `ValueOutOfRangeException`
+
+---
