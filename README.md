@@ -12,9 +12,11 @@
 # Структура класів та документація
 
 - [Абстрактний `Product`](#user-content-product-class)
-- [`Consumable`](#user-content-consumable-class)
-- [`Food`](#user-content-food-class)
-- [`Drink`](#user-content-drink-class)
+	- [`Consumable`](#user-content-consumable-class)
+		- [`Food`](#user-content-food-class)
+		- [`Drink`](#user-content-drink-class)
+			- [`EnergyDrink`](#user-content-energydrink-class)
+			- [`AlcoholDrink`](#user-content-alcoholdrink-class)
 
 
 ## CCLibrary
