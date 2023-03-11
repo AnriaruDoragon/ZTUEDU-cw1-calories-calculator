@@ -66,6 +66,8 @@ public abstract double GetCalories();
 public double GetEnergy();
 ```
 
+---
+
 ### Consumable class
 Namespace: CCLibrary
 
@@ -101,6 +103,8 @@ internal class Consumable : Product
 public override double GetCalories();
 ```
 
+---
+
 ### Food class
 Namespace: CCLibrary
 
@@ -114,16 +118,39 @@ internal class Food : Consumable
 
 #### Конструктори
 
-- `public Food(ulong id, double caloriesPerServing)`
-- `public Food(ulong id, string name, double caloriesPerServing)`
-
-#### Поля
-
-- 
+- `public Food(ulong id, double caloriesPerServing, Nutritions nutritions = new())`
+- `public Food(ulong id, string name, double caloriesPerServing, Nutritions nutritions = new())`
 
 #### Властивості
 
-- 
+- `readonly Nutritions`
 
 #### Методи
+
+##### UpdateNutritions
+
+Оновлює показники харчової цінності для цього продукту.
+```cs
+public void UpdateNutritions(Nutritions nutritions);
+```
+
+---
+
+### Drink class
+Namespace: CCLibrary
+
+#### Означення
+
+Похідний клас від `Consumable`. Обособлює напої, є базовим класом для їх різновидів.
+
+```cs
+internal class Drink : Consumable
+```
+
+#### Конструктори
+
+- `public Drink(ulong id, double caloriesPerServing)`
+- `public Drink(ulong id, string name, double caloriesPerServing)`
+
+---
 

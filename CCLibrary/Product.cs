@@ -70,5 +70,12 @@ namespace CCLibrary
         {
             return GetCalories() * 4.184;
         }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj is null || obj is not Product)   
+                return false;
+            return ((Product)obj).Id == this.Id;
+        }
     }
 }
