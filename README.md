@@ -17,7 +17,10 @@
 		- [`Drink`](#user-content-drink-class)
 			- [`EnergyDrink`](#user-content-energydrink-class)
 			- [`AlcoholDrink`](#user-content-alcoholdrink-class)
-
+- [Виключення](#user-content-cclibraryexceptions)
+	- [`ValueOutOfRangeException](#user-content-valueoutofrangeexception)
+	- [`VitaminAlreadyExistsException`](#user-content-vitaminalreadyexistsexception)
+	- [`VitaminNotFoundException`](#user-content-vitaminnotfoundexception)
 
 ## CCLibrary
 
@@ -253,3 +256,46 @@ internal class AlcoholDrink : Drink
 - `ValueOutOfRangeException`
 
 ---
+
+## CCLibrary.Exceptions
+
+Можливі виключення у бібліотеці та їх причини.
+
+### ValueOutOfRangeException
+Namespace: CCLibrary.Exceptions
+
+Виникає, якщо значення, що записується у властивість, або передається у метод, не відповідає
+певному діапазону значень.
+
+Наприклад:
+
+- Можливо записати тільки додатні числа, від 0 або більше (іноді включно з нулем);
+- Відсотки лежать у діапазоні від 0 до 100.
+
+```cs
+public ValueOutOfRangeException(string message) : base(message)
+```
+
+### VitaminAlreadyExistsException
+Namespace: CCLibrary.Exceptions
+
+Виникає при спробі додати вітамін до продукту, якщо він вже є у словнику.
+
+Повідомлення за замовчуванням:
+> Вітамін з такою назвою вже існує!
+
+```cs
+public VitaminAlreadyExistsException(string message = message) : base(message)
+```
+
+### VitaminNotFoundException
+Namespace: CCLibrary.Exceptions
+
+Виникає при спробі видалити вітамін з продукту, якщо він відсутній.
+
+Повідомлення за замовчуванням:
+> Вітамін з такою назвою не знайдено!
+
+```cs
+public VitaminNotFoundException(string message = message) : base(message)
+```
