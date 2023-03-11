@@ -1,5 +1,3 @@
-using System;
-
 namespace CCLibrary
 {
     public abstract class Product
@@ -16,8 +14,8 @@ namespace CCLibrary
             protected set
             {
                 if (value < 0)
-                    throw new ArgumentOutOfRangeException(nameof(value),
-                        "The value must be a positive number.");
+                    throw new Exceptions.ValueOutOfRangeException(
+                        "Значення повинно бути додатнім!");
                 else
                     _netMass = value;
             }
@@ -29,8 +27,8 @@ namespace CCLibrary
             {
                 value *= 1000.0;
                 if (value < 0)
-                    throw new ArgumentOutOfRangeException(nameof(value),
-                        "The value must be a positive number.");
+                    throw new Exceptions.ValueOutOfRangeException(
+                        "Значення повинно бути додатнім!");
                 else
                     _netMass = value;
             }
@@ -42,8 +40,8 @@ namespace CCLibrary
             {
                 value *= 453.6;
                 if (value < 0)
-                    throw new ArgumentOutOfRangeException(nameof(value),
-                        "The value must be a positive number.");
+                    throw new Exceptions.ValueOutOfRangeException(
+                        "Значення повинно бути додатнім!");
                 else
                     _netMass = value;
             }
@@ -71,11 +69,9 @@ namespace CCLibrary
             return GetCalories() * 4.184;
         }
 
-        public override bool Equals(object? obj)
+        public override int GetHashCode()
         {
-            if (obj is null || obj is not Product)   
-                return false;
-            return ((Product)obj).Id == this.Id;
+            return (int)this.Id;
         }
     }
 }
