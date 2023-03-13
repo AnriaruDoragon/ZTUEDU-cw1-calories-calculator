@@ -166,6 +166,10 @@ internal class Drink : Consumable
 - `public Drink(ulong id, double caloriesPerServing)`
 - `public Drink(ulong id, string name, double caloriesPerServing)`
 
+#### Властивості
+
+- `public bool IsCarbonated`
+
 ---
 
 ### EnergyDrink class
