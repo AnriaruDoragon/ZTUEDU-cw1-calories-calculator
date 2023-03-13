@@ -31,8 +31,6 @@
 
 ## CCLibrary.Products
 
-Бібліотека, що містить в собі усі основні класи, якими оперує додаток.
-
 ### Product class
 Namespace: CCLibrary.Products
 
@@ -315,8 +313,6 @@ public void UpdateIngredients(List<Consumable> ingredients);
 ```cs
 public override double GetCalories();
 ```
-
----
 
 ## CCLibrary.Exceptions
 
