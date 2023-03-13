@@ -1,4 +1,6 @@
-﻿namespace CCLibrary.Products
+﻿using CCLibrary.Exceptions;
+
+namespace CCLibrary.Products
 {
     public class AlcoholDrink : Drink
     {
@@ -15,8 +17,7 @@
                 if (value >= 0 && value <= 100)
                     _alcoholContent = value;
                 else
-                    throw new Exceptions.ValueOutOfRangeException(
-                        "Значення повинно бути у діапазоні від 0 до 100!");
+                    throw new ValueOutOfRangeException("Значення повинно бути у діапазоні від 0 до 100!");
             }
         }
 

@@ -1,3 +1,5 @@
+using CCLibrary.Exceptions;
+
 namespace CCLibrary.Products
 {
     public abstract class Product
@@ -14,8 +16,7 @@ namespace CCLibrary.Products
             protected set
             {
                 if (value < 0)
-                    throw new Exceptions.ValueOutOfRangeException(
-                        "Значення повинно бути додатнім!");
+                    throw new ValueOutOfRangeException("Значення повинно бути додатнім!");
                 else
                     _netMass = value;
             }
@@ -27,8 +28,7 @@ namespace CCLibrary.Products
             {
                 value *= 1000.0;
                 if (value < 0)
-                    throw new Exceptions.ValueOutOfRangeException(
-                        "Значення повинно бути додатнім!");
+                    throw new ValueOutOfRangeException("Значення повинно бути додатнім!");
                 else
                     _netMass = value;
             }
@@ -40,8 +40,7 @@ namespace CCLibrary.Products
             {
                 value *= 453.6;
                 if (value < 0)
-                    throw new Exceptions.ValueOutOfRangeException(
-                        "Значення повинно бути додатнім!");
+                    throw new ValueOutOfRangeException("Значення повинно бути додатнім!");
                 else
                     _netMass = value;
             }

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using CCLibrary.Exceptions;
 
 namespace CCLibrary.Products
 {
@@ -21,8 +21,7 @@ namespace CCLibrary.Products
             set
             {
                 if (value <= 0)
-                    throw new ArgumentOutOfRangeException(nameof(value),
-                        "The value must be a positive number.");
+                    throw new ValueOutOfRangeException("Значення повинно бути додатнім!");
                 else
                     _caloriesPerServing = value;
             }
@@ -39,8 +38,7 @@ namespace CCLibrary.Products
             set
             {
                 if (value <= 0)
-                    throw new ArgumentOutOfRangeException(nameof(value),
-                        "The value must be a positive number.");
+                    throw new ValueOutOfRangeException("Значення повинно бути додатнім!");
                 else
                     _servingSize = value;
             }

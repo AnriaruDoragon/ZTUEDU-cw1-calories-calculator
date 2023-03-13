@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CCLibrary.Exceptions;
 
 namespace CCLibrary.Products
 {
@@ -47,9 +48,9 @@ namespace CCLibrary.Products
         public void AddVitamin(string name, double value)
         {
             if (value < 0)
-                throw new Exceptions.ValueOutOfRangeException("Значення повинно бути додатнім!");
+                throw new ValueOutOfRangeException("Значення повинно бути додатнім!");
             if (_vitamins.ContainsKey(name))
-                throw new Exceptions.VitaminAlreadyExistsException();
+                throw new VitaminAlreadyExistsException();
             _vitamins.Add(name, value);
         }
 
@@ -61,7 +62,7 @@ namespace CCLibrary.Products
         public void RemoveVitamin(string name)
         {
             if (!_vitamins.ContainsKey(name))
-                throw new Exceptions.VitaminNotFoundException();
+                throw new VitaminNotFoundException();
             _vitamins.Remove(name);
         }
     }
