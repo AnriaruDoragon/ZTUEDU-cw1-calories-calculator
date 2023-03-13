@@ -13,12 +13,12 @@
 
 - [`Products`](#user-content-cclibraryproducts)
 	- [Абстрактний `Product`](#user-content-product-class)
+		- [`Dish`](#user-content-dish-class)
 		- [`Consumable`](#user-content-consumable-class)
 			- [`Food`](#user-content-food-class)
 			- [`Drink`](#user-content-drink-class)
 				- [`EnergyDrink`](#user-content-energydrink-class)
 				- [`AlcoholDrink`](#user-content-alcoholdrink-class)
-		- [`Dish`](#user-content-dish-class)
 - [`User`](#user-content-cclibraryuser)
 	- [`Profile`](#user-content-profile-class)
 	- [`DailyConsumption`](#user-content-dailyconsumption-class)
