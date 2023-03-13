@@ -1,4 +1,4 @@
-﻿namespace CCLibrary
+﻿namespace CCLibrary.Products
 {
     public enum DrinkTypes
     {

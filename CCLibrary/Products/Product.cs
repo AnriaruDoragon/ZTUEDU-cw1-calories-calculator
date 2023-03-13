@@ -1,4 +1,4 @@
-namespace CCLibrary
+namespace CCLibrary.Products
 {
     public abstract class Product
     {
@@ -67,7 +67,7 @@ namespace CCLibrary
 
         public override int GetHashCode()
         {
-            return (int)this.Id;
+            return (int)Id;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CCLibrary
+namespace CCLibrary.Products
 {
     public class Consumable : Product
     {
