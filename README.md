@@ -82,6 +82,57 @@ public double GetEnergy();
 
 ---
 
+### Dish class
+Namespace: CCLibrary.Products
+
+#### Означення
+
+Похідний клас від `Product`. Визначає страви, що можуть складатися з різноманітних продуктів.
+
+```cs
+public class Dish : Product
+```
+
+#### Конструктори
+
+- `public Dish(string name, List<Consumable>? ingredients = null)`
+
+#### Поля
+
+- `private List<Consumable> _ingredients`
+
+#### Методи
+
+##### GetIngredients
+
+Повертає копію списку інгредієнтів страви.
+```cs
+public List<Consumable> GetIngredients();
+```
+
+##### AddIngredient
+
+Додати інгредієнт до страви.
+```cs
+public void AddIngredient(Consumable consumable);
+```
+
+##### UpdateIngredients
+
+Оновити список інгредієнтів страви.
+```cs
+public void UpdateIngredients(List<Consumable> ingredients);
+```
+
+##### GetCalories
+
+Підрахувати загальну кількість калорій усіх інгредієнтів страви.
+```cs
+public override double GetCalories();
+```
+
+---
+
 ### Consumable class
 Namespace: CCLibrary.Products
 
@@ -262,57 +313,6 @@ public class AlcoholDrink : Drink
 #### Виключення
 
 - `ValueOutOfRangeException`
-
----
-
-### Dish class
-Namespace: CCLibrary.Products
-
-#### Означення
-
-Похідний клас від `Product`. Визначає страви, що можуть складатися з різноманітних продуктів.
-
-```cs
-public class Dish : Product
-```
-
-#### Конструктори
-
-- `public Dish(string name, List<Consumable>? ingredients = null)`
-
-#### Поля
-
-- `private List<Consumable> _ingredients`
-
-#### Методи
-
-##### GetIngredients
-
-Повертає копію списку інгредієнтів страви.
-```cs
-public List<Consumable> GetIngredients();
-```
-
-##### AddIngredient
-
-Додати інгредієнт до страви.
-```cs
-public void AddIngredient(Consumable consumable);
-```
-
-##### UpdateIngredients
-
-Оновити список інгредієнтів страви.
-```cs
-public void UpdateIngredients(List<Consumable> ingredients);
-```
-
-##### GetCalories
-
-Підрахувати загальну кількість калорій усіх інгредієнтів страви.
-```cs
-public override double GetCalories();
-```
 
 ## CCLibrary.Exceptions
 
