@@ -1,6 +1,6 @@
 ﻿namespace CCLibrary
 {
-    internal readonly struct Nutritions
+    public readonly struct Nutritions
     {
         public readonly double Fat;
         public readonly double Protein;
@@ -19,7 +19,7 @@
         }
     }
 
-    internal class Food : Consumable
+    public class Food : Consumable
     {
         public Nutritions Nutritions { get; protected set; }
 

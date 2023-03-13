@@ -2,7 +2,7 @@
 
 namespace CCLibrary.Exceptions
 {
-    internal class ValueOutOfRangeException : Exception
+    public class ValueOutOfRangeException : Exception
     {
         public ValueOutOfRangeException(string message) : base(message) { }
     }

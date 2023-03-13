@@ -1,6 +1,6 @@
 ﻿namespace CCLibrary
 {
-    internal class AlcoholDrink : Drink
+    public class AlcoholDrink : Drink
     {
         protected double _alcoholContent;
 

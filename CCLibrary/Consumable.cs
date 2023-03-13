@@ -2,7 +2,7 @@
 
 namespace CCLibrary
 {
-    internal class Consumable : Product
+    public class Consumable : Product
     {
         protected double _caloriesPerServing;
         protected double _servingSize = 100;

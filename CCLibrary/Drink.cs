@@ -1,6 +1,6 @@
 ﻿namespace CCLibrary
 {
-    internal class Drink : Consumable
+    public class Drink : Consumable
     {
         public bool IsCarbonated { get; set; } = false;
 

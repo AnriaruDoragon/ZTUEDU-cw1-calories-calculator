@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CCLibrary
 {
-    internal class EnergyDrink : Drink
+    public class EnergyDrink : Drink
     {
         protected Dictionary<string, double> _vitamins;
 
