@@ -9,6 +9,7 @@
         Juice,
         Coffee,
         Tea,
-        Milk
+        Milk,
+        Other
     }
 }
