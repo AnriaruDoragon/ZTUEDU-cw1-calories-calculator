@@ -9,25 +9,32 @@
 
 ---
 
-# Структура класів та документація
+# Структура класів та документація бібліотеки `CCLibrary`
 
-- [Абстрактний `Product`](#user-content-product-class)
-	- [`Consumable`](#user-content-consumable-class)
-		- [`Food`](#user-content-food-class)
-		- [`Drink`](#user-content-drink-class)
-			- [`EnergyDrink`](#user-content-energydrink-class)
-			- [`AlcoholDrink`](#user-content-alcoholdrink-class)
+- [`Products`](#user-content-cclibraryproducts)
+	- [Абстрактний `Product`](#user-content-product-class)
+		- [`Consumable`](#user-content-consumable-class)
+			- [`Food`](#user-content-food-class)
+			- [`Drink`](#user-content-drink-class)
+				- [`EnergyDrink`](#user-content-energydrink-class)
+				- [`AlcoholDrink`](#user-content-alcoholdrink-class)
+		- [`Dish`](#user-content-dish-class)
+- [`User`](#user-content-cclibraryuser)
+	- [`Profile`](#user-content-profile-class)
+	- [`DailyConsumption`](#user-content-dailyconsumption-class)
+- [`Data`](#user-content-cclibrarydata)
+	- [`...`]
 - [Виключення](#user-content-cclibraryexceptions)
 	- [`ValueOutOfRangeException`](#user-content-valueoutofrangeexception)
 	- [`VitaminAlreadyExistsException`](#user-content-vitaminalreadyexistsexception)
 	- [`VitaminNotFoundException`](#user-content-vitaminnotfoundexception)
 
-## CCLibrary
+## CCLibrary.Products
 
 Бібліотека, що містить в собі усі основні класи, якими оперує додаток.
 
 ### Product class
-Namespace: CCLibrary
+Namespace: CCLibrary.Products
 
 #### Означення
 
@@ -78,14 +85,14 @@ public double GetEnergy();
 ---
 
 ### Consumable class
-Namespace: CCLibrary
+Namespace: CCLibrary.Products
 
 #### Означення
 
 Похідний клас від абстрактного `Product`. Визначає продукти, які можна вживати.
 
 ```cs
-internal class Consumable : Product
+public class Consumable : Product
 ```
 
 #### Конструктори
@@ -118,14 +125,14 @@ public override double GetCalories();
 ---
 
 ### Food class
-Namespace: CCLibrary
+Namespace: CCLibrary.Products
 
 #### Означення
 
 Похідний клас від `Consumable`. Визначає тверду їжу та її властивості.
 
 ```cs
-internal class Food : Consumable
+public class Food : Consumable
 ```
 
 #### Конструктори
@@ -148,14 +155,14 @@ public void UpdateNutritions(Nutritions nutritions);
 ---
 
 ### Drink class
-Namespace: CCLibrary
+Namespace: CCLibrary.Products
 
 #### Означення
 
 Похідний клас від `Consumable`. Обособлює напої, є базовим класом для їх різновидів.
 
 ```cs
-internal class Drink : Consumable
+public class Drink : Consumable
 ```
 
 #### Конструктори
@@ -174,14 +181,14 @@ internal class Drink : Consumable
 ---
 
 ### EnergyDrink class
-Namespace: CCLibrary
+Namespace: CCLibrary.Products
 
 #### Означення
 
 Похідний клас від `Drink`. Визначає енергетичні напої.
 
 ```cs
-internal class EnergyDrink : Drink
+public class EnergyDrink : Drink
 ```
 
 #### Конструктори
@@ -232,14 +239,14 @@ public void RemoveVitamin(string name);
 ---
 
 ### AlcoholDrink class
-Namespace: CCLibrary
+Namespace: CCLibrary.Products
 
 #### Означення
 
 Похідний клас від `Drink`. Визначає алкогольні напої.
 
 ```cs
-internal class AlcoholDrink : Drink
+public class AlcoholDrink : Drink
 ```
 
 #### Конструктори
@@ -257,6 +264,57 @@ internal class AlcoholDrink : Drink
 #### Виключення
 
 - `ValueOutOfRangeException`
+
+---
+
+### Dish class
+Namespace: CCLibrary.Products
+
+#### Означення
+
+Похідний клас від `Product`. Визначає страви, що можуть складатися з різноманітних продуктів.
+
+```cs
+public class Dish : Product
+```
+
+#### Конструктори
+
+- `public Dish(string name, List<Consumable>? ingredients = null)`
+
+#### Поля
+
+- `private List<Consumable> _ingredients`
+
+#### Методи
+
+##### GetIngredients
+
+Повертає копію списку інгредієнтів страви.
+```cs
+public List<Consumable> GetIngredients();
+```
+
+##### AddIngredient
+
+Додати інгредієнт до страви.
+```cs
+public void AddIngredient(Consumable consumable);
+```
+
+##### UpdateIngredients
+
+Оновити список інгредієнтів страви.
+```cs
+public void UpdateIngredients(List<Consumable> ingredients);
+```
+
+##### GetCalories
+
+Підрахувати загальну кількість калорій усіх інгредієнтів страви.
+```cs
+public override double GetCalories();
+```
 
 ---
 
