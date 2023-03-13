@@ -11,6 +11,13 @@
 
 # Структура класів та документація бібліотеки `CCLibrary`
 
+- [`Data`](#user-content-cclibrarydata)
+	- [`Database`](#user-content-database-class)
+	- [`ProfileContext`](#user-content-profilecontext-class)
+	- [`ProductContext`](#user-content-productcontext-class)
+- [`User`](#user-content-cclibraryuser)
+	- [`Profile`](#user-content-profile-class)
+	- [`DailyConsumption`](#user-content-dailyconsumption-class)
 - [`Products`](#user-content-cclibraryproducts)
 	- [Абстрактний `Product`](#user-content-product-class)
 		- [`Dish`](#user-content-dish-class)
@@ -19,15 +26,263 @@
 			- [`Drink`](#user-content-drink-class)
 				- [`EnergyDrink`](#user-content-energydrink-class)
 				- [`AlcoholDrink`](#user-content-alcoholdrink-class)
-- [`User`](#user-content-cclibraryuser)
-	- [`Profile`](#user-content-profile-class)
-	- [`DailyConsumption`](#user-content-dailyconsumption-class)
-- [`Data`](#user-content-cclibrarydata)
-	- [`...`]
 - [Виключення](#user-content-cclibraryexceptions)
+	- [`ProfileAlreadyExistsException`](#user-content-profilealreadyexistsexception)
+	- [`ProfiletNotFoundException`](#user-content-profilenotfoundexception)
+	- [`WrongPasswordException`](#user-content-wrongpasswordexception)
+	- [`ProductNotFoundException`](#user-content-productnotfoundexception)
 	- [`ValueOutOfRangeException`](#user-content-valueoutofrangeexception)
 	- [`VitaminAlreadyExistsException`](#user-content-vitaminalreadyexistsexception)
 	- [`VitaminNotFoundException`](#user-content-vitaminnotfoundexception)
+	
+
+## CCLibrary.Data
+
+### Database class
+Namespace: CCLibrary.Data
+
+#### Означення
+
+Клас що ініціалізує та надає доступ до локальної бази даних, у якій зберігаються продукти,
+профілі користувачів та інша інформація.
+
+```cs
+public class Database
+```
+
+#### Конструктори
+
+- `public Database()`
+
+#### Поля
+
+- `internal static readonly string _dbSource`
+- `internal SqliteConnection _connection`
+
+#### Методи
+
+##### CheckConnection
+
+Перевіряє чи відкрита база даних, якщо ні то відкриває її.
+```cs
+internal void CheckConnection();
+```
+
+##### Initialize
+
+Ініціалізує базу даних, створює файл для неї та таблиці, якщо ті не існують.
+```cs
+private void Initialize();
+```
+
+---
+
+### ProfileContext class
+Namespace: CCLibrary.Data
+
+#### Означення
+
+Контекст для керуванням профілями.
+
+```cs
+public class ProfileContext : DbContext
+```
+
+#### Конструктори
+
+- `public ProfileContext()`
+
+#### Властивості
+
+- `public DbSet<Profile> Profiles`
+
+#### Методи
+
+##### CreateProfile
+
+Створює у базі даних профіль з вказаним логіном та паролем. Якщо профіль вже існує - то виникне
+помилка `ProfileAlreadyExistsException`.
+```cs
+public Profile CreateProfile(string login, string password);
+```
+
+##### GetProfile
+
+Повертає профіль, якщо його знайдено у базі та вказаний пароль співпадає.
+Якщо профіль не знайдено то виникне помилка `ProfiletNotFoundException`, а якщо не співпадають
+паролі то - `WrongPasswordException`.
+```cs
+public Profile GetProfile(string login, string password);
+```
+
+#### Виключення
+
+- `ProfileAlreadyExistsException`
+- `ProfiletNotFoundException`
+- `WrongPasswordException`
+
+---
+
+### ProductContext class
+Namespace: CCLibrary.Data
+
+#### Означення
+
+Контекст для керуванням продуктами.
+
+```cs
+public class ProductContext : DbContext
+```
+
+#### Конструктори
+
+- `public ProductContext()`
+
+#### Властивості
+
+- `public DbSet<Product> Products`
+
+#### Методи
+
+##### GetProduct
+
+Повертає продукт з вказаним ID.
+```cs
+public Product? GetProduct(ulong id);
+```
+
+##### AddProduct
+
+Додає продукт до бази даних.
+```cs
+public void AddProduct(Product product);
+```
+
+##### DeleteProduct
+
+Видаляє вказаний продукт з бази даних.
+```cs
+public void DeleteProduct(ulong id);
+```
+
+#### Виключення
+
+- `ProductNotFoundException`
+
+## CCLibrary.User
+
+### Profile class
+Namespace: CCLibrary.User
+
+#### Означення
+
+Клас представляє профіль користувача.
+
+```cs
+public class Profile
+```
+
+#### Конструктори
+
+- `public Profile(string login, string password)`
+
+#### Поля
+
+- `internal string _login`
+- `private string _password`
+- `public ulong Id`
+- `public string Name`
+- `public byte[]? Image`
+- `public DateTime BirthDay`
+- `protected float _height`
+- `protected float _weight`
+
+#### Властивості
+
+- `public int Age`
+- `public float HeightInCm`
+- `public float WeightInKg`
+
+#### Методи
+
+##### CheckPassword
+
+Перевіряє вказаний пароль на дійсність.
+```cs
+public bool CheckPassword(string password);
+```
+
+##### UpdatePassword
+
+Оновлює пароль якщо старий пароль вказано вірно.
+```cs
+public void UpdatePassword(string oldPassword, string newPassword);
+```
+
+#### Виключення
+
+- `ValueOutOfRangeException`
+- `WrongPasswordException`
+
+---
+
+### DailyConsumption class
+Namespace: CCLibrary.User
+
+#### Означення
+
+Представляє собою збірку продкутів, що вжив певний профіль в певний день.
+
+```cs
+public class DailyConsumption
+```
+
+#### Конструктори
+
+- `public DailyConsumption(Profile profile, DateTime date)`
+
+#### Поля
+
+- `public Profile LinkedProfile`
+- `public DateTime Date`
+- `private List<Product> _consumedProducts`
+
+#### Методи
+
+##### CalculateCalories
+
+Підраховує загальну кількість вжитих калорій за день.
+```cs
+public double CalculateCalories();
+```
+
+##### CalculateEnergy
+
+Переводить калорії в енергію.
+```cs
+public double CalculateEnergy();
+```
+
+##### GetProducts
+
+Повертає колекцію з продуктів, що вживалися.
+```cs
+public List<Product> GetProducts();
+```
+
+##### Consume
+
+Додає продукт до списку вживаних.
+```cs
+public void Consume(Product product);
+```
+
+##### UpdateConsumed
+
+Оновлює список вживаних продуктів на новий.
+```cs
+public void UpdateConsumed(List<Product> products);
+```
 
 ## CCLibrary.Products
 
@@ -316,7 +571,37 @@ public class AlcoholDrink : Drink
 
 ## CCLibrary.Exceptions
 
-Можливі виключення у бібліотеці та їх причини.
+### ProfileAlreadyExistsException
+Namespace: CCLibrary.Exceptions
+
+Виникає якщо при створені нового профілю логін вже існує у базі даних.
+
+Повідомлення за замовчуванням:
+> Профіль вже існує!
+
+### ProfiletNotFoundException
+Namespace: CCLibrary.Exceptions
+
+Виникає якщо профіль з вказаним логіном не знайдено у базі даних.
+
+Повідомлення за замовчуванням:
+> Профіль не знайдено!
+
+### WrongPasswordException
+Namespace: CCLibrary.Exceptions
+
+Виникая якщо вказаний пароль введено неправильно.
+
+Повідомлення за замовчуванням:
+> Невірний пароль!
+
+### ProductNotFoundException
+Namespace: CCLibrary.Exceptions
+
+Виникає якщо продукт з вказаними параметрами не знайдено в базі даних.
+
+Повідомлення за замовчуванням:
+> Продукт не знайдено!
 
 ### ValueOutOfRangeException
 Namespace: CCLibrary.Exceptions
@@ -329,9 +614,6 @@ Namespace: CCLibrary.Exceptions
 - Можливо записати тільки додатні числа, від 0 або більше (іноді включно з нулем);
 - Відсотки лежать у діапазоні від 0 до 100.
 
-```cs
-public ValueOutOfRangeException(string message) : base(message)
-```
 
 ### VitaminAlreadyExistsException
 Namespace: CCLibrary.Exceptions
@@ -341,10 +623,6 @@ Namespace: CCLibrary.Exceptions
 Повідомлення за замовчуванням:
 > Вітамін з такою назвою вже існує!
 
-```cs
-public VitaminAlreadyExistsException(string message = message) : base(message)
-```
-
 ### VitaminNotFoundException
 Namespace: CCLibrary.Exceptions
 
@@ -352,7 +630,3 @@ Namespace: CCLibrary.Exceptions
 
 Повідомлення за замовчуванням:
 > Вітамін з такою назвою не знайдено!
-
-```cs
-public VitaminNotFoundException(string message = message) : base(message)
-```
