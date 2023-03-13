@@ -163,11 +163,16 @@ internal class Drink : Consumable
 
 #### Конструктори
 
-- `public Drink(ulong id, double caloriesPerServing)`
-- `public Drink(ulong id, string name, double caloriesPerServing)`
+- `public Drink(ulong id, double caloriesPerServing, DrinkTypes drinkType = DrinkTypes.Tap)`
+- `Drink(ulong id, string name, double caloriesPerServing, DrinkTypes drinkType = DrinkTypes.Tap)`
+
+#### Поля
+
+- `protected DrinkTypes _drinkType`
 
 #### Властивості
 
+- `public DrinkTypes Type`
 - `public bool IsCarbonated`
 
 ---

@@ -10,6 +10,8 @@ namespace CCLibrary
         public EnergyDrink(ulong id, double caloriesPerServing, Dictionary<string, double>? vitamins = null)
             : base(id, caloriesPerServing)
         {
+            Type = DrinkTypes.Energy;
+
             if (vitamins == null)
                 _vitamins = new Dictionary<string, double>();
             else

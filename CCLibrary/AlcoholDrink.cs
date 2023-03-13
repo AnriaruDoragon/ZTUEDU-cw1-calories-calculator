@@ -23,13 +23,14 @@
         public AlcoholDrink(ulong id, double caloriesPerServing, double alcoholContent)
             : base(id, caloriesPerServing)
         {
+            Type = DrinkTypes.Alcohol;
             AlcoholContent = alcoholContent;
         }
 
         public AlcoholDrink(ulong id, string name, double caloriesPerServing, double alcoholContent)
-            : base(id, name, caloriesPerServing)
+            : this(id, caloriesPerServing, alcoholContent)
         {
-            AlcoholContent = alcoholContent;
+            Name = name;
         }
     }
 }
