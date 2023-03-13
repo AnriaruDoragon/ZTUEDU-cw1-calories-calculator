@@ -7,11 +7,7 @@ namespace CCLibrary
         protected double _caloriesPerServing;
         protected double _servingSize = 100;
 
-        public Consumable(ulong id, double caloriesPerServing) : base(id)
-        {
-            CaloriesPerServing = caloriesPerServing;
-        }
-        public Consumable(ulong id, string name, double caloriesPerServing) : base(id, name)
+        public Consumable(string name, double caloriesPerServing) : base(name)
         {
             CaloriesPerServing = caloriesPerServing;
         }

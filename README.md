@@ -40,7 +40,6 @@ public abstract class Product
 
 #### Конструктори
 
-- `public Product(ulong id)`
 - `public Product(ulong id, string name)`
 
 #### Поля
@@ -91,8 +90,7 @@ internal class Consumable : Product
 
 #### Конструктори
 
-- `public Consumable(ulong id, double caloriesPerServing)`
-- `public Consumable(ulong id, string name, double caloriesPerServing)`
+- `public Consumable(string name, double caloriesPerServing)`
 
 #### Поля
 
@@ -132,8 +130,7 @@ internal class Food : Consumable
 
 #### Конструктори
 
-- `public Food(ulong id, double caloriesPerServing, Nutritions nutritions = new())`
-- `public Food(ulong id, string name, double caloriesPerServing, Nutritions nutritions = new())`
+- `public Food(string name, double caloriesPerServing, Nutritions nutritions = new())`
 
 #### Властивості
 
@@ -163,8 +160,7 @@ internal class Drink : Consumable
 
 #### Конструктори
 
-- `public Drink(ulong id, double caloriesPerServing, DrinkTypes drinkType = DrinkTypes.Tap)`
-- `public Drink(ulong id, string name, double caloriesPerServing, DrinkTypes drinkType = DrinkTypes.Tap)`
+- `public Drink(string name, double caloriesPerServing, DrinkTypes drinkType = DrinkTypes.Tap)`
 
 #### Поля
 
@@ -190,8 +186,7 @@ internal class EnergyDrink : Drink
 
 #### Конструктори
 
-- `public EnergyDrink(ulong id, double caloriesPerServing, Dictionary<string, double>? vitamins = null)`
-- `public EnergyDrink(ulong id, string name, double caloriesPerServing, Dictionary<string, double>? vitamins = null)`
+- `public EnergyDrink(string name, double caloriesPerServing, Dictionary<string, double>? vitamins = null)`
 
 #### Поля
 
@@ -249,8 +244,7 @@ internal class AlcoholDrink : Drink
 
 #### Конструктори
 
-- `public AlcoholDrink(ulong id, double caloriesPerServing, double alcoholContent)`
-- `public AlcoholDrink(ulong id, string name, double caloriesPerServing, double alcoholContent)`
+- `public AlcoholDrink(string name, double caloriesPerServing, double alcoholContent)`
 
 #### Поля
 

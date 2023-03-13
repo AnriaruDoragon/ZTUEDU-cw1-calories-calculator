@@ -7,8 +7,8 @@ namespace CCLibrary
     {
         protected Dictionary<string, double> _vitamins;
 
-        public EnergyDrink(ulong id, double caloriesPerServing, Dictionary<string, double>? vitamins = null)
-            : base(id, caloriesPerServing)
+        public EnergyDrink(string name, double caloriesPerServing, Dictionary<string, double>? vitamins = null)
+            : base(name, caloriesPerServing)
         {
             Type = DrinkTypes.Energy;
 
@@ -16,12 +16,6 @@ namespace CCLibrary
                 _vitamins = new Dictionary<string, double>();
             else
                 _vitamins = new Dictionary<string, double>(vitamins);
-        }
-
-        public EnergyDrink(ulong id, string name, double caloriesPerServing, Dictionary<string, double>? vitamins = null)
-            : this(id, caloriesPerServing, vitamins)
-        {
-            Name = name;
         }
 
         /// <summary>

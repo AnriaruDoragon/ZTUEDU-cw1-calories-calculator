@@ -20,17 +20,11 @@
             }
         }
 
-        public AlcoholDrink(ulong id, double caloriesPerServing, double alcoholContent)
-            : base(id, caloriesPerServing)
+        public AlcoholDrink(string name, double caloriesPerServing, double alcoholContent)
+            : base(name, caloriesPerServing)
         {
             Type = DrinkTypes.Alcohol;
             AlcoholContent = alcoholContent;
-        }
-
-        public AlcoholDrink(ulong id, string name, double caloriesPerServing, double alcoholContent)
-            : this(id, caloriesPerServing, alcoholContent)
-        {
-            Name = name;
         }
     }
 }

@@ -2,7 +2,7 @@ namespace CCLibrary
 {
     public abstract class Product
     {
-        public ulong Id { get; }
+        public ulong Id { get; internal set; } = 0;
 
         public string Name { get; set; } = "N/D";
         public string Description { get; set; } = string.Empty;
@@ -47,11 +47,7 @@ namespace CCLibrary
             }
         }
 
-        public Product(ulong id)
-        {
-            Id = id;
-        }
-        public Product(ulong id, string name) : this(id)
+        public Product(string name)
         {
             Name = name;
         }

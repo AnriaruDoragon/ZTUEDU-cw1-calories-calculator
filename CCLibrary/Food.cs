@@ -23,14 +23,8 @@
     {
         public Nutritions Nutritions { get; protected set; }
 
-        public Food(ulong id, double caloriesPerServing, Nutritions nutritions = new())
-            : base(id, caloriesPerServing)
-        {
-            Nutritions = nutritions;
-        }
-
-        public Food(ulong id, string name, double caloriesPerServing, Nutritions nutritions = new())
-            : base(id, name, caloriesPerServing)
+        public Food(string name, double caloriesPerServing, Nutritions nutritions = new())
+            : base(name, caloriesPerServing)
         {
             Nutritions = nutritions;
         }

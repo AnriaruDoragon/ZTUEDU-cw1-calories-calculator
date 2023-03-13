@@ -19,14 +19,8 @@
             }
         }
 
-        public Drink(ulong id, double caloriesPerServing, DrinkTypes drinkType = DrinkTypes.Tap)
-            : base(id, caloriesPerServing)
-        {
-            Type = drinkType;
-        }
-
-        public Drink(ulong id, string name, double caloriesPerServing, DrinkTypes drinkType = DrinkTypes.Tap)
-            : base(id, name, caloriesPerServing)
+        public Drink(string name, double caloriesPerServing, DrinkTypes drinkType = DrinkTypes.Tap)
+            : base(name, caloriesPerServing)
         {
             Type = drinkType;
         }
