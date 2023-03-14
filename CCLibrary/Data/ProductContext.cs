@@ -15,7 +15,7 @@ namespace CCLibrary.Data
         /// <summary>
         /// Get the product by ID.
         /// </summary>
-        public Product? GetProduct(ulong id)
+        public Product? GetProduct(long id)
         {
             return Products.FirstOrDefault(product => product.Id.Equals(id));
         }
@@ -33,7 +33,7 @@ namespace CCLibrary.Data
         /// Remove product from the database.
         /// </summary>
         /// <exception cref="ProductNotFoundException"></exception>
-        public void DeleteProduct(ulong id)
+        public void DeleteProduct(long id)
         {
             Product? product = GetProduct(id);
             if (product != null)
