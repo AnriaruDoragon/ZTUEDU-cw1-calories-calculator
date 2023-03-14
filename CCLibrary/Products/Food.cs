@@ -2,6 +2,16 @@
 {
     public class Food : Consumable
     {
+        protected Food()
+        {
+        }
+
+        public Food(string name, double caloriesPerServing, Nutritions nutritions = new())
+            : base(name, caloriesPerServing)
+        {
+            Nutritions = nutritions;
+        }
+
         protected FoodTypes _foodType;
         public Nutritions Nutritions { get; protected set; }
 
@@ -11,10 +21,19 @@
             protected set { _foodType = value; }
         }
 
-        public Food(string name, double caloriesPerServing, Nutritions nutritions = new())
-            : base(name, caloriesPerServing)
+        public override Product Copy()
         {
-            Nutritions = nutritions;
+            return new Food
+            {
+                Id = this.Id,
+                Name = this.Name,
+                Description = this.Description,
+                NetMassInGrams = this.NetMassInGrams,
+                CaloriesPerServing = this.CaloriesPerServing,
+                ServingSizeInGrams = this.ServingSizeInGrams,
+                Type = this.Type,
+                Nutritions = this.Nutritions
+            };
         }
 
         /// <summary>

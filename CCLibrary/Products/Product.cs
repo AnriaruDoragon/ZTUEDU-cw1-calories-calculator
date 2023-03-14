@@ -1,19 +1,28 @@
+using System;
 using CCLibrary.Exceptions;
 
 namespace CCLibrary.Products
 {
-    public abstract class Product
+    public abstract class Product : ICloneable
     {
-        public ulong Id { get; set; }
+        protected Product() 
+        {
+        }
 
+        public Product(string name)
+        {
+            Name = name;
+        }
+
+        public ulong Id { get; set; }
         public string Name { get; set; } = "N/D";
         public string Description { get; set; } = string.Empty;
-
         protected double _netMass = 100;
+
         public double NetMassInGrams
         {
             get { return _netMass; }
-            protected set
+            set
             {
                 if (value < 0)
                     throw new ValueOutOfRangeException("Значення повинно бути додатнім!");
@@ -24,7 +33,7 @@ namespace CCLibrary.Products
         public double NetMassInKilos
         {
             get { return _netMass / 1000.0; }
-            protected set
+            set
             {
                 value *= 1000.0;
                 if (value < 0)
@@ -46,9 +55,13 @@ namespace CCLibrary.Products
             }
         }
 
-        public Product(string name)
+        /// <summary>
+        /// Get a copyu of this product.
+        /// </summary>
+        public abstract Product Copy();
+        public object Clone()
         {
-            Name = name;
+            return MemberwiseClone();
         }
 
         /// <summary>

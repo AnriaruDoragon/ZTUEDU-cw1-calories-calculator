@@ -4,13 +4,17 @@ namespace CCLibrary.Products
 {
     public class Consumable : Product
     {
-        protected double _caloriesPerServing;
-        protected double _servingSize = 100;
+        protected Consumable()
+        {
+        }
 
         public Consumable(string name, double caloriesPerServing) : base(name)
         {
             CaloriesPerServing = caloriesPerServing;
         }
+
+        protected double _caloriesPerServing;
+        protected double _servingSize = 100;
 
         /// <summary>
         /// Specifies the amount of calories per serving size (g).
@@ -42,6 +46,19 @@ namespace CCLibrary.Products
                 else
                     _servingSize = value;
             }
+        }
+
+        public override Product Copy()
+        {
+            return new Consumable
+            {
+                Id = this.Id,
+                Name = this.Name,
+                Description = this.Description,
+                NetMassInGrams = this.NetMassInGrams,
+                CaloriesPerServing = this.CaloriesPerServing,
+                ServingSizeInGrams = this.ServingSizeInGrams
+            };
         }
 
         public override double GetCalories()

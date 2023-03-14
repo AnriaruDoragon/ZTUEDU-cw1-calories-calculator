@@ -4,6 +4,17 @@ namespace CCLibrary.Products
 {
     public class AlcoholDrink : Drink
     {
+        protected AlcoholDrink()
+        {
+        }
+
+        public AlcoholDrink(string name, double caloriesPerServing, double alcoholContent)
+            : base(name, caloriesPerServing)
+        {
+            Type = DrinkTypes.Alcohol;
+            AlcoholContent = alcoholContent;
+        }
+
         protected double _alcoholContent;
 
         /// <summary>
@@ -21,11 +32,20 @@ namespace CCLibrary.Products
             }
         }
 
-        public AlcoholDrink(string name, double caloriesPerServing, double alcoholContent)
-            : base(name, caloriesPerServing)
+        public override Product Copy()
         {
-            Type = DrinkTypes.Alcohol;
-            AlcoholContent = alcoholContent;
+            return new AlcoholDrink
+            {
+                Id = this.Id,
+                Name = this.Name,
+                Description = this.Description,
+                NetMassInGrams = this.NetMassInGrams,
+                CaloriesPerServing = this.CaloriesPerServing,
+                ServingSizeInGrams = this.ServingSizeInGrams,
+                Type = this.Type,
+                IsCarbonated = this.IsCarbonated,
+                AlcoholContent = this.AlcoholContent
+            };
         }
     }
 }

@@ -6,7 +6,10 @@ namespace CCLibrary.Products
 {
     public class EnergyDrink : Drink
     {
-        protected Dictionary<string, double> _vitamins;
+        protected EnergyDrink(Dictionary<string, double> vitamins)
+        {
+            _vitamins = new Dictionary<string, double>(vitamins);
+        }
 
         public EnergyDrink(string name, double caloriesPerServing, Dictionary<string, double>? vitamins = null)
             : base(name, caloriesPerServing)
@@ -17,6 +20,23 @@ namespace CCLibrary.Products
                 _vitamins = new Dictionary<string, double>();
             else
                 _vitamins = new Dictionary<string, double>(vitamins);
+        }
+
+        protected Dictionary<string, double> _vitamins;
+
+        public override Product Copy()
+        {
+            return new EnergyDrink(this._vitamins)
+            {
+                Id = this.Id,
+                Name = this.Name,
+                Description = this.Description,
+                NetMassInGrams = this.NetMassInGrams,
+                CaloriesPerServing = this.CaloriesPerServing,
+                ServingSizeInGrams = this.ServingSizeInGrams,
+                Type = this.Type,
+                IsCarbonated = this.IsCarbonated
+            };
         }
 
         /// <summary>

@@ -5,7 +5,10 @@ namespace CCLibrary.Products
 {
     public class Dish : Product
     {
-        private List<Consumable> _ingredients;
+        protected Dish(List<Consumable> ingredients)
+        {
+            _ingredients = new List<Consumable>(ingredients);
+        }
 
         public Dish(string name, List<Consumable>? ingredients = null) : base(name)
         {
@@ -13,6 +16,19 @@ namespace CCLibrary.Products
                 _ingredients = new List<Consumable>();
             else
                 _ingredients = ingredients;
+        }
+
+        private List<Consumable> _ingredients;
+
+        public override Product Copy()
+        {
+            return new Dish(this._ingredients)
+            {
+                Id = this.Id,
+                Name = this.Name,
+                Description = this.Description,
+                NetMassInGrams = this.NetMassInGrams,
+            };
         }
 
         /// <summary>

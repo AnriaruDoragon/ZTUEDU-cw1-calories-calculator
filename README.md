@@ -294,12 +294,13 @@ Namespace: CCLibrary.Products
 маси нетто та рахувати кількість калорій.
 
 ```cs
-public abstract class Product
+public abstract class Product : ICloneable
 ```
 
 #### Конструктори
 
-- `public Product(ulong id, string name)`
+- `protected Product()`
+- `public Product(string name)`
 
 #### Поля
 
@@ -315,6 +316,13 @@ public abstract class Product
 - `public double NetMassInPounds`
 
 #### Методи
+
+##### Copy
+
+Абстрактний метод для копіювання об'єкту.
+```cs
+public abstract Product Copy();
+```
 
 ##### GetCalories
 
@@ -349,6 +357,7 @@ public class Dish : Product
 
 #### Конструктори
 
+- `protected Dish(List<Consumable> ingredients)`
 - `public Dish(string name, List<Consumable>? ingredients = null)`
 
 #### Поля
@@ -356,6 +365,13 @@ public class Dish : Product
 - `private List<Consumable> _ingredients`
 
 #### Методи
+
+##### Copy
+
+Метод для копіювання об'єкту.
+```cs
+public override Product Copy();
+```
 
 ##### GetIngredients
 
@@ -400,6 +416,7 @@ public class Consumable : Product
 
 #### Конструктори
 
+- `protected Consumable()`
 - `public Consumable(string name, double caloriesPerServing)`
 
 #### Поля
@@ -413,6 +430,13 @@ public class Consumable : Product
 - `public double ServingSizeInGrams`
 
 #### Методи
+
+##### Copy
+
+Метод для копіювання об'єкту.
+```cs
+public override Product Copy();
+```
 
 ##### GetCalories
 
@@ -440,6 +464,7 @@ public class Food : Consumable
 
 #### Конструктори
 
+- `protected Food()`
 - `public Food(string name, double caloriesPerServing, Nutritions nutritions = new())`
 
 #### Властивості
@@ -447,6 +472,13 @@ public class Food : Consumable
 - `readonly struct Nutritions`
 
 #### Методи
+
+##### Copy
+
+Метод для копіювання об'єкту.
+```cs
+public override Product Copy();
+```
 
 ##### UpdateNutritions
 
@@ -470,6 +502,7 @@ public class Drink : Consumable
 
 #### Конструктори
 
+- `protected Drink()`
 - `public Drink(string name, double caloriesPerServing, DrinkTypes drinkType = DrinkTypes.Tap)`
 
 #### Поля
@@ -480,6 +513,15 @@ public class Drink : Consumable
 
 - `public DrinkTypes Type`
 - `public bool IsCarbonated`
+
+#### Методи
+
+##### Copy
+
+Метод для копіювання об'єкту.
+```cs
+public override Product Copy();
+```
 
 ---
 
@@ -496,6 +538,7 @@ public class EnergyDrink : Drink
 
 #### Конструктори
 
+- `protected EnergyDrink(Dictionary<string, double> vitamins)`
 - `public EnergyDrink(string name, double caloriesPerServing, Dictionary<string, double>? vitamins = null)`
 
 #### Поля
@@ -503,6 +546,13 @@ public class EnergyDrink : Drink
 - `protected Dictionary<string, double> _vitamins`
 
 #### Методи
+
+##### Copy
+
+Метод для копіювання об'єкту.
+```cs
+public override Product Copy();
+```
 
 ##### GetVitamins
 
@@ -554,6 +604,7 @@ public class AlcoholDrink : Drink
 
 #### Конструктори
 
+- `protected AlcoholDrink()`
 - `public AlcoholDrink(string name, double caloriesPerServing, double alcoholContent)`
 
 #### Поля
@@ -563,6 +614,15 @@ public class AlcoholDrink : Drink
 #### Властивості
 
 - `public double AlcoholContent`
+
+#### Методи
+
+##### Copy
+
+Метод для копіювання об'єкту.
+```cs
+public override Product Copy();
+```
 
 #### Виключення
 

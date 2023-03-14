@@ -2,6 +2,16 @@
 {
     public class Drink : Consumable
     {
+        protected Drink()
+        {
+        }
+
+        public Drink(string name, double caloriesPerServing, DrinkTypes drinkType = DrinkTypes.Tap)
+            : base(name, caloriesPerServing)
+        {
+            Type = drinkType;
+        }
+
         protected DrinkTypes _drinkType;
         public bool IsCarbonated { get; set; } = false;
 
@@ -19,10 +29,19 @@
             }
         }
 
-        public Drink(string name, double caloriesPerServing, DrinkTypes drinkType = DrinkTypes.Tap)
-            : base(name, caloriesPerServing)
+        public override Product Copy()
         {
-            Type = drinkType;
+            return new Drink
+            {
+                Id = this.Id,
+                Name = this.Name,
+                Description = this.Description,
+                NetMassInGrams = this.NetMassInGrams,
+                CaloriesPerServing = this.CaloriesPerServing,
+                ServingSizeInGrams = this.ServingSizeInGrams,
+                Type = this.Type,
+                IsCarbonated = this.IsCarbonated
+            };
         }
     }
 }
