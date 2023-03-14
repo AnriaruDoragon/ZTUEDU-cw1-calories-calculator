@@ -14,7 +14,7 @@ namespace CCLibrary.Products
             Name = name;
         }
 
-        public ulong Id { get; set; }
+        public long Id { get; set; }
         public string Name { get; set; } = "N/D";
         public string Description { get; set; } = string.Empty;
         protected double _netMass = 100;

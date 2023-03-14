@@ -8,7 +8,7 @@ namespace CCLibrary.User
         internal string _login;
         private string _password;
 
-        public ulong Id { get; set; }
+        public long Id { get; set; }
         public string Name { get; set; } = "N/D";
         public byte[]? Image { get; set; }
 
