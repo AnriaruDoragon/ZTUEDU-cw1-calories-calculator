@@ -81,6 +81,13 @@ private void Initialize();
 public DailyConsumption GetProfileConsumption(Profile profile, DateTime date);
 ```
 
+##### AddProfileConsumption
+
+Додати до бази даних новий запис, що вказує на те, що профіль спожив продукт вказаної маси у вказану дату.
+```cs
+internal void AddProfileConsumption(Profile profile, Product product, DateTime date);
+```
+
 ---
 
 ### ProfileContext class

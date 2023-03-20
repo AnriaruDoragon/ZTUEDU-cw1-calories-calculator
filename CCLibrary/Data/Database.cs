@@ -77,5 +77,21 @@ namespace CCLibrary.Data
 
             return consumption;
         }
+
+        /// <summary>
+        /// Insert a record to the db for a profile consumed product.
+        /// </summary>
+        internal void AddProfileConsumption(Profile profile, Product product, DateTime date)
+        {
+            CheckConnection();
+            SqliteCommand insertCommand = new(@"
+                INSERT INTO ProfileConsumedProducts (ProfileID, ProductID, ProductMass, ConsumedDate)
+                VALUES (@ProfileID, @ProductID, @ProductMass, @ConsumedDate);", Connection);
+            insertCommand.Parameters.AddWithValue("@ProfileID", profile.Id);
+            insertCommand.Parameters.AddWithValue("@ProductID", product.Id);
+            insertCommand.Parameters.AddWithValue("@ProductMass", product.NetMassInGrams);
+            insertCommand.Parameters.AddWithValue("@ConsumedDate", date.ToString("yyyy-MM-dd"));
+            insertCommand.ExecuteNonQuery();
+        }
     }
 }
