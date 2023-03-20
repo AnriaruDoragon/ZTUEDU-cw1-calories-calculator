@@ -50,9 +50,6 @@
             <Label>Logo</Label>
             <StackPanel Grid.Row="1" Margin="0 25 0 0">
                 <cmc:NavMenuItemControl Icon="FoodDrawingImage" Text="Продукти" Tag="Products"/>
-                <cmc:NavMenuItemControl Text="2"/>
-                <cmc:NavMenuItemControl Text="3"/>
-                <cmc:NavMenuItemControl Text="4"/>
             </StackPanel>
             <cmc:NavMenuItemControl Grid.Row="2" Icon="GearDrawingImage" Text="Опції" Tag="Settings"/>
         </Grid>
