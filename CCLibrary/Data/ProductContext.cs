@@ -10,7 +10,7 @@ namespace CCLibrary.Data
         public DbSet<Product> Products { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite(Data.Database._dbSource);
+            => options.UseSqlite(Data.Database.DbSource);
 
         /// <summary>
         /// Get the product by ID.

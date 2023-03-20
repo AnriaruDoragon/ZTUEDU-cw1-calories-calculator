@@ -55,8 +55,8 @@ public class Database
 
 #### Поля
 
-- `internal static readonly string _dbSource`
-- `internal SqliteConnection _connection`
+- `internal static readonly string DbSource`
+- `internal SqliteConnection Connection`
 
 #### Методи
 

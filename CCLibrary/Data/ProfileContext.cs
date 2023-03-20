@@ -11,7 +11,7 @@ namespace CCLibrary.Data
         public DbSet<Profile> Profiles { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite(Data.Database._dbSource);
+            => options.UseSqlite(Data.Database.DbSource);
 
         /// <summary>
         /// Create a new profile.
@@ -19,9 +19,8 @@ namespace CCLibrary.Data
         /// <exception cref="ProfileAlreadyExistsException"></exception>
         public Profile CreateProfile(string login, string password)
         {
-            if (Profiles.Any(profile =>
-                profile._login.Equals(login, StringComparison.OrdinalIgnoreCase)))
-                    throw new ProfileAlreadyExistsException();
+            if (Profiles.Any(profile => profile._login.Equals(login, StringComparison.OrdinalIgnoreCase)))
+                throw new ProfileAlreadyExistsException();
 
             Profile newProfile = new(login, password);
             Profiles.Add(newProfile);
