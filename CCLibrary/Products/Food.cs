@@ -6,19 +6,19 @@
         {
         }
 
-        public Food(string name, double caloriesPerServing, Nutritions nutritions = new())
+        public Food(string name, double caloriesPerServing, Nutrition nutrition = new())
             : base(name, caloriesPerServing)
         {
-            Nutritions = nutritions;
+            Nutrition = nutrition;
         }
 
         protected FoodTypes _foodType;
-        public Nutritions Nutritions { get; protected set; }
+        public Nutrition Nutrition { get; protected set; }
 
         public FoodTypes Type
         {
-            get { return _foodType; }
-            protected set { _foodType = value; }
+            get => _foodType;
+            protected set => _foodType = value;
         }
 
         public override Product Copy()
@@ -32,16 +32,16 @@
                 CaloriesPerServing = this.CaloriesPerServing,
                 ServingSizeInGrams = this.ServingSizeInGrams,
                 Type = this.Type,
-                Nutritions = this.Nutritions
+                Nutrition = this.Nutrition
             };
         }
 
         /// <summary>
         /// Set new Nutrition facts for this product.
         /// </summary>
-        public void UpdateNutritions(Nutritions nutritions)
+        public void UpdateNutrition(Nutrition nutrition)
         {
-            Nutritions = nutritions;
+            Nutrition = nutrition;
         }
     }
 }

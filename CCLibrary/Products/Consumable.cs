@@ -21,7 +21,7 @@ namespace CCLibrary.Products
         /// </summary>
         public double CaloriesPerServing
         {
-            get { return _caloriesPerServing; }
+            get => _caloriesPerServing;
             set
             {
                 if (value <= 0)
@@ -38,13 +38,12 @@ namespace CCLibrary.Products
         /// </summary>
         public double ServingSizeInGrams
         {
-            get { return _servingSize; }
+            get => _servingSize;
             set
             {
                 if (value <= 0)
                     throw new ValueOutOfRangeException("Значення повинно бути додатнім!");
-                else
-                    _servingSize = value;
+                _servingSize = value;
             }
         }
 

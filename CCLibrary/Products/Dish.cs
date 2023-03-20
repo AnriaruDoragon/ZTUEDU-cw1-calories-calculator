@@ -5,17 +5,14 @@ namespace CCLibrary.Products
 {
     public class Dish : Product
     {
-        protected Dish(List<Consumable> ingredients)
+        protected Dish(IEnumerable<Consumable> ingredients)
         {
             _ingredients = new List<Consumable>(ingredients);
         }
 
         public Dish(string name, List<Consumable>? ingredients = null) : base(name)
         {
-            if (ingredients == null)
-                _ingredients = new List<Consumable>();
-            else
-                _ingredients = ingredients;
+            _ingredients = ingredients ?? new List<Consumable>();
         }
 
         private List<Consumable> _ingredients;

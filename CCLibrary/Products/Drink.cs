@@ -13,11 +13,11 @@
         }
 
         protected DrinkTypes _drinkType;
-        public bool IsCarbonated { get; set; } = false;
+        public bool IsCarbonated { get; set; }
 
         public DrinkTypes Type
         {
-            get { return _drinkType; }
+            get => _drinkType;
             protected set
             {
                 _drinkType = value;

@@ -74,6 +74,13 @@ internal void CheckConnection();
 private void Initialize();
 ```
 
+##### GetProfileConsumption
+
+Отримати дневну кількість продуктів, що спожив певний профіль у певний день.
+```cs
+public DailyConsumption GetProfileConsumption(Profile profile, DateTime date);
+```
+
 ---
 
 ### ProfileContext class
@@ -147,7 +154,7 @@ public class ProductContext : DbContext
 
 Повертає продукт з вказаним ID.
 ```cs
-public Product? GetProduct(ulong id);
+public Product? GetProduct(long id);
 ```
 
 ##### AddProduct
@@ -161,7 +168,7 @@ public void AddProduct(Product product);
 
 Видаляє вказаний продукт з бази даних.
 ```cs
-public void DeleteProduct(ulong id);
+public void DeleteProduct(long id);
 ```
 
 #### Виключення
@@ -189,7 +196,7 @@ public class Profile
 
 - `internal string _login`
 - `private string _password`
-- `public ulong Id`
+- `public long Id`
 - `public string Name`
 - `public byte[]? Image`
 - `public DateTime BirthDay`
@@ -304,7 +311,7 @@ public abstract class Product : ICloneable
 
 #### Поля
 
-- `public ulong Id`
+- `public long Id`
 - `public string Name`
 - `public string Description`
 - `protected double _netMass`
@@ -357,7 +364,7 @@ public class Dish : Product
 
 #### Конструктори
 
-- `protected Dish(List<Consumable> ingredients)`
+- `protected Dish(IEnumerable<Consumable> ingredients)`
 - `public Dish(string name, List<Consumable>? ingredients = null)`
 
 #### Поля
@@ -465,11 +472,11 @@ public class Food : Consumable
 #### Конструктори
 
 - `protected Food()`
-- `public Food(string name, double caloriesPerServing, Nutritions nutritions = new())`
+- `public Food(string name, double caloriesPerServing, Nutrition nutrition = new())`
 
 #### Властивості
 
-- `readonly struct Nutritions`
+- `readonly struct Nutrition`
 
 #### Методи
 
@@ -480,11 +487,11 @@ public class Food : Consumable
 public override Product Copy();
 ```
 
-##### UpdateNutritions
+##### UpdateNutrition
 
 Оновлює показники харчової цінності для цього продукту.
 ```cs
-public void UpdateNutritions(Nutritions nutritions);
+public void UpdateNutrition(Nutrition nutrition);
 ```
 
 ---
@@ -538,8 +545,8 @@ public class EnergyDrink : Drink
 
 #### Конструктори
 
-- `protected EnergyDrink(Dictionary<string, double> vitamins)`
-- `public EnergyDrink(string name, double caloriesPerServing, Dictionary<string, double>? vitamins = null)`
+- `protected EnergyDrink(IDictionary<string, double> vitamins)`
+- `public EnergyDrink(string name, double caloriesPerServing, IDictionary<string, double>? vitamins = null)`
 
 #### Поля
 

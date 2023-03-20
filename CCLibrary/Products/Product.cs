@@ -9,7 +9,7 @@ namespace CCLibrary.Products
         {
         }
 
-        public Product(string name)
+        protected Product(string name)
         {
             Name = name;
         }
@@ -21,42 +21,39 @@ namespace CCLibrary.Products
 
         public double NetMassInGrams
         {
-            get { return _netMass; }
+            get => _netMass;
             set
             {
                 if (value < 0)
                     throw new ValueOutOfRangeException("Значення повинно бути додатнім!");
-                else
-                    _netMass = value;
+                _netMass = value;
             }
         }
         public double NetMassInKilos
         {
-            get { return _netMass / 1000.0; }
+            get => _netMass / 1000.0;
             set
             {
                 value *= 1000.0;
                 if (value < 0)
                     throw new ValueOutOfRangeException("Значення повинно бути додатнім!");
-                else
-                    _netMass = value;
+                _netMass = value;
             }
         }
         public double NetMassInPounds
         {
-            get { return _netMass / 453.6; }
+            get => _netMass / 453.6;
             set
             {
                 value *= 453.6;
                 if (value < 0)
                     throw new ValueOutOfRangeException("Значення повинно бути додатнім!");
-                else
-                    _netMass = value;
+                _netMass = value;
             }
         }
 
         /// <summary>
-        /// Get a copyu of this product.
+        /// Get a copy of this product.
         /// </summary>
         public abstract Product Copy();
         public object Clone()

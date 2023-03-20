@@ -6,20 +6,19 @@ namespace CCLibrary.Products
 {
     public class EnergyDrink : Drink
     {
-        protected EnergyDrink(Dictionary<string, double> vitamins)
+        protected EnergyDrink(IDictionary<string, double> vitamins)
         {
             _vitamins = new Dictionary<string, double>(vitamins);
         }
 
-        public EnergyDrink(string name, double caloriesPerServing, Dictionary<string, double>? vitamins = null)
+        public EnergyDrink(string name, double caloriesPerServing, IDictionary<string, double>? vitamins = null)
             : base(name, caloriesPerServing)
         {
             Type = DrinkTypes.Energy;
 
-            if (vitamins == null)
-                _vitamins = new Dictionary<string, double>();
-            else
-                _vitamins = new Dictionary<string, double>(vitamins);
+            _vitamins = vitamins == null
+                ? new Dictionary<string, double>() 
+                : new Dictionary<string, double>(vitamins);
         }
 
         protected Dictionary<string, double> _vitamins;
@@ -52,10 +51,10 @@ namespace CCLibrary.Products
         /// </summary>
         public Dictionary<string, double> GetVitaminsTotal()
         {
-            Dictionary<string, double> _total = new(_vitamins);
-            foreach (var vitamin in _total)
-                _total[vitamin.Key] = vitamin.Value * _netMass / _servingSize;
-            return _total;
+            Dictionary<string, double> total = new(_vitamins);
+            foreach (var vitamin in total)
+                total[vitamin.Key] = vitamin.Value * _netMass / _servingSize;
+            return total;
         }
 
         /// <summary>
