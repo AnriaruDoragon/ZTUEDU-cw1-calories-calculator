@@ -23,8 +23,6 @@
         </Grid>
     </Button>
 
-    
-
     <UserControl.Resources>
 
         <!-- Button hover redesign -->
