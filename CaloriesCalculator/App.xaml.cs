@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using CCLibrary.Data;
 
 namespace CaloriesCalculator
 {
@@ -13,5 +14,12 @@ namespace CaloriesCalculator
     /// </summary>
     public partial class App : Application
     {
+        public static Database Database;
+
+        public App()
+        {
+            InitializeComponent();
+            Database = new Database();
+        }
     }
 }
