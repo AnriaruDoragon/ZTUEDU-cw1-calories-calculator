@@ -39,12 +39,11 @@ namespace CCLibrary.Data
 
              new SqliteCommand(@"
                 CREATE TABLE IF NOT EXISTS ProfileConsumedProducts (
-                    ID INT NOT NULL AUTO_INCREMENT,
-                    ProfileID INT NOT NULL,
-                    ProductID INT NOT NULL,
+                    rowid INTEGER PRIMARY KEY,
+                    ProfileID INTEGER NOT NULL,
+                    ProductID INTEGER NOT NULL,
                     ProductMass FLOAT NOT NULL,
-                    ConsumedDate DATE NOT NULL,
-                    PRIMARY KEY (ID)
+                    ConsumedDate DATE NOT NULL
                 );", Connection).ExecuteNonQuery();
         }
 
@@ -57,7 +56,7 @@ namespace CCLibrary.Data
 
             CheckConnection();
             SqliteCommand selectCommand = new(@"
-                SELECT *
+                SELECT ProductID, ProductMass
                 FROM ProfileConsumedProducts
                 WHERE ProfileID = @Profile AND ConsumedDate = @Date;", Connection);
             selectCommand.Parameters.AddWithValue("@Profile", profile.Id);
@@ -67,11 +66,11 @@ namespace CCLibrary.Data
             ProductContext productContext = new();
             while (reader.Read())
             {
-                Product? product = productContext.GetProduct(reader.GetInt64(2));
+                Product? product = productContext.GetProduct(reader.GetInt64(0));
                 if (product is null)
                     continue;
                 Product copy = product.Copy();
-                copy.NetMassInGrams = reader.GetInt32(3);
+                copy.NetMassInGrams = reader.GetInt32(1);
                 consumption.Consume(copy);
             }
 
