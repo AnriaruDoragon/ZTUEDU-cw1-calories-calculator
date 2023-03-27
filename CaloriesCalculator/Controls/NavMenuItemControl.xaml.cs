@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -7,6 +8,13 @@ namespace CaloriesCalculator.Controls
 {
     public partial class NavMenuItemControl : UserControl
     {
+        private static readonly Dictionary<string, string> _icons = new()
+        {
+            {"Gear", "GearDrawingImage"},
+            {"Profile", "ProfileDrawingImage"},
+            {"Food", "FoodDrawingImage"}
+        };
+
         public NavMenuItemControl()
         {
             InitializeComponent();
@@ -18,11 +26,11 @@ namespace CaloriesCalculator.Controls
 
         public static readonly DependencyProperty IconProperty = 
             DependencyProperty.Register(nameof(Icon), typeof(string), typeof(NavMenuItemControl),
-                new PropertyMetadata(string.Empty, PropertyChangedCallback));
+                new PropertyMetadata(string.Empty, IconChangedCallback));
 
         public static readonly DependencyProperty IsActiveProperty = 
             DependencyProperty.Register(nameof(IsActive), typeof(bool), typeof(NavMenuItemControl),
-                new PropertyMetadata(false));
+                new PropertyMetadata(false, ActiveChangedCallback));
 
         public event EventHandler? Click;
 
@@ -41,21 +49,37 @@ namespace CaloriesCalculator.Controls
         public bool IsActive
         {
             get => (bool)GetValue(IsActiveProperty);
-            set
+            set => SetValue(IsActiveProperty, value);
+        }
+
+        private static void IconChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            try
             {
-                SetValue(IsActiveProperty, value);
-                MainButton.BorderThickness = value
-                    ? new Thickness(1, 0, 0, 0)
-                    : new Thickness(0, 0, 0, 0);
+                Image img = ((NavMenuItemControl)d).IconImage;
+                img.Source = img.FindResource(_icons[(string)e.NewValue]) as DrawingImage;
+            }
+            catch
+            {
+                // ignored
             }
         }
 
-        private static void PropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void ActiveChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            Image img = ((NavMenuItemControl)d).IconImage;
             try
             {
-                img.Source = img.FindResource((string)e.NewValue) as DrawingImage;
+                NavMenuItemControl itemControl = (NavMenuItemControl)d;
+                if (itemControl.IsActive)
+                {
+                    itemControl.MainButton.BorderThickness = new Thickness(3, 0, 0, 0);
+                    itemControl.MainButton.Background = new BrushConverter().ConvertFrom("F3D2C1") as SolidColorBrush;
+                }
+                else
+                {
+                    itemControl.MainButton.BorderThickness = new Thickness(0, 0, 0, 0);
+                    itemControl.MainButton.Background = new SolidColorBrush(Colors.Transparent);
+                }
             }
             catch
             {

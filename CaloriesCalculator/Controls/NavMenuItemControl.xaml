@@ -60,6 +60,28 @@
         </ControlTemplate>
 
         <!-- Icons in XAML -->
+        <DrawingImage x:Key="ProfileDrawingImage">
+          <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V24 H24 V0 H0 Z">
+              <GeometryDrawing Geometry="F1 M24,24z M0,0z M12.12,12.78C12.05,12.77 11.96,12.77 11.88,12.78 10.12,12.72 8.71997,11.28 8.71997,9.50998 8.71997,7.69998 10.18,6.22998 12,6.22998 13.81,6.22998 15.28,7.69998 15.28,9.50998 15.27,11.28 13.88,12.72 12.12,12.78z">
+                <GeometryDrawing.Pen>
+                  <Pen Brush="#FF292D32" Thickness="1.5" StartLineCap="Round" EndLineCap="Round" LineJoin="Round" MiterLimit="1" />
+                </GeometryDrawing.Pen>
+              </GeometryDrawing>
+              <GeometryDrawing Geometry="F1 M24,24z M0,0z M18.74,19.3801C16.96,21.0101 14.6,22.0001 12,22.0001 9.40001,22.0001 7.04001,21.0101 5.26001,19.3801 5.36001,18.4401 5.96001,17.5201 7.03001,16.8001 9.77001,14.9801 14.25,14.9801 16.97,16.8001 18.04,17.5201 18.64,18.4401 18.74,19.3801z">
+                <GeometryDrawing.Pen>
+                  <Pen Brush="#FF292D32" Thickness="1.5" StartLineCap="Round" EndLineCap="Round" LineJoin="Round" MiterLimit="1" />
+                </GeometryDrawing.Pen>
+              </GeometryDrawing>
+              <GeometryDrawing Geometry="F1 M24,24z M0,0z M12,22C17.5228,22 22,17.5228 22,12 22,6.47715 17.5228,2 12,2 6.47715,2 2,6.47715 2,12 2,17.5228 6.47715,22 12,22z">
+                <GeometryDrawing.Pen>
+                  <Pen Brush="#FF292D32" Thickness="1.5" StartLineCap="Round" EndLineCap="Round" LineJoin="Round" MiterLimit="1" />
+                </GeometryDrawing.Pen>
+              </GeometryDrawing>
+            </DrawingGroup>
+          </DrawingImage.Drawing>
+        </DrawingImage>
+        
         <DrawingImage x:Key="GearDrawingImage">
           <DrawingImage.Drawing>
             <DrawingGroup ClipGeometry="M0,0 V512 H512 V0 H0 Z">

@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <Folder Include="Assets\" />
+    <Folder Include="Pages\" />
   </ItemGroup>
 
 </Project>

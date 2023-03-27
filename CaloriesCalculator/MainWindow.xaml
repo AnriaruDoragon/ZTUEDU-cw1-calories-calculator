@@ -49,9 +49,10 @@
 
             <Label>Logo</Label>
             <StackPanel Grid.Row="1" Margin="0 25 0 0">
-                <cmc:NavMenuItemControl Icon="FoodDrawingImage" Text="Продукти" Tag="Products"/>
+                <cmc:NavMenuItemControl Icon="Profile" Text="Профіль" Tag="Profile" IsActive="True"/>
+                <cmc:NavMenuItemControl Icon="Food" Text="Продукти" Tag="Products"/>
             </StackPanel>
-            <cmc:NavMenuItemControl Grid.Row="2" Icon="GearDrawingImage" Text="Опції" Tag="Settings"/>
+            <cmc:NavMenuItemControl Grid.Row="2" Icon="Gear" Text="Опції" Tag="Settings"/>
         </Grid>
 
         <Grid Grid.Row="0" Grid.Column="1" ColumnSpan="2" MaxHeight="30" Background="{StaticResource Bg2Color}">
