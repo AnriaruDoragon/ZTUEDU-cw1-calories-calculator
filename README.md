@@ -12,6 +12,7 @@
 # Структура класів та документація бібліотеки `CCLibrary`
 
 - [Data](#user-content-cclibrarydata)
+	- [Settings](#user-content-settings-class)
 	- [Database](#user-content-database-class)
 	- [ProfileContext](#user-content-profilecontext-class)
 	- [ProductContext](#user-content-productcontext-class)
@@ -36,6 +37,24 @@
 	- [VitaminNotFoundException](#user-content-vitaminnotfoundexception)
 
 ## CCLibrary.Data
+
+### Settings class
+Namespace: CCLibrary.Data
+
+#### Означення
+
+Статичний клас для управління локальними налаштуваннями додатку.
+
+```cs
+public static class Settings
+```
+
+#### Властивості
+
+- `public static T Get<T>(string key, T defaultValue = default)`
+- `public static void Set<T>(string key, T value)`
+
+---
 
 ### Database class
 Namespace: CCLibrary.Data
