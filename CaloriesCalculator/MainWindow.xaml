@@ -7,6 +7,7 @@
         xmlns:cmc="clr-namespace:CaloriesCalculator.Controls"
         mc:Ignorable="d"
         Title="Калькулятор калорій"
+        Loaded="Window_Loaded"
         d:DesignHeight="1080" d:DesignWidth="1920"
         Height="450" Width="800">
 
@@ -49,10 +50,10 @@
 
             <Label>Logo</Label>
             <StackPanel Grid.Row="1" Margin="0 25 0 0">
-                <cmc:NavMenuItemControl Icon="Profile" Text="Профіль" Tag="Profile" IsActive="True"/>
-                <cmc:NavMenuItemControl Icon="Food" Text="Продукти" Tag="Products"/>
+                <cmc:NavMenuItemControl Icon="Profile" Text="Профіль" Tag="Profile" x:Name="ProfileMenuItem" Click="NavMenuItemControl_Click"/>
+                <cmc:NavMenuItemControl Icon="Food" Text="Продукти" Tag="Products" Click="NavMenuItemControl_Click"/>
             </StackPanel>
-            <cmc:NavMenuItemControl Grid.Row="2" Icon="Gear" Text="Опції" Tag="Settings"/>
+            <cmc:NavMenuItemControl Grid.Row="2" Icon="Gear" Text="Опції" Tag="Settings" Click="NavMenuItemControl_Click"/>
         </Grid>
 
         <Grid Grid.Row="0" Grid.Column="1" ColumnSpan="2" MaxHeight="30" Background="{StaticResource Bg2Color}">
@@ -70,9 +71,8 @@
             <!-- Calories Meter -->
         </Grid>
 
-        <Frame Grid.Row="1" Grid.Column="1">
-            <!-- Navigation Frame -->
-        </Frame>
-        
+        <Frame Grid.Row="1" Grid.Column="1" Name="ContentFrame" IsTabStop="True"
+               Navigated="ContentFrame_Navigated" NavigationUIVisibility="Hidden"/>
+
     </Grid>
 </Window>
