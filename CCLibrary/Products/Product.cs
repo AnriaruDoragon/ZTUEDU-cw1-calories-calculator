@@ -3,7 +3,7 @@ using CCLibrary.Exceptions;
 
 namespace CCLibrary.Products
 {
-    public abstract class Product : ICloneable
+    public abstract class Product
     {
         protected Product() 
         {
@@ -56,10 +56,6 @@ namespace CCLibrary.Products
         /// Get a copy of this product.
         /// </summary>
         public abstract Product Copy();
-        public object Clone()
-        {
-            return MemberwiseClone();
-        }
 
         /// <summary>
         /// Get the amount of calories for this product.

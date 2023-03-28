@@ -26,7 +26,7 @@
   <Class Name="CCLibrary.Data.ProductContext" Collapsed="true">
     <Position X="5.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAQAAAAAAAAAAQAgAAAAAAAAAAAAACAAAAAQ=</HashCode>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAQAgAAAAAAQAAAAAACAAAAAQ=</HashCode>
       <FileName>Data\ProductContext.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -120,10 +120,9 @@
   <Class Name="CCLibrary.Products.Product" Collapsed="true">
     <Position X="5.75" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAgACAAAAAAAAQAAgAACIAABAAAAEAAEBQ=</HashCode>
+      <HashCode>AAACAAAAAAAgACAAAAAAAAQAAgAACIAABAAAAEAAEAQ=</HashCode>
       <FileName>Products\Product.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Orientation="Left" Position="0.1" />
   </Class>
   <Class Name="CCLibrary.User.DailyConsumption" Collapsed="true">
     <Position X="8.75" Y="3" Width="1.5" />
@@ -135,8 +134,8 @@
     </AssociationLine>
     <AssociationLine Name="_consumedProducts" Type="CCLibrary.Products.Product" FixedToPoint="true">
       <Path>
-        <Point X="8.75" Y="3.312" />
-        <Point X="7.25" Y="3.312" />
+        <Point X="8.75" Y="3.313" />
+        <Point X="7.25" Y="3.313" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
