@@ -644,6 +644,11 @@ public override Product Copy();
 
 ## CCLibrary.Exceptions
 
+### SettingsException
+Namespace: CCLibrary.Exceptions
+
+Виникає при помилці запису в налаштування.
+
 ### ProfileAlreadyExistsException
 Namespace: CCLibrary.Exceptions
 
