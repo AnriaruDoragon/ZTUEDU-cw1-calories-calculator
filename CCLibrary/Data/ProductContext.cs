@@ -13,11 +13,24 @@ namespace CCLibrary.Data
             => options.UseSqlite(Data.Database.DbSource);
 
         /// <summary>
+        /// Get product reference.
+        /// Use with caution!
+        /// </summary>
+        /// <exception cref="ProductNotFoundException"></exception>
+        public Product GetProductRef(long id)
+        {
+            return Products.FirstOrDefault(product =>  product.Id == id)
+                ?? throw new ProductNotFoundException();
+        }
+
+        /// <summary>
         /// Get the product by ID.
         /// </summary>
-        public Product? GetProduct(long id)
+        public Product GetProduct(long id)
         {
-            return Products.FirstOrDefault(product => product.Id.Equals(id));
+            Product product = GetProductRef(id);
+
+            return product.Copy();
         }
 
         /// <summary>
@@ -25,24 +38,31 @@ namespace CCLibrary.Data
         /// </summary>
         public void AddProduct(Product product)
         {
-            Products.Add(product);
+            Products.Add(product.Copy());
             SaveChanges();
         }
 
         /// <summary>
         /// Remove product from the database.
         /// </summary>
-        /// <exception cref="ProductNotFoundException"></exception>
         public void DeleteProduct(long id)
         {
-            Product? product = GetProduct(id);
-            if (product != null)
-            {
-                Products.Remove(product);
-                SaveChanges();
-            }
-            else
+            Product product = GetProductRef(id);
+
+            Products.Remove(product);
+            SaveChanges();
+        }
+
+        /// <summary>
+        /// Modify existing product.
+        /// </summary>
+        /// <exception cref="ProductNotFoundException"></exception>
+        public void ModifyProduct(Product product)
+        {
+            if (!Products.Contains(product))
                 throw new ProductNotFoundException();
+
+            Products.Update(product);
         }
     }
 }
