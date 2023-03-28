@@ -10,6 +10,9 @@ namespace CCLibrary.Data
         internal static readonly string DbSource = @"Data Source=CaloriesCalculator.db";
         internal SqliteConnection Connection;
 
+        public ProductContext ProductContext = new();
+        public ProfileContext ProfileContext = new();
+
         public Database()
         {
             Connection = new SqliteConnection(DbSource);
