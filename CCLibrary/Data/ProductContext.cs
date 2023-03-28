@@ -7,7 +7,7 @@ namespace CCLibrary.Data
 {
     public class ProductContext : DbContext
     {
-        public DbSet<Product> Products { get; set; }
+        protected DbSet<Product> Products { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlite(Data.Database.DbSource);
