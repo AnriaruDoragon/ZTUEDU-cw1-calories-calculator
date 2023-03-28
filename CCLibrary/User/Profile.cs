@@ -7,6 +7,7 @@ namespace CCLibrary.User
     {
         internal string _login;
         private string _password;
+        public bool IsRemembered = false;
 
         public long Id { get; set; }
         public string Name { get; set; } = "N/D";

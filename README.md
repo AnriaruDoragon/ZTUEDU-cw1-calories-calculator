@@ -147,6 +147,22 @@ public Profile CreateProfile(string login, string password);
 public Profile GetProfile(string login, string password);
 ```
 
+##### Remember
+
+Зберігає вказаний профіль для автоматичного входу наступного разу.
+```cs
+public void Remember(long id);
+```
+
+*Порушується безпека профілю, оскільки для отримання інформації не треба логін або пароль.*
+
+##### GetRemembered
+
+Повертає профіль для автоматичного входу.
+```cs
+public Profile? GetRemembered();
+```
+
 #### Виключення
 
 - `ProfileAlreadyExistsException`

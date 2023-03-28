@@ -8,7 +8,7 @@ namespace CCLibrary.Data
 {
     public class ProfileContext : DbContext
     {
-        public DbSet<Profile> Profiles { get; set; }
+        protected DbSet<Profile> Profiles { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlite(Data.Database.DbSource);
@@ -43,6 +43,30 @@ namespace CCLibrary.Data
                 throw new WrongPasswordException();
 
             return profile;
+        }
+
+        /// <summary>
+        /// Remember profile for auto login.
+        /// </summary>
+        /// <exception cref="ProfiletNotFoundException"></exception>
+        public void Remember(long id)
+        {
+            Profile? profile = Profiles.FirstOrDefault(profile => profile.Id == id)
+                ?? throw new ProfiletNotFoundException();
+
+            Profile? remembered = GetRemembered();
+            if (remembered != null)
+                remembered.IsRemembered = false;
+            profile.IsRemembered = true;
+            SaveChanges();
+        }
+
+        /// <summary>
+        /// Get remembered profile.
+        /// </summary>
+        public Profile? GetRemembered()
+        {
+            return Profiles.FirstOrDefault(profile => profile.IsRemembered);
         }
     }
 }
