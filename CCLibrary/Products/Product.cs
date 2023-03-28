@@ -1,14 +1,9 @@
-using System;
 using CCLibrary.Exceptions;
 
 namespace CCLibrary.Products
 {
     public abstract class Product
     {
-        protected Product() 
-        {
-        }
-
         protected Product(string name)
         {
             Name = name;
