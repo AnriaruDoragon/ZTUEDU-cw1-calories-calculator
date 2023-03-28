@@ -126,7 +126,7 @@ public class ProfileContext : DbContext
 
 #### Властивості
 
-- `public DbSet<Profile> Profiles`
+- `protected DbSet<Profile> Profiles`
 
 #### Методи
 
@@ -188,7 +188,7 @@ public class ProductContext : DbContext
 
 #### Властивості
 
-- `public DbSet<Product> Products`
+- `protected DbSet<Product> Products`
 
 #### Методи
 
@@ -238,6 +238,7 @@ public class Profile
 
 - `internal string _login`
 - `private string _password`
+- `public bool IsRemembered`
 - `public long Id`
 - `public string Name`
 - `public byte[]? Image`
