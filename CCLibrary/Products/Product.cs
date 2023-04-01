@@ -4,15 +4,18 @@ namespace CCLibrary.Products
 {
     public abstract class Product
     {
-        protected Product(string name)
-        {
-            Name = name;
-        }
+        protected double _netMass = 100;
 
         public long Id { get; set; }
         public string Name { get; set; } = "N/D";
         public string Description { get; set; } = string.Empty;
-        protected double _netMass = 100;
+
+        protected Product() { }
+
+        protected Product(string name)
+        {
+            Name = name;
+        }
 
         public double NetMassInGrams
         {
@@ -24,6 +27,7 @@ namespace CCLibrary.Products
                 _netMass = value;
             }
         }
+
         public double NetMassInKilos
         {
             get => _netMass / 1000.0;
@@ -35,6 +39,7 @@ namespace CCLibrary.Products
                 _netMass = value;
             }
         }
+
         public double NetMassInPounds
         {
             get => _netMass / 453.6;

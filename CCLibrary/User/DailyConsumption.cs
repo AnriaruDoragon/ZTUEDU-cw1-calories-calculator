@@ -7,10 +7,11 @@ namespace CCLibrary.User
 {
     public class DailyConsumption
     {
-        public Profile LinkedProfile { get; }
-        public DateTime Date { get; }
         private List<Product> _consumedProducts;
 
+        public Profile LinkedProfile { get; }
+        public DateTime Date { get; }
+        
         public DailyConsumption(Profile profile, DateTime date)
         {
             LinkedProfile = profile;

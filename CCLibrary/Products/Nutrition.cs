@@ -1,12 +1,12 @@
 ﻿namespace CCLibrary.Products
 {
-    public readonly struct Nutrition
+    public struct Nutrition
     {
-        public readonly double Fat;
-        public readonly double Protein;
-        public readonly double Carbs;
-        public readonly double Fiber;
-        public readonly double Sodium;
+        public double Fat { get; private set; }
+        public double Protein { get; private set; }
+        public double Carbs { get; private set; }
+        public double Fiber { get; private set; }
+        public double Sodium { get; private set; }
 
         public Nutrition(double fat = 0, double protein = 0, double carbs = 0,
             double fiber = 0, double sodium = 0)

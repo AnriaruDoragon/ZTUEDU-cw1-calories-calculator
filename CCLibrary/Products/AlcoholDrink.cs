@@ -4,9 +4,9 @@ namespace CCLibrary.Products
 {
     public class AlcoholDrink : Drink
     {
-        protected AlcoholDrink()
-        {
-        }
+        protected double _alcoholContent;
+
+        protected AlcoholDrink() { }
 
         public AlcoholDrink(string name, double caloriesPerServing, double alcoholContent)
             : base(name, caloriesPerServing)
@@ -14,8 +14,6 @@ namespace CCLibrary.Products
             Type = DrinkTypes.Alcohol;
             AlcoholContent = alcoholContent;
         }
-
-        protected double _alcoholContent;
 
         /// <summary>
         /// The amount of alcohol in this product in percentage.

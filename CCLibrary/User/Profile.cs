@@ -9,14 +9,20 @@ namespace CCLibrary.User
         private string _password;
         public bool IsRemembered = false;
 
-        public long Id { get; set; }
-        public string Name { get; set; } = "N/D";
-        public byte[]? Image { get; set; } = null;
-
-        public DateTime? BirthDay { get; set; }
         protected float _height = 0;
         protected float _weight = 0;
 
+        public long Id { get; set; }
+        public string Name { get; set; } = "N/D";
+        public byte[]? Image { get; set; } = null;
+        public DateTime? BirthDay { get; set; }
+
+        public Profile(string login, string password)
+        {
+            _login = login;
+            _password = password;
+        }
+        
         public int Age
         {
             get
@@ -49,12 +55,6 @@ namespace CCLibrary.User
                     throw new ValueOutOfRangeException("Значення повинно бути додатнім!");
                 _weight = value;
             }
-        }
-
-        public Profile(string login, string password)
-        {
-            _login = login;
-            _password = password;
         }
 
         /// <summary>

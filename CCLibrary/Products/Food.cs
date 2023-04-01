@@ -2,8 +2,13 @@
 {
     public class Food : Consumable
     {
+        protected FoodTypes _foodType;
+
+        public Nutrition Nutrition { get; protected set; }
+
         protected Food()
         {
+            Nutrition = new Nutrition();
         }
 
         public Food(string name, double caloriesPerServing, Nutrition nutrition = new())
@@ -11,9 +16,6 @@
         {
             Nutrition = nutrition;
         }
-
-        protected FoodTypes _foodType;
-        public Nutrition Nutrition { get; protected set; }
 
         public FoodTypes Type
         {

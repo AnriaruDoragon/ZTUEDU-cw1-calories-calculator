@@ -6,6 +6,13 @@ namespace CCLibrary.Products
 {
     public class EnergyDrink : Drink
     {
+        protected Dictionary<string, double> _vitamins;
+
+        protected EnergyDrink()
+        {
+            _vitamins = new Dictionary<string, double>();
+        }
+
         protected EnergyDrink(IDictionary<string, double> vitamins)
         {
             _vitamins = new Dictionary<string, double>(vitamins);
@@ -20,8 +27,6 @@ namespace CCLibrary.Products
                 ? new Dictionary<string, double>() 
                 : new Dictionary<string, double>(vitamins);
         }
-
-        protected Dictionary<string, double> _vitamins;
 
         public override Product Copy()
         {

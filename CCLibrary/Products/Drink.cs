@@ -2,18 +2,17 @@
 {
     public class Drink : Consumable
     {
-        protected Drink()
-        {
-        }
+        protected DrinkTypes _drinkType;
+
+        public bool IsCarbonated { get; set; }
+
+        protected Drink() { }
 
         public Drink(string name, double caloriesPerServing, DrinkTypes drinkType = DrinkTypes.Tap)
             : base(name, caloriesPerServing)
         {
             Type = drinkType;
         }
-
-        protected DrinkTypes _drinkType;
-        public bool IsCarbonated { get; set; }
 
         public DrinkTypes Type
         {

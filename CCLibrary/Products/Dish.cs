@@ -5,6 +5,13 @@ namespace CCLibrary.Products
 {
     public class Dish : Product
     {
+        private List<Consumable> _ingredients;
+
+        protected Dish()
+        {
+            _ingredients = new List<Consumable>();
+        }
+
         protected Dish(IEnumerable<Consumable> ingredients)
         {
             _ingredients = new List<Consumable>(ingredients);
@@ -14,8 +21,6 @@ namespace CCLibrary.Products
         {
             _ingredients = ingredients ?? new List<Consumable>();
         }
-
-        private List<Consumable> _ingredients;
 
         public override Product Copy()
         {

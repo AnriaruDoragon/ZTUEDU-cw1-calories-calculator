@@ -4,17 +4,15 @@ namespace CCLibrary.Products
 {
     public class Consumable : Product
     {
-        protected Consumable()
-        {
-        }
+        protected double _caloriesPerServing;
+        protected double _servingSize = 100;
+
+        protected Consumable() { }
 
         public Consumable(string name, double caloriesPerServing) : base(name)
         {
             CaloriesPerServing = caloriesPerServing;
         }
-
-        protected double _caloriesPerServing;
-        protected double _servingSize = 100;
 
         /// <summary>
         /// Specifies the amount of calories per serving size (g).
