@@ -11,18 +11,20 @@ namespace CCLibrary.User
 
         public long Id { get; set; }
         public string Name { get; set; } = "N/D";
-        public byte[]? Image { get; set; }
+        public byte[]? Image { get; set; } = null;
 
-        public DateTime BirthDay { get; set; }
-        protected float _height;
-        protected float _weight;
+        public DateTime? BirthDay { get; set; }
+        protected float _height = 0;
+        protected float _weight = 0;
 
         public int Age
         {
             get
             {
-                int age = DateTime.Today.Year - BirthDay.Year;
-                if (DateTime.Today < BirthDay.AddYears(age)) age--;
+                if (BirthDay is null)
+                    return 0;
+                int age = DateTime.Today.Year - ((DateTime)BirthDay).Year;
+                if (DateTime.Today < ((DateTime)BirthDay).AddYears(age)) age--;
                 return age;
             }
         }
