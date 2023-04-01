@@ -7,16 +7,16 @@ namespace CCLibrary.User
 {
     public class DailyConsumption
     {
-        private List<Product> _consumedProducts;
+        private List<Product> _products;
 
-        public Profile LinkedProfile { get; }
+        public Profile Profile { get; }
         public DateTime Date { get; }
         
         public DailyConsumption(Profile profile, DateTime date)
         {
-            LinkedProfile = profile;
+            Profile = profile;
             Date = date;
-            _consumedProducts = new List<Product>();
+            _products = new List<Product>();
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace CCLibrary.User
         /// </summary>
         public double CalculateCalories()
         {
-            return _consumedProducts.Select(product => product.GetCalories()).Sum();
+            return _products.Select(product => product.GetCalories()).Sum();
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace CCLibrary.User
         /// </summary>
         public List<Product> GetProducts()
         {
-            return new List<Product>(_consumedProducts);
+            return new List<Product>(_products);
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace CCLibrary.User
         /// </summary>
         public void Consume(Product product)
         {
-            _consumedProducts.Add(product);
+            _products.Add(product);
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace CCLibrary.User
         /// </summary>
         public void UpdateConsumed(List<Product> products)
         {
-            _consumedProducts = new List<Product>(products);
+            _products = new List<Product>(products);
         }
     }
 }

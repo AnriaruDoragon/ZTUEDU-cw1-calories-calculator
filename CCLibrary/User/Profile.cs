@@ -1,8 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using CCLibrary.Exceptions;
 
 namespace CCLibrary.User
 {
+    [Table("Profiles")]
     public class Profile
     {
         internal string _login;
@@ -12,7 +15,8 @@ namespace CCLibrary.User
         protected float _height = 0;
         protected float _weight = 0;
 
-        public long Id { get; set; }
+        [Key]
+        public long Id { get; protected set; }
         public string Name { get; set; } = "N/D";
         public byte[]? Image { get; set; } = null;
         public DateTime? BirthDay { get; set; }

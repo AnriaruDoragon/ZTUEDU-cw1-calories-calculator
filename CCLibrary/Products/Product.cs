@@ -1,12 +1,16 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using CCLibrary.Exceptions;
 
 namespace CCLibrary.Products
 {
+    [Table("Products")]
     public abstract class Product
     {
         protected double _netMass = 100;
 
-        public long Id { get; set; }
+        [Key]
+        public long Id { get; protected set; }
         public string Name { get; set; } = "N/D";
         public string Description { get; set; } = string.Empty;
 

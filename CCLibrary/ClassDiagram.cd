@@ -1,51 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="CCLibrary.Data.Database" Collapsed="true">
-    <Position X="8.75" Y="2.25" Width="1.5" />
-    <AssociationLine Name="ProductContext" Type="CCLibrary.Data.ProductContext" FixedToPoint="true">
-      <Path>
-        <Point X="8.75" Y="2.562" />
-        <Point X="7.25" Y="2.562" />
-      </Path>
-    </AssociationLine>
-    <AssociationLine Name="ProfileContext" Type="CCLibrary.Data.ProfileContext" FixedToPoint="true">
-      <Path>
-        <Point X="10.25" Y="2.562" />
-        <Point X="11.5" Y="2.562" />
-      </Path>
-    </AssociationLine>
-    <TypeIdentifier>
-      <HashCode>AAAABAAAAAAAAQEAAIAAgAAAAAAAAAAAQQAAAQAAAAA=</HashCode>
-      <FileName>Data\Database.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="ProductContext" />
-      <Field Name="ProfileContext" />
-    </ShowAsAssociation>
-  </Class>
-  <Class Name="CCLibrary.Data.ProductContext" Collapsed="true">
-    <Position X="5.75" Y="2.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAQAAAAAAAAAAQAgAAAAAAQAAAAAACAAAAAQ=</HashCode>
-      <FileName>Data\ProductContext.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="CCLibrary.Data.ProfileContext" Collapsed="true">
-    <Position X="11.5" Y="2.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAQAAAgAAAAAAAABAAAAAAQAAAAQQAAAAAAA=</HashCode>
-      <FileName>Data\ProfileContext.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="CCLibrary.Products.AlcoholDrink" Collapsed="true">
-    <Position X="6.75" Y="6.5" Width="1.5" />
+    <Position X="4" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAoAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Products\AlcoholDrink.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CCLibrary.Products.Consumable" Collapsed="true">
-    <Position X="6.75" Y="4" Width="1.5" />
+    <Position X="7" Y="3.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Properties" Collapsed="true" />
@@ -56,26 +19,26 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CCLibrary.Products.Dish" Collapsed="true">
-    <Position X="4.75" Y="4" Width="1.5" />
-    <InheritanceLine Type="CCLibrary.Products.Product" FixedFromPoint="true">
-      <Path>
-        <Point X="6.5" Y="3.562" />
-        <Point X="6.5" Y="3.7" />
-        <Point X="5.5" Y="3.7" />
-        <Point X="5.5" Y="4" />
-      </Path>
-    </InheritanceLine>
+    <Position X="10.25" Y="3.5" Width="1.5" />
+    <AssociationLine Name="_ingredients" Type="CCLibrary.Products.Consumable">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.432" Y="0.081" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAICAAAAAAAAAAAgAICAAAAAAAAAAAAAQ=</HashCode>
       <FileName>Products\Dish.cs</FileName>
     </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="_ingredients" />
+    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="CCLibrary.Products.Drink" Collapsed="true">
-    <Position X="7.75" Y="5.25" Width="1.5" />
+    <Position X="5.5" Y="4.75" Width="1.5" />
     <AssociationLine Name="_drinkType" Type="CCLibrary.Products.DrinkTypes" FixedToPoint="true">
       <Path>
-        <Point X="9.25" Y="5.562" />
-        <Point X="10.5" Y="5.562" />
+        <Point X="5.5" Y="5.062" />
+        <Point X="4.5" Y="5.062" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
@@ -87,25 +50,18 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="CCLibrary.Products.EnergyDrink" Collapsed="true">
-    <Position X="8.75" Y="6.5" Width="1.5" />
+    <Position X="7" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAgAAAAAAQIAABAAAAAAgCAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Products\EnergyDrink.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CCLibrary.Products.Food" Collapsed="true">
-    <Position X="5.75" Y="5.25" Width="1.5" />
+    <Position X="8.5" Y="4.75" Width="1.5" />
     <AssociationLine Name="_foodType" Type="CCLibrary.Products.FoodTypes" FixedToPoint="true">
       <Path>
-        <Point X="5.75" Y="5.562" />
-        <Point X="4.75" Y="5.562" />
-      </Path>
-    </AssociationLine>
-    <AssociationLine Name="Nutrition" Type="CCLibrary.Products.Nutrition" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="6.219" Y="5.941" />
-        <Point X="6.219" Y="6.312" />
-        <Point X="4.75" Y="6.312" />
+        <Point X="10" Y="5.062" />
+        <Point X="11.25" Y="5.062" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
@@ -118,60 +74,54 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="CCLibrary.Products.Product" Collapsed="true">
-    <Position X="5.75" Y="3" Width="1.5" />
+    <Position X="8.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAgACAAAAAAAAQAAgAACIAABAAAAEAAEAQ=</HashCode>
       <FileName>Products\Product.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CCLibrary.User.DailyConsumption" Collapsed="true">
-    <Position X="8.75" Y="3" Width="1.5" />
-    <AssociationLine Name="LinkedProfile" Type="CCLibrary.User.Profile" FixedToPoint="true">
+    <Position X="8.25" Y="1.5" Width="2" />
+    <AssociationLine Name="_products" Type="CCLibrary.Products.Product" FixedToPoint="true">
       <Path>
-        <Point X="10.25" Y="3.312" />
-        <Point X="11.5" Y="3.312" />
-      </Path>
-    </AssociationLine>
-    <AssociationLine Name="_consumedProducts" Type="CCLibrary.Products.Product" FixedToPoint="true">
-      <Path>
-        <Point X="8.75" Y="3.313" />
-        <Point X="7.25" Y="3.313" />
+        <Point X="9.25" Y="2.062" />
+        <Point X="9.25" Y="2.5" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>ACAAAACIAAAAAACAAAAAAEAAAAAAAAABQAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAACIAAAAAACAAAAAAEAAAAAAAAABQJAAAAAAAAA=</HashCode>
       <FileName>User\DailyConsumption.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="LinkedProfile" />
+      <Property Name="Profile" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
-      <Field Name="_consumedProducts" />
+      <Field Name="_products" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="CCLibrary.User.Profile" Collapsed="true">
-    <Position X="11.5" Y="3" Width="1.5" />
+    <Position X="8.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQDAAAAAACAAAAABEAAAgQAAAAIABAAABAAIIIAAAA=</HashCode>
       <FileName>User\Profile.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Struct Name="CCLibrary.Products.Nutrition" Collapsed="true">
-    <Position X="3.25" Y="6" Width="1.5" />
+    <Position X="11.25" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAgAAAAAAAAAAAAAACABAAAIAAAAAAAAAAAAQ=</HashCode>
       <FileName>Products\Nutrition.cs</FileName>
     </TypeIdentifier>
   </Struct>
   <Enum Name="CCLibrary.Products.DrinkTypes" Collapsed="true">
-    <Position X="10.5" Y="5.25" Width="1.5" />
+    <Position X="3" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BAAQAAAAAAAggAAAAAAEAAAKAAAAAAAAAAAAAAAIAIA=</HashCode>
       <FileName>Products\DrinkTypes.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="CCLibrary.Products.FoodTypes" Collapsed="true">
-    <Position X="3.25" Y="5.25" Width="1.5" />
+    <Position X="11.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BAAAAgAIAAAAEAAAAAAAAAAAAACQAAAAAQAAAAAAAAA=</HashCode>
       <FileName>Products\FoodTypes.cs</FileName>

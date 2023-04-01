@@ -1,16 +1,20 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using CCLibrary.Products;
 using CCLibrary.Exceptions;
 
 namespace CCLibrary.Data
 {
-    public class ProductContext : DbContext
+    public partial class DataContext : DbContext
     {
-        protected DbSet<Product> Products { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite(Data.Database.DbSource);
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Dish> Dishes { get; set; }
+        public DbSet<Consumable> Consumables { get; set; }
+        public DbSet<Food> Foods { get; set; }
+        public DbSet<Drink> Drinks { get; set; }
+        public DbSet<EnergyDrink> EnergyDrinks { get; set; }
+        public DbSet<AlcoholDrink> AlcoholDrinks { get; set; }
 
         /// <summary>
         /// Get product reference.

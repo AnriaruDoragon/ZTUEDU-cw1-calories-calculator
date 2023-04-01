@@ -6,12 +6,9 @@ using CCLibrary.Exceptions;
 
 namespace CCLibrary.Data
 {
-    public class ProfileContext : DbContext
+    public partial class DataContext : DbContext
     {
-        protected DbSet<Profile> Profiles { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite(Data.Database.DbSource);
+        public DbSet<Profile> Profiles { get; set; }
 
         /// <summary>
         /// Create a new profile.
