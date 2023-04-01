@@ -5,14 +5,13 @@ namespace CCLibrary.Data
 {
     public partial class DataContext : DbContext
     {
-        private readonly SqliteConnection _connection;
+        private readonly SqliteConnection? _connection;
 
-        public DataContext(SqliteConnection connection)
-        {
-            _connection = connection;
-        }
+        public DataContext() { }
+
+        public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseSqlite(_connection.DataSource);
+            => optionsBuilder.UseSqlite(Data.Database.DbSource);
     }
 }

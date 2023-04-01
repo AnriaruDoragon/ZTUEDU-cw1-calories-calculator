@@ -14,7 +14,8 @@ namespace CCLibrary.Products
         public string Name { get; set; } = "N/D";
         public string Description { get; set; } = string.Empty;
 
-        protected Product() { }
+        // EntityFramework
+        public Product() { }
 
         protected Product(string name)
         {

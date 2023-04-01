@@ -16,7 +16,7 @@ namespace CCLibrary.Data
         {
             DailyConsumption consumption = new(profile, date);
 
-            Data.Database.CheckConnection(_connection);
+            Data.Database.ReopenConnection(_connection);
 
             SqliteCommand selectCommand = new(@"
                 SELECT ProductID, ProductMass
@@ -40,15 +40,17 @@ namespace CCLibrary.Data
                 }
             }
 
+            _connection.Close();
+
             return consumption;
         }
 
         /// <summary>
         /// Insert a record to the db for a profile consumed product.
         /// </summary>
-        internal void AddProfileConsumption(Profile profile, Product product, DateTime date)
+        public void AddProfileConsumption(Profile profile, Product product, DateTime date)
         {
-            Data.Database.CheckConnection(_connection);
+            Data.Database.ReopenConnection(_connection);
 
             SqliteCommand insertCommand = new(@"
                 INSERT INTO ProfileConsumedProducts (ProfileID, ProductID, ProductMass, ConsumedDate)
@@ -58,6 +60,28 @@ namespace CCLibrary.Data
             insertCommand.Parameters.AddWithValue("@ProductMass", product.NetMassInGrams);
             insertCommand.Parameters.AddWithValue("@ConsumedDate", date.ToString("yyyy-MM-dd"));
             insertCommand.ExecuteNonQuery();
+
+            _connection.Close();
+        }
+
+        /// <summary>
+        /// Delete a record from the db for a profile.
+        /// </summary>
+        public void RemoveProfileConsumption(Profile profile, Product product, DateTime date)
+        {
+            Data.Database.ReopenConnection(_connection);
+
+            SqliteCommand deleteCommand = new(@"
+                DELETE FROM ProfileConsumedProducts
+                WHERE ProfileID=@ProfileID AND ProductID=@ProductID
+                    AND ProductMass=@ProductMass AND ConsumedDate=@ConsumedDate;", _connection);
+            deleteCommand.Parameters.AddWithValue("@ProfileID", profile.Id);
+            deleteCommand.Parameters.AddWithValue("@ProductID", product.Id);
+            deleteCommand.Parameters.AddWithValue("@ProductMass", product.NetMassInGrams);
+            deleteCommand.Parameters.AddWithValue("@ConsumedDate", date.ToString("yyyy-MM-dd"));
+            deleteCommand.ExecuteNonQuery();
+
+            _connection.Close();
         }
     }
 }

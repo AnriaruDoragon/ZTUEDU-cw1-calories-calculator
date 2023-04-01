@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
 
 namespace CCLibrary.Data
 {
@@ -11,16 +12,13 @@ namespace CCLibrary.Data
 
         public Database()
         {
-            Connection = new SqliteConnection(DbSource);
             Initialize();
-
-            Context = new DataContext(Connection);
         }
 
         /// <summary>
         /// Check and keep connection open.
         /// </summary>
-        internal static void CheckConnection(SqliteConnection connection)
+        internal static void ReopenConnection(SqliteConnection connection)
         {
             switch (connection.State)
             {
@@ -36,16 +34,26 @@ namespace CCLibrary.Data
 
         private void Initialize()
         {
-            CheckConnection(Connection);
+            Connection = new SqliteConnection(DbSource);
 
-             new SqliteCommand(@"
-                CREATE TABLE IF NOT EXISTS ProfileConsumedProducts (
-                    rowid INTEGER PRIMARY KEY,
-                    ProfileID INTEGER NOT NULL,
-                    ProductID INTEGER NOT NULL,
-                    ProductMass FLOAT NOT NULL,
-                    ConsumedDate DATE NOT NULL
-                );", Connection).ExecuteNonQuery();
+            var optionsBuilder = new DbContextOptionsBuilder<DataContext>().UseSqlite(Connection);
+            Context = new DataContext(optionsBuilder.Options);
+
+            if (!Context.Database.CanConnect())
+            {
+                Context.Database.Migrate();
+
+                ReopenConnection(Connection);
+                new SqliteCommand(@"
+                    CREATE TABLE IF NOT EXISTS ProfileConsumedProducts (
+                        rowid INTEGER PRIMARY KEY,
+                        ProfileID INTEGER NOT NULL,
+                        ProductID INTEGER NOT NULL,
+                        ProductMass FLOAT NOT NULL,
+                        ConsumedDate DATE NOT NULL
+                    );", Connection).ExecuteNonQuery();
+                Connection.Close();
+            }
         }
     }
 }

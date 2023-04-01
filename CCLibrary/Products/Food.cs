@@ -1,10 +1,13 @@
-﻿namespace CCLibrary.Products
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace CCLibrary.Products
 {
     public class Food : Consumable
     {
         protected FoodTypes _foodType;
 
-        public Nutrition Nutrition { get; protected set; }
+        protected string JsonNutrition { get; set; } = string.Empty;
 
         protected Food()
         {
@@ -21,6 +24,13 @@
         {
             get => _foodType;
             protected set => _foodType = value;
+        }
+
+        [NotMapped]
+        public Nutrition Nutrition
+        {
+            get => JsonConvert.DeserializeObject<Nutrition>(JsonNutrition);
+            set => JsonNutrition = JsonConvert.SerializeObject(value);
         }
 
         public override Product Copy()

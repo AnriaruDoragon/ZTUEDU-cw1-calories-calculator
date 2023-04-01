@@ -58,12 +58,6 @@
   </Class>
   <Class Name="CCLibrary.Products.Food" Collapsed="true">
     <Position X="8.5" Y="4.75" Width="1.5" />
-    <AssociationLine Name="_foodType" Type="CCLibrary.Products.FoodTypes" FixedToPoint="true">
-      <Path>
-        <Point X="10" Y="5.062" />
-        <Point X="11.25" Y="5.062" />
-      </Path>
-    </AssociationLine>
     <TypeIdentifier>
       <HashCode>BAAAAAYAAAAAAAAAAAAAAAAAAgAAAAAAAQAAAAAAAAA=</HashCode>
       <FileName>Products\Food.cs</FileName>

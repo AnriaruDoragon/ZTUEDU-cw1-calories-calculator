@@ -43,15 +43,15 @@ namespace CCLibrary.Data
         }
 
         /// <summary>
-        /// Remember profile for auto login.
+        /// RememberProfile profile for auto login.
         /// </summary>
         /// <exception cref="ProfiletNotFoundException"></exception>
-        public void Remember(long id)
+        public void RememberProfile(long id)
         {
             Profile? profile = Profiles.FirstOrDefault(profile => profile.Id == id)
                 ?? throw new ProfiletNotFoundException();
 
-            Profile? remembered = GetRemembered();
+            Profile? remembered = GetRememberedProfile();
             if (remembered != null)
                 remembered.IsRemembered = false;
             profile.IsRemembered = true;
@@ -61,9 +61,10 @@ namespace CCLibrary.Data
         /// <summary>
         /// Get remembered profile.
         /// </summary>
-        public Profile? GetRemembered()
+        public Profile? GetRememberedProfile()
         {
-            return Profiles.FirstOrDefault(profile => profile.IsRemembered);
+            return Profiles.AsEnumerable()
+                .FirstOrDefault(profile => profile.IsRemembered, null);
         }
     }
 }

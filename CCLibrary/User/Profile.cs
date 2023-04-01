@@ -21,6 +21,13 @@ namespace CCLibrary.User
         public byte[]? Image { get; set; } = null;
         public DateTime? BirthDay { get; set; }
 
+        // EntityFramework
+        public Profile()
+        {
+            _login = string.Empty;
+            _password = string.Empty;
+        }
+
         public Profile(string login, string password)
         {
             _login = login;
