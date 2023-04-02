@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:CaloriesCalculator.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ProductsPage">
+      Title="Продукти">
 
     <Grid>
         <TextBlock Text="Products" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48"/>

@@ -24,7 +24,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
@@ -43,12 +43,12 @@
             </Grid.RowDefinitions>
 
             <Grid.Resources>
-                <Style TargetType="{x:Type Button}">
+                <Style TargetType="{x:Type cmc:NavMenuItemControl}">
                     <Setter Property="Margin" Value="0 8 0 0"/>
                 </Style>
             </Grid.Resources>
 
-            <Label>Logo</Label>
+            <Image Margin="5" Height="32" Source="/Assets/Logo.png"/>
             <StackPanel Grid.Row="1" Margin="0 25 0 0">
                 <cmc:NavMenuItemControl Icon="Profile" Text="Профіль" Tag="Profile" x:Name="ProfileMenuItem" Click="NavMenuItemControl_Click"/>
                 <cmc:NavMenuItemControl Icon="Food" Text="Продукти" Tag="Products" Click="NavMenuItemControl_Click"/>
@@ -56,15 +56,24 @@
             <cmc:NavMenuItemControl Grid.Row="2" Icon="Gear" Text="Опції" Tag="Settings" Click="NavMenuItemControl_Click"/>
         </Grid>
 
-        <Grid Grid.Row="0" Grid.Column="1" ColumnSpan="2" MaxHeight="30" Background="{StaticResource Bg2Color}">
+        <Grid Grid.Row="0" Grid.Column="1" ColumnSpan="2" Height="42" Background="{StaticResource Bg2Color}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Profile Header -->
-
+            <TextBlock x:Name="PageTitleTextBlock" FontSize="20" Foreground="{StaticResource TextColor}" Margin="10 0" VerticalAlignment="Center"/>
+            <Grid Grid.Column="2" Margin="10 0" VerticalAlignment="Center" x:Name="CurrentProfileGrid" Visibility="Collapsed">
+               <StackPanel Orientation="Horizontal">
+                   <Ellipse Height="32" Width="32">
+                       <Ellipse.Fill>
+                           <ImageBrush x:Name="CurrentProfileImageBrush" ImageSource="{x:Null}"/>
+                       </Ellipse.Fill>
+                   </Ellipse>
+                   <TextBlock x:Name="CurrentProfileNameTextBlock" FontSize="20" Foreground="{StaticResource TextColor}" Margin="5 0 0 0" VerticalAlignment="Center"/>
+               </StackPanel>
+            </Grid>
         </Grid>
 
         <Grid Grid.Row="1" Grid.Column="2">

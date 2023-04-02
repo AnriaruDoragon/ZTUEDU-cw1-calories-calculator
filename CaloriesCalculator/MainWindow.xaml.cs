@@ -1,19 +1,13 @@
-﻿using CaloriesCalculator.Controls;
-using CaloriesCalculator.Pages;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Media.Imaging;
+using System.Collections.Generic;
+using CaloriesCalculator.Controls;
+using CCLibrary.User;
 
 namespace CaloriesCalculator
 {
@@ -32,6 +26,28 @@ namespace CaloriesCalculator
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Navigate("Profile", ProfileMenuItem);
+            PageTitleTextBlock.Text = "Профіль користувача";
+            SetCurrentProfile(App.CurrentProfile);
+        }
+
+        internal void SetCurrentProfile(Profile? profile = null)
+        {
+            if (profile == null)
+                CurrentProfileGrid.Visibility = Visibility.Collapsed;
+            else
+            {
+                CurrentProfileNameTextBlock.Text = profile.Name;
+                if (profile.Image != null)
+                {
+                    BitmapImage avatar = new();
+                    using (MemoryStream ms = new(profile.Image))
+                    {
+                        avatar.StreamSource = ms;
+                    }
+                    CurrentProfileImageBrush.ImageSource = avatar;
+                }
+                CurrentProfileGrid.Visibility = Visibility.Visible;
+            }
         }
 
         #region Navigation
@@ -51,9 +67,13 @@ namespace CaloriesCalculator
 
             Uri currentPage = ContentFrame.CurrentSource;
 
-            if (_page is not null && (!Equals(_page, currentPage)))
+            if ((_page is not null && (!Equals(_page, currentPage))) || refresh)
             {
                 _ = ContentFrame.Navigate(_page);
+
+                // Set title
+                if (ContentFrame.Content != null)
+                    PageTitleTextBlock.Text = ((Page)ContentFrame.Content).Title;
 
                 // Change current selected item in UI
                 if (menuItemControl != null)

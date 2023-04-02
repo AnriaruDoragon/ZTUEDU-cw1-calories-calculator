@@ -5,10 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CaloriesCalculator.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="ProfilePage">
+      d:DesignHeight="450" d:DesignWidth="500"
+      Title="Профіль користувача">
 
     <Grid>
-        <TextBlock Text="Profile" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48"/>
+        
     </Grid>
 </Page>
