@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using CCLibrary.Data;
+using CCLibrary.User;
 
 namespace CaloriesCalculator
 {
@@ -15,11 +10,14 @@ namespace CaloriesCalculator
     public partial class App : Application
     {
         public static Database Database;
+        public static Profile? CurrentProfile;
 
         public App()
         {
             InitializeComponent();
+
             Database = new Database();
+            CurrentProfile = Database.Context.GetRememberedProfile();
         }
     }
 }
