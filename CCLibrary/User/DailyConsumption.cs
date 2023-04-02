@@ -54,7 +54,7 @@ namespace CCLibrary.User
         /// <summary>
         /// Set a new list of consumed products.
         /// </summary>
-        public void UpdateConsumed(List<Product> products)
+        public void UpdateConsumed(IEnumerable<Product> products)
         {
             _products = new List<Product>(products);
         }

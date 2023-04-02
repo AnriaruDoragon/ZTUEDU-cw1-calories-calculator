@@ -17,9 +17,12 @@ namespace CCLibrary.Products
             _ingredients = new List<Consumable>(ingredients);
         }
 
-        public Dish(string name, List<Consumable>? ingredients = null) : base(name)
+        public Dish(string name, IEnumerable<Consumable>? ingredients = null) : base(name)
         {
-            _ingredients = ingredients ?? new List<Consumable>();
+            if (ingredients is null)
+                _ingredients = new List<Consumable>();
+            else
+                _ingredients = ingredients.ToList();
         }
 
         public override Product Copy()
@@ -52,7 +55,7 @@ namespace CCLibrary.Products
         /// <summary>
         /// Update the ingredients list of the dish.
         /// </summary>
-        public void UpdateIngredients(List<Consumable> ingredients)
+        public void UpdateIngredients(IEnumerable<Consumable> ingredients)
         {
             _ingredients = new List<Consumable>(ingredients);
         }

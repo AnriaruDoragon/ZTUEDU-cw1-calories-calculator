@@ -69,7 +69,7 @@ namespace CCLibrary.User
         }
 
         /// <summary>
-        /// Перевірити пароль на дійсність.
+        /// Verify password.
         /// </summary>
         public bool CheckPassword(string password)
         {
@@ -77,7 +77,7 @@ namespace CCLibrary.User
         }
 
         /// <summary>
-        /// Оновити поточний пароль.
+        /// Set new password.
         /// </summary>
         /// <exception cref="WrongPasswordException"></exception>
         public void UpdatePassword(string oldPassword, string newPassword)
