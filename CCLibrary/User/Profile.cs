@@ -20,6 +20,8 @@ namespace CCLibrary.User
         public string Name { get; set; } = "N/D";
         public byte[]? Image { get; set; } = null;
         public DateTime? BirthDay { get; set; }
+        public Genders Gender { get; set; }
+        public double CaloriesGoal { get; set; }
 
         // EntityFramework
         public Profile()
