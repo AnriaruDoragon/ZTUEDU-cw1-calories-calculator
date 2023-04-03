@@ -62,6 +62,12 @@ namespace CCLibrary.Migrations
                     b.Property<DateTime?>("BirthDay")
                         .HasColumnType("TEXT");
 
+                    b.Property<double>("CaloriesGoal")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("Gender")
+                        .HasColumnType("INTEGER");
+
                     b.Property<float>("HeightInCm")
                         .HasColumnType("REAL");
 

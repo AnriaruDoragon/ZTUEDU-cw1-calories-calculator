@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CCLibrary.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230401134736_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20230403124425_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,6 +64,12 @@ namespace CCLibrary.Migrations
 
                     b.Property<DateTime?>("BirthDay")
                         .HasColumnType("TEXT");
+
+                    b.Property<double>("CaloriesGoal")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("Gender")
+                        .HasColumnType("INTEGER");
 
                     b.Property<float>("HeightInCm")
                         .HasColumnType("REAL");
