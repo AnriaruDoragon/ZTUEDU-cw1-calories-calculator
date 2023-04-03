@@ -4,19 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CaloriesCalculator.Controls"
-             x:Name="UserControl"
+             x:Name="CustomProgressBar"
              mc:Ignorable="d" 
              d:DesignHeight="150" d:DesignWidth="150"
              Height="150" Width="150">
     <Grid>
         <StackPanel Orientation="Vertical" VerticalAlignment="Center">
             <TextBlock x:Name="CurrentValue" HorizontalAlignment="Center" FontSize="28" FontWeight="Bold" Foreground="#001858"
-                       Text="{Binding Path=Value, ElementName=UserControl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                       Text="{Binding Path=Value, ElementName=CustomProgressBar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <ProgressBar Background="{x:Null}" Foreground="#FFF582AE"
-                         Value="{Binding Path=Value, ElementName=UserControl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Maximum="{Binding Path=Max, ElementName=UserControl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                         Value="{Binding Path=Value, ElementName=CustomProgressBar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Maximum="{Binding Path=Max, ElementName=CustomProgressBar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock x:Name="MaxValue" HorizontalAlignment="Center" FontSize="28" FontWeight="Bold" Foreground="#001858"
-                       Text="{Binding Path=Max, ElementName=UserControl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                       Text="{Binding Path=Max, ElementName=CustomProgressBar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
     </Grid>
 </UserControl>
