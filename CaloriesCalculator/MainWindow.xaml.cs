@@ -26,7 +26,6 @@ namespace CaloriesCalculator
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Navigate("Profile", ProfileMenuItem);
-            PageTitleTextBlock.Text = "Профіль користувача";
             SetCurrentProfile(App.CurrentProfile);
         }
 
@@ -71,10 +70,6 @@ namespace CaloriesCalculator
             {
                 _ = ContentFrame.Navigate(_page);
 
-                // Set title
-                if (ContentFrame.Content != null)
-                    PageTitleTextBlock.Text = ((Page)ContentFrame.Content).Title;
-
                 // Change current selected item in UI
                 if (menuItemControl != null)
                     menuItemControl.IsActive = true;
@@ -88,6 +83,10 @@ namespace CaloriesCalculator
         {
             // Dispose previous page
             ((Frame)sender).NavigationService.RemoveBackEntry();
+
+            // Set page title
+            if (ContentFrame.Content != null)
+                PageTitleTextBlock.Text = ((Page)ContentFrame.Content).Title;
         }
 
         private void NavMenuItemControl_Click(object sender, EventArgs e)
