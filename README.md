@@ -16,7 +16,7 @@
 	- [Database](../../wikis/CCLibrary/Data-namespace/Database-class)
 	- [DataContext](../../wikis/CCLibrary/Data-namespace/DataContext-class)
 - [User](../../wikis/CCLibrary/User-namespace)
-	- [Profile](../../wikis/CCLibrary/User-namespace/Profile-abstract-class)
+	- [Profile](../../wikis/CCLibrary/User-namespace/Profile-class)
 	- [DailyConsumption](../../wikis/CCLibrary/User-namespace/DailyConsumption-class)
 - [Products namespace](../../wikis/CCLibrary/Products-namespace)
 	- [Product](../../wikis/CCLibrary/Products-namespace/Product-abstract-class)
