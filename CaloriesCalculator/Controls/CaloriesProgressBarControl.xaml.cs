@@ -17,7 +17,7 @@ namespace CaloriesCalculator.Controls
 
         public static readonly DependencyProperty MaxProperty = 
             DependencyProperty.Register(nameof(Max), typeof(double), typeof(CaloriesProgressBarControl),
-                new PropertyMetadata(1D));
+                new PropertyMetadata(0D));
 
         public double Value
         {
