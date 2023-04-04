@@ -58,7 +58,7 @@ namespace CaloriesCalculator
         {
             if (App.CurrentProfile is null)
             {
-                // CaliriesMeterGrid.Visibility = Visibility.Collapsed;
+                CaliriesMeterGrid.Visibility = Visibility.Collapsed;
                 return;
             }
             else
