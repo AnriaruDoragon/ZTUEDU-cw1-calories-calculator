@@ -82,27 +82,19 @@ namespace CCLibrary.User
         }
 
         /// <summary>
-        /// Set new password.
+        /// Verify secret word.
         /// </summary>
-        /// <exception cref="WrongPasswordException"></exception>
-        public void UpdatePassword(string oldPassword, string newPassword)
+        public bool CheckSecretWord(string secretWord)
         {
-            if (CheckPassword(oldPassword))
-                _password = newPassword;
-            else
-                throw new WrongPasswordException();
+            return secretWord.Equals(_secretWord, StringComparison.OrdinalIgnoreCase);
         }
 
         /// <summary>
-        /// Reset password using secret word.
+        /// Set new password.
         /// </summary>
-        /// <exception cref="WrongSecretWordException"></exception>
-        public void ResetPassword(string secretWord, string newPassword)
+        internal void SetPassword(string newPassword)
         {
-            if (secretWord.Equals(_secretWord, StringComparison.OrdinalIgnoreCase))
-                _password = newPassword;
-            else
-                throw new WrongSecretWordException();
+            _password = newPassword;
         }
     }
 }

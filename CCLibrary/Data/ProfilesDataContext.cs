@@ -43,6 +43,58 @@ namespace CCLibrary.Data
         }
 
         /// <summary>
+        /// Delete user profile.
+        /// </summary>
+        /// <exception cref="ProfiletNotFoundException"></exception>
+        /// <exception cref="WrongPasswordException"></exception>
+        public void DeleteProfile(string login, string password)
+        {
+            Profile? profile = Profiles.FirstOrDefault(profile =>
+                profile._login.Equals(login, StringComparison.OrdinalIgnoreCase))
+                    ?? throw new ProfiletNotFoundException();
+
+            if (!profile.CheckPassword(password))
+                throw new WrongPasswordException();
+
+            Profiles.Remove(profile);
+            SaveChanges();
+        }
+
+        /// <summary>
+        /// Set new password using old password.
+        /// </summary>
+        /// <exception cref="ProfiletNotFoundException"></exception>
+        /// <exception cref="WrongPasswordException"></exception>
+        public void UpdatePassword(long id, string oldPassword, string newPassword)
+        {
+            Profile? profile = Profiles.FirstOrDefault(profile => profile.Id.Equals(id))
+                ?? throw new ProfiletNotFoundException();
+
+            if (!profile.CheckPassword(oldPassword))
+                throw new WrongPasswordException();
+
+            profile.SetPassword(newPassword);
+            SaveChanges();
+        }
+
+        /// <summary>
+        /// Set new password using secret word.
+        /// </summary>
+        /// <exception cref="ProfiletNotFoundException"></exception>
+        /// <exception cref="WrongSecretWordException"></exception>
+        public void ResetPassword(long id, string secretWord, string newPassword)
+        {
+            Profile? profile = Profiles.FirstOrDefault(profile => profile.Id.Equals(id))
+                ?? throw new ProfiletNotFoundException();
+
+            if (!profile.CheckSecretWord(secretWord))
+                throw new WrongSecretWordException();
+
+            profile.SetPassword(newPassword);
+            SaveChanges();
+        }
+
+        /// <summary>
         /// RememberProfile profile for auto login.
         /// </summary>
         /// <exception cref="ProfiletNotFoundException"></exception>
