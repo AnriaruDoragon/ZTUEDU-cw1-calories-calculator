@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace CaloriesCalculator.Controls
@@ -21,13 +22,13 @@ namespace CaloriesCalculator.Controls
         public double Value
         {
             get => (double)GetValue(ValueProperty);
-            set => SetValue(ValueProperty, value);
+            set => SetValue(ValueProperty, Math.Round(value, 0));
         }
 
         public double Max
         {
             get => (double)GetValue(MaxProperty);
-            set => SetValue(MaxProperty, value);
+            set => SetValue(MaxProperty, Math.Round(value, 0));
         }
     }
 }

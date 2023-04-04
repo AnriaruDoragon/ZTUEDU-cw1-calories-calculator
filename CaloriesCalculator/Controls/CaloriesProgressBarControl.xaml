@@ -10,6 +10,7 @@
              Height="150" Width="150">
     <Grid>
         <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+            <TextBlock HorizontalAlignment="Center" FontSize="20" Foreground="#001858" Text="Всього"/>
             <TextBlock x:Name="CurrentValue" HorizontalAlignment="Center" FontSize="28" FontWeight="Bold" Foreground="#001858"
                        Text="{Binding Path=Value, ElementName=CustomProgressBar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <ProgressBar Background="{x:Null}" Foreground="#FFF582AE"
@@ -17,6 +18,7 @@
                          Maximum="{Binding Path=Max, ElementName=CustomProgressBar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock x:Name="MaxValue" HorizontalAlignment="Center" FontSize="28" FontWeight="Bold" Foreground="#001858"
                        Text="{Binding Path=Max, ElementName=CustomProgressBar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock HorizontalAlignment="Center" FontSize="20" Foreground="#001858" Text="калорій"/>
         </StackPanel>
     </Grid>
 </UserControl>
