@@ -10,6 +10,7 @@ namespace CCLibrary.User
     {
         internal string _login;
         private string _password;
+        private string _secretWord;
         public bool IsRemembered = false;
 
         protected float _height = 0;
@@ -28,12 +29,14 @@ namespace CCLibrary.User
         {
             _login = string.Empty;
             _password = string.Empty;
+            _secretWord = string.Empty;
         }
 
-        public Profile(string login, string password)
+        public Profile(string login, string password, string secretWord)
         {
             _login = login;
             _password = password;
+            _secretWord = secretWord;
         }
         
         public int Age
@@ -88,6 +91,18 @@ namespace CCLibrary.User
                 _password = newPassword;
             else
                 throw new WrongPasswordException();
+        }
+
+        /// <summary>
+        /// Reset password using secret word.
+        /// </summary>
+        /// <exception cref="WrongSecretWordException"></exception>
+        public void ResetPassword(string secretWord, string newPassword)
+        {
+            if (secretWord.Equals(_secretWord, StringComparison.OrdinalIgnoreCase))
+                _password = newPassword;
+            else
+                throw new WrongSecretWordException();
         }
     }
 }

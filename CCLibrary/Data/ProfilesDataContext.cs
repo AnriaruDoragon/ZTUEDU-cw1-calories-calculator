@@ -14,12 +14,12 @@ namespace CCLibrary.Data
         /// Create a new profile.
         /// </summary>
         /// <exception cref="ProfileAlreadyExistsException"></exception>
-        public Profile CreateProfile(string login, string password)
+        public Profile CreateProfile(string login, string password, string secretWord)
         {
             if (Profiles.Any(profile => profile._login.Equals(login, StringComparison.OrdinalIgnoreCase)))
                 throw new ProfileAlreadyExistsException();
 
-            Profile newProfile = new(login, password);
+            Profile newProfile = new(login, password, secretWord);
             Profiles.Add(newProfile);
             SaveChanges();
             return newProfile;
