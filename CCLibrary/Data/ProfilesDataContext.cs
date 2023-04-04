@@ -52,7 +52,7 @@ namespace CCLibrary.Data
                 ?? throw new ProfiletNotFoundException();
 
             Profile? remembered = GetRememberedProfile();
-            if (remembered != null)
+            if (remembered is not null)
                 remembered.IsRemembered = false;
             profile.IsRemembered = true;
             SaveChanges();
