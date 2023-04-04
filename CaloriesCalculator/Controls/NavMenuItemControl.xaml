@@ -8,6 +8,7 @@
              mc:Ignorable="d" 
              Height="48"
              d:DesignHeight="48" d:DesignWidth="128">
+    
     <Button Template="{DynamicResource NavMenuItemButton}" Background="#00000000" BorderBrush="#F582AE" BorderThickness="0" Padding="0" 
             HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
             Name="MainButton" Click="ButtonBase_OnClick">
@@ -24,8 +25,6 @@
     </Button>
 
     <UserControl.Resources>
-
-        <SolidColorBrush x:Key="TextColor">#001858</SolidColorBrush>
 
         <!-- Button hover redesign -->
         <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFF3D2C1"/>

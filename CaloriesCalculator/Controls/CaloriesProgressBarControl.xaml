@@ -9,16 +9,23 @@
              d:DesignHeight="150" d:DesignWidth="150"
              Height="150" Width="150">
     <Grid>
+        
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="#001858"/>
+            </Style>
+        </Grid.Resources>
+        
         <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-            <TextBlock HorizontalAlignment="Center" FontSize="20" Foreground="#001858" Text="Всього"/>
-            <TextBlock x:Name="CurrentValue" HorizontalAlignment="Center" FontSize="28" FontWeight="Bold" Foreground="#001858"
+            <TextBlock HorizontalAlignment="Center" FontSize="20" Text="Всього"/>
+            <TextBlock x:Name="CurrentValue" HorizontalAlignment="Center" FontSize="28" FontWeight="Bold"
                        Text="{Binding Path=Value, ElementName=CustomProgressBar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <ProgressBar Background="{x:Null}" Foreground="#FFF582AE"
                          Value="{Binding Path=Value, ElementName=CustomProgressBar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Maximum="{Binding Path=Max, ElementName=CustomProgressBar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBlock x:Name="MaxValue" HorizontalAlignment="Center" FontSize="28" FontWeight="Bold" Foreground="#001858"
+            <TextBlock x:Name="MaxValue" HorizontalAlignment="Center" FontSize="28" FontWeight="Bold"
                        Text="{Binding Path=Max, ElementName=CustomProgressBar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBlock HorizontalAlignment="Center" FontSize="20" Foreground="#001858" Text="калорій"/>
+            <TextBlock HorizontalAlignment="Center" FontSize="20" Text="калорій"/>
         </StackPanel>
     </Grid>
 </UserControl>
