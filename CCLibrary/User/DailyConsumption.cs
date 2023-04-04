@@ -36,6 +36,19 @@ namespace CCLibrary.User
         }
 
         /// <summary>
+        /// Calculate the total of nutritions.
+        /// </summary>
+        public Nutrition CalculateNutrition()
+        {
+            Nutrition nutrition = new();
+
+            foreach (Food food in _products.OfType<Food>())
+                nutrition += food.Nutrition;
+
+            return nutrition;
+        }
+
+        /// <summary>
         /// Get a copy of a list of consumed products.
         /// </summary>
         public List<Product> GetProducts()

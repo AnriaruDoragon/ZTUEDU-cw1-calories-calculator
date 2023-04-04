@@ -17,5 +17,10 @@
             Fiber = fiber;
             Sodium = sodium;
         }
+
+        public static Nutrition operator +(Nutrition a, Nutrition b)
+        {
+            return new Nutrition(a.Fat + b.Fat, a.Protein + b.Protein, a.Carbs + b.Carbs, a.Fiber + b.Fiber, a.Sodium + b.Sodium);
+        }
     }
 }
