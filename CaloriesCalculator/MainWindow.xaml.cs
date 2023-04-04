@@ -31,12 +31,12 @@ namespace CaloriesCalculator
 
         internal void SetCurrentProfile(Profile? profile = null)
         {
-            if (profile == null)
+            if (profile is null)
                 CurrentProfileGrid.Visibility = Visibility.Collapsed;
             else
             {
                 CurrentProfileNameTextBlock.Text = profile.Name;
-                if (profile.Image != null)
+                if (profile.Image is not null)
                 {
                     BitmapImage avatar = new();
                     using (MemoryStream ms = new(profile.Image))
@@ -57,9 +57,12 @@ namespace CaloriesCalculator
             ("Products", new Uri("Pages/ProductsPage.xaml", UriKind.Relative))
         };
 
+        /// <summary>
+        /// Navigate main frame to the specific page.
+        /// </summary>
         internal void Navigate(string? itemTag, NavMenuItemControl? menuItemControl = null, bool refresh = false)
         {
-            if (itemTag == null)
+            if (itemTag is null)
                 return;
 
             Uri _page = _pages.FirstOrDefault(page => page.Tag.Equals(itemTag)).Page;
@@ -71,9 +74,9 @@ namespace CaloriesCalculator
                 _ = ContentFrame.Navigate(_page);
 
                 // Change current selected item in UI
-                if (menuItemControl != null)
+                if (menuItemControl is not null)
                     menuItemControl.IsActive = true;
-                if (_lastSelectedItem != null)
+                if (_lastSelectedItem is not null)
                     _lastSelectedItem.IsActive = false;
                 _lastSelectedItem = menuItemControl;
             }
@@ -85,7 +88,7 @@ namespace CaloriesCalculator
             ((Frame)sender).NavigationService.RemoveBackEntry();
 
             // Set page title
-            if (ContentFrame.Content != null)
+            if (ContentFrame.Content is not null)
                 PageTitleTextBlock.Text = ((Page)ContentFrame.Content).Title;
         }
 
