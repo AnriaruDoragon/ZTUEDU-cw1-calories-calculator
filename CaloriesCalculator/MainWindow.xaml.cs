@@ -21,6 +21,7 @@ namespace CaloriesCalculator
         public MainWindow()
         {
             InitializeComponent();
+            CaloriesDatePicker.SelectedDate = DateTime.Today;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -47,6 +48,40 @@ namespace CaloriesCalculator
                 }
                 CurrentProfileGrid.Visibility = Visibility.Visible;
             }
+        }
+
+        /// <summary>
+        /// Update calories meter on the page if profile and date is set.
+        /// If profile is null - hides the meter. If date is not set - diplays zeros.
+        /// </summary>
+        private void UpdateCalorieMeter()
+        {
+            if (App.CurrentProfile is null)
+            {
+                // CaliriesMeterGrid.Visibility = Visibility.Collapsed;
+                return;
+            }
+            else
+                CaliriesMeterGrid.Visibility = Visibility.Visible;
+
+            if (CaloriesDatePicker.SelectedDate is null)
+            {
+                CaloriesProgress.Max = CaloriesProgress.Value = default;
+                NutritionsMeter.Nutrition = default;
+                return;
+            }
+
+            DailyConsumption profileConsumption = App.Database.Context.GetProfileConsumption(
+                App.CurrentProfile, (DateTime)CaloriesDatePicker.SelectedDate);
+
+            CaloriesProgress.Max = App.CurrentProfile.CaloriesGoal;
+            CaloriesProgress.Value = profileConsumption.CalculateCalories();
+            NutritionsMeter.Nutrition = profileConsumption.CalculateNutrition();
+        }
+
+        private void CaloriesDate_Changed(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateCalorieMeter();
         }
 
         #region Navigation
