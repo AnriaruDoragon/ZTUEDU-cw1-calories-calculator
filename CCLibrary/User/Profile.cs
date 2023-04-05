@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Text;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Cryptography;
-using System.Text;
 using CCLibrary.Exceptions;
 
 namespace CCLibrary.User
