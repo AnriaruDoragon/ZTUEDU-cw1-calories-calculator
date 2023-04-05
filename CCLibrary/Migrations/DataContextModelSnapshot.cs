@@ -68,7 +68,7 @@ namespace CCLibrary.Migrations
                     b.Property<int>("Gender")
                         .HasColumnType("INTEGER");
 
-                    b.Property<float>("HeightInCm")
+                    b.Property<float?>("HeightInCm")
                         .HasColumnType("REAL");
 
                     b.Property<byte[]>("Image")
@@ -78,7 +78,7 @@ namespace CCLibrary.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<float>("WeightInKg")
+                    b.Property<float?>("WeightInKg")
                         .HasColumnType("REAL");
 
                     b.HasKey("Id");

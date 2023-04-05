@@ -16,7 +16,7 @@ namespace CCLibrary.Data
         /// <exception cref="ProfileAlreadyExistsException"></exception>
         public Profile CreateProfile(string login, string password, string secretWord)
         {
-            if (Profiles.Any(profile => profile._login.Equals(login, StringComparison.OrdinalIgnoreCase)))
+            if (Profiles.AsEnumerable().Any(profile => profile._login.Equals(login, StringComparison.OrdinalIgnoreCase)))
                 throw new ProfileAlreadyExistsException();
 
             Profile newProfile = new(login, password, secretWord);
@@ -32,8 +32,8 @@ namespace CCLibrary.Data
         /// <exception cref="WrongPasswordException"></exception>
         public Profile GetProfile(string login, string password)
         {
-            Profile? profile = Profiles.FirstOrDefault(profile =>
-                profile._login.Equals(login, StringComparison.OrdinalIgnoreCase))
+            Profile? profile = Profiles.AsEnumerable()
+                .FirstOrDefault(profile => profile._login.Equals(login, StringComparison.OrdinalIgnoreCase))
                     ?? throw new ProfiletNotFoundException();
 
             if (!profile.CheckPassword(password))
@@ -49,8 +49,8 @@ namespace CCLibrary.Data
         /// <exception cref="WrongPasswordException"></exception>
         public void DeleteProfile(string login, string password)
         {
-            Profile? profile = Profiles.FirstOrDefault(profile =>
-                profile._login.Equals(login, StringComparison.OrdinalIgnoreCase))
+            Profile? profile = Profiles.AsEnumerable()
+                .FirstOrDefault(profile => profile._login.Equals(login, StringComparison.OrdinalIgnoreCase))
                     ?? throw new ProfiletNotFoundException();
 
             if (!profile.CheckPassword(password))
@@ -67,8 +67,9 @@ namespace CCLibrary.Data
         /// <exception cref="WrongPasswordException"></exception>
         public void UpdatePassword(long id, string oldPassword, string newPassword)
         {
-            Profile? profile = Profiles.FirstOrDefault(profile => profile.Id.Equals(id))
-                ?? throw new ProfiletNotFoundException();
+            Profile? profile = Profiles.AsEnumerable()
+                .FirstOrDefault(profile => profile.Id.Equals(id))
+                    ?? throw new ProfiletNotFoundException();
 
             if (!profile.CheckPassword(oldPassword))
                 throw new WrongPasswordException();
@@ -84,8 +85,9 @@ namespace CCLibrary.Data
         /// <exception cref="WrongSecretWordException"></exception>
         public void ResetPassword(long id, string secretWord, string newPassword)
         {
-            Profile? profile = Profiles.FirstOrDefault(profile => profile.Id.Equals(id))
-                ?? throw new ProfiletNotFoundException();
+            Profile? profile = Profiles.AsEnumerable()
+                .FirstOrDefault(profile => profile.Id.Equals(id))
+                    ?? throw new ProfiletNotFoundException();
 
             if (!profile.CheckSecretWord(secretWord))
                 throw new WrongSecretWordException();
@@ -100,8 +102,9 @@ namespace CCLibrary.Data
         /// <exception cref="ProfiletNotFoundException"></exception>
         public void RememberProfile(long id)
         {
-            Profile? profile = Profiles.FirstOrDefault(profile => profile.Id == id)
-                ?? throw new ProfiletNotFoundException();
+            Profile? profile = Profiles.AsEnumerable()
+                .FirstOrDefault(profile => profile.Id == id)
+                    ?? throw new ProfiletNotFoundException();
 
             Profile? remembered = GetRememberedProfile();
             if (remembered is not null)

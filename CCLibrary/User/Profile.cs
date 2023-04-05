@@ -13,16 +13,16 @@ namespace CCLibrary.User
         private string _secretWord;
         public bool IsRemembered = false;
 
-        protected float _height = 0;
-        protected float _weight = 0;
+        protected float? _height = null;
+        protected float? _weight = null;
 
         [Key]
         public long Id { get; protected set; }
         public string Name { get; set; } = "N/D";
         public byte[]? Image { get; set; } = null;
-        public DateTime? BirthDay { get; set; }
-        public Genders Gender { get; set; }
-        public double CaloriesGoal { get; set; }
+        public DateTime? BirthDay { get; set; } = null;
+        public Genders Gender { get; set; } = Genders.Unknown;
+        public double CaloriesGoal { get; set; } = 1000;
 
         // EntityFramework
         public Profile()
@@ -51,7 +51,7 @@ namespace CCLibrary.User
             }
         }
 
-        public float HeightInCm
+        public float? HeightInCm
         {
             get { return _height; }
             set
@@ -62,7 +62,7 @@ namespace CCLibrary.User
             }
         }
 
-        public float WeightInKg
+        public float? WeightInKg
         {
             get { return _weight; }
             set
