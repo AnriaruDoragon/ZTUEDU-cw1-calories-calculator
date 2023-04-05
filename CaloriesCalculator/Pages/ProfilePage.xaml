@@ -5,10 +5,47 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CaloriesCalculator.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="500"
-      Title="Профіль користувача">
+      d:DesignHeight="400" d:DesignWidth="600"
+      Title="Профіль користувача"
+      Loaded="Page_Loaded">
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <!-- Login elements -->
+        <Grid Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible"
+              x:Name="LoginGrid">
+            <StackPanel>
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="BorderBrush" Value="{x:Null}"/>
+                        <Setter Property="Background" Value="#FFF582AE"/>
+                        <Setter Property="Foreground" Value="#001858"/>
+                    </Style>
+                </StackPanel.Resources>
+                <TextBlock Foreground="#001858" Text="Логін:" HorizontalAlignment="Center"/>
+                <TextBox Width="150" Margin="0 0 0 10" FontSize="18" Foreground="#001858" MaxLength="128" x:Name="LoginTextBox" Background="#FF8BD3DD" BorderBrush="{x:Null}"/>
+                <TextBlock Foreground="#001858" Text="Пароль:" HorizontalAlignment="Center"/>
+                <PasswordBox Width="150" Margin="0 0 0 10" FontSize="18" Foreground="#001858" MaxLength="128" x:Name="LoginPasswordBox" Background="#FF8BD3DD" BorderBrush="{x:Null}"/>
+                <Button x:Name="LoginButton" FontSize="18" Content="Увійти"
+                        Click="LoginButton_Click"/>
+                <Button Margin="0 10" x:Name="RegisterButton" FontSize="18" Content="Зареєструватися"
+                        Click="RegisterButton_Click"/>
+                <Button x:Name="ResetPasswordButton" Content="Забув пароль" Background="{x:Null}" HorizontalAlignment="Center"
+                        Click="ResetPasswordButton_Click"/>
+            </StackPanel>
+        </Grid>
+        
+        <!-- Manage profile elements -->
+        <Grid Grid.Row="0" Grid.Column="0" Visibility="Collapsed"
+              x:Name="ManageGrid">
+            
+        </Grid>
         
     </Grid>
 </Page>
