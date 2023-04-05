@@ -9,7 +9,11 @@ namespace CCLibrary.Data
 
         public DataContext() { }
 
-        public DataContext(DbContextOptions<DataContext> options) : base(options) { }
+        public DataContext(DbContextOptions<DataContext> options, SqliteConnection? connection = null)
+            : base(options)
+        {
+            _connection = connection;
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             => optionsBuilder.UseSqlite(Data.Database.DbSource);

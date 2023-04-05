@@ -37,7 +37,7 @@ namespace CCLibrary.Data
             Connection = new SqliteConnection(DbSource);
 
             var optionsBuilder = new DbContextOptionsBuilder<DataContext>().UseSqlite(Connection);
-            Context = new DataContext(optionsBuilder.Options);
+            Context = new DataContext(optionsBuilder.Options, Connection);
 
             if (!Context.Database.CanConnect())
             {
