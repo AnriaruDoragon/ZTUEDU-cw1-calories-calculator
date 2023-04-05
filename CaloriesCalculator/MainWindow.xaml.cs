@@ -32,6 +32,8 @@ namespace CaloriesCalculator
 
         internal void SetCurrentProfile(Profile? profile = null)
         {
+            App.CurrentProfile = profile;
+
             if (profile is null)
                 CurrentProfileGrid.Visibility = Visibility.Collapsed;
             else
@@ -48,6 +50,8 @@ namespace CaloriesCalculator
                 }
                 CurrentProfileGrid.Visibility = Visibility.Visible;
             }
+
+            UpdateCalorieMeter();
         }
 
         /// <summary>

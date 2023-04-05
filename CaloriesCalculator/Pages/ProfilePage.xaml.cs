@@ -1,4 +1,5 @@
 ﻿using CCLibrary.Exceptions;
+using CCLibrary.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,7 +46,22 @@ namespace CaloriesCalculator.Pages
             if (!CheckLoginFields())
                 return;
 
+            Profile? profile = null;
 
+            try
+            {
+                profile = App.Database.Context.GetProfile(LoginTextBox.Text, LoginPasswordBox.Password);
+            }
+            catch (Exception ex)
+            {
+                if (ex is ProfiletNotFoundException || ex is WrongPasswordException)
+                    MessageBox.Show(ex.Message, "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                else
+                    MessageBox.Show("Невідома помилка.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            ((MainWindow)Window.GetWindow(this)).SetCurrentProfile(profile);
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
