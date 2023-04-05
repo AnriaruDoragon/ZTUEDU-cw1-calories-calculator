@@ -41,6 +41,10 @@ namespace CCLibrary.Migrations
                 {
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    Login = table.Column<string>(type: "TEXT", nullable: false),
+                    PasswordHash = table.Column<string>(type: "TEXT", nullable: false),
+                    SecretWordHash = table.Column<string>(type: "TEXT", nullable: false),
+                    IsRemembered = table.Column<bool>(type: "INTEGER", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     Image = table.Column<byte[]>(type: "BLOB", nullable: true),
                     BirthDay = table.Column<DateTime>(type: "TEXT", nullable: true),

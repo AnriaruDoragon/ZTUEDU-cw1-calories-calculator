@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Security.Cryptography;
+using System.Text;
 using CCLibrary.Exceptions;
 
 namespace CCLibrary.User
@@ -8,35 +10,29 @@ namespace CCLibrary.User
     [Table("Profiles")]
     public class Profile
     {
-        internal string _login;
-        private string _password;
-        private string _secretWord;
-        public bool IsRemembered = false;
-
         protected float? _height = null;
         protected float? _weight = null;
 
         [Key]
         public long Id { get; protected set; }
+        public string Login { get; set; } = string.Empty;
+        public string PasswordHash { get; set; } = string.Empty;
+        public string SecretWordHash { get; set; } = string.Empty;
+        public bool IsRemembered { get; set; } = false;
+
         public string Name { get; set; } = "N/D";
         public byte[]? Image { get; set; } = null;
         public DateTime? BirthDay { get; set; } = null;
         public Genders Gender { get; set; } = Genders.Unknown;
         public double CaloriesGoal { get; set; } = 1000;
 
-        // EntityFramework
-        public Profile()
-        {
-            _login = string.Empty;
-            _password = string.Empty;
-            _secretWord = string.Empty;
-        }
+        public Profile() { }
 
         public Profile(string login, string password, string secretWord)
         {
-            _login = login;
-            _password = password;
-            _secretWord = secretWord;
+            Login = login;
+            PasswordHash = HashString(password);
+            SecretWordHash = HashString(secretWord);
         }
         
         public int Age
@@ -74,11 +70,22 @@ namespace CCLibrary.User
         }
 
         /// <summary>
+        /// Hash password or secret word.
+        /// </summary>
+        public static string HashString(string s)
+        {
+            using SHA256 sha256 = SHA256.Create();
+            byte[] hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(s));
+            return Convert.ToBase64String(hashedBytes);
+        }
+
+        /// <summary>
         /// Verify password.
         /// </summary>
         public bool CheckPassword(string password)
         {
-            return _password.Equals(password, StringComparison.Ordinal);
+            string hashedPassword = HashString(password);
+            return PasswordHash.Equals(hashedPassword, StringComparison.Ordinal);
         }
 
         /// <summary>
@@ -86,7 +93,8 @@ namespace CCLibrary.User
         /// </summary>
         public bool CheckSecretWord(string secretWord)
         {
-            return secretWord.Equals(_secretWord, StringComparison.OrdinalIgnoreCase);
+            string hashedSecretword = HashString(secretWord);
+            return SecretWordHash.Equals(hashedSecretword, StringComparison.Ordinal);
         }
 
         /// <summary>
@@ -94,7 +102,7 @@ namespace CCLibrary.User
         /// </summary>
         internal void SetPassword(string newPassword)
         {
-            _password = newPassword;
+            PasswordHash = HashString(newPassword);
         }
     }
 }

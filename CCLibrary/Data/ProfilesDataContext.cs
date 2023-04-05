@@ -16,7 +16,7 @@ namespace CCLibrary.Data
         /// <exception cref="ProfileAlreadyExistsException"></exception>
         public Profile CreateProfile(string login, string password, string secretWord)
         {
-            if (Profiles.AsEnumerable().Any(profile => profile._login.Equals(login, StringComparison.OrdinalIgnoreCase)))
+            if (Profiles.AsEnumerable().Any(profile => profile.Login.Equals(login, StringComparison.OrdinalIgnoreCase)))
                 throw new ProfileAlreadyExistsException();
 
             Profile newProfile = new(login, password, secretWord);
@@ -33,7 +33,7 @@ namespace CCLibrary.Data
         public Profile GetProfile(string login, string password)
         {
             Profile? profile = Profiles.AsEnumerable()
-                .FirstOrDefault(profile => profile._login.Equals(login, StringComparison.OrdinalIgnoreCase))
+                .FirstOrDefault(profile => profile.Login.Equals(login, StringComparison.OrdinalIgnoreCase))
                     ?? throw new ProfiletNotFoundException();
 
             if (!profile.CheckPassword(password))
@@ -50,7 +50,7 @@ namespace CCLibrary.Data
         public void DeleteProfile(string login, string password)
         {
             Profile? profile = Profiles.AsEnumerable()
-                .FirstOrDefault(profile => profile._login.Equals(login, StringComparison.OrdinalIgnoreCase))
+                .FirstOrDefault(profile => profile.Login.Equals(login, StringComparison.OrdinalIgnoreCase))
                     ?? throw new ProfiletNotFoundException();
 
             if (!profile.CheckPassword(password))
@@ -83,10 +83,10 @@ namespace CCLibrary.Data
         /// </summary>
         /// <exception cref="ProfiletNotFoundException"></exception>
         /// <exception cref="WrongSecretWordException"></exception>
-        public void ResetPassword(long id, string secretWord, string newPassword)
+        public void ResetPassword(string login, string secretWord, string newPassword)
         {
             Profile? profile = Profiles.AsEnumerable()
-                .FirstOrDefault(profile => profile.Id.Equals(id))
+                .FirstOrDefault(profile => profile.Login.Equals(login, StringComparison.OrdinalIgnoreCase))
                     ?? throw new ProfiletNotFoundException();
 
             if (!profile.CheckSecretWord(secretWord))
