@@ -23,13 +23,16 @@ namespace CCLibrary.User
         public string Name { get; set; } = "Невідомий";
         public byte[]? Image { get; set; } = null;
         public DateTime? BirthDay { get; set; } = null;
-        public Sexes? Sex { get; set; } = null;
+        public Sexes Sex { get; set; } = Sexes.Male;
         public Goals Goal { get; set; } = Goals.Maintaint;
-        public double CaloriesGoal { get; set; } = 1000;
+        public double CaloriesGoal { get; set; }
 
-        public Profile() { }
+        public Profile()
+        {
+            CalculateCaloriesNorm();
+        }
 
-        public Profile(string login, string password, string secretWord)
+        public Profile(string login, string password, string secretWord) : this()
         {
             Login = login;
             PasswordHash = HashString(password);
@@ -121,10 +124,10 @@ namespace CCLibrary.User
         /// </summary>
         public void CalculateCaloriesNorm()
         {
-            double newGoal = 2000;
+            double newGoal = 1700;
 
             // If Height, Weight, Age and Sex are set, use Harris–Benedict equation
-            if (_height is not null && _weight is not null && BirthDay is not null && Sex is not null)
+            if (_height is not null && _weight is not null && Age >= 18)
             {
                 switch (Sex)
                 {
