@@ -93,7 +93,7 @@ namespace CCLibrary.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("Sex")
+                    b.Property<int>("Sex")
                         .HasColumnType("INTEGER");
 
                     b.Property<float>("WeightInKg")

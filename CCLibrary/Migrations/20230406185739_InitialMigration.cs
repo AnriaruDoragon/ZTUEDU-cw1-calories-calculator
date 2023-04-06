@@ -48,7 +48,7 @@ namespace CCLibrary.Migrations
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     Image = table.Column<byte[]>(type: "BLOB", nullable: true),
                     BirthDay = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    Sex = table.Column<int>(type: "INTEGER", nullable: true),
+                    Sex = table.Column<int>(type: "INTEGER", nullable: false),
                     Goal = table.Column<int>(type: "INTEGER", nullable: false),
                     CaloriesGoal = table.Column<double>(type: "REAL", nullable: false),
                     HeightInCm = table.Column<float>(type: "REAL", nullable: false),

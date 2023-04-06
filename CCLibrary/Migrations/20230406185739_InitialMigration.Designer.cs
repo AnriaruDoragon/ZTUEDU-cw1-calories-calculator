@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CCLibrary.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230406113847_InitialMigration")]
+    [Migration("20230406185739_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -96,7 +96,7 @@ namespace CCLibrary.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("Sex")
+                    b.Property<int>("Sex")
                         .HasColumnType("INTEGER");
 
                     b.Property<float>("WeightInKg")
