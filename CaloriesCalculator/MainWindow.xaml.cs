@@ -7,9 +7,9 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using System.Windows.Media.Imaging;
 using System.Collections.Generic;
+using CaloriesCalculator.Pages;
 using CaloriesCalculator.Controls;
 using CCLibrary.User;
-using CaloriesCalculator.Pages;
 
 namespace CaloriesCalculator
 {

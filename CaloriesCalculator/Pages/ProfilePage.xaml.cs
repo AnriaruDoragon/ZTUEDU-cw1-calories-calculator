@@ -262,5 +262,42 @@ namespace CaloriesCalculator.Pages
             App.Database.Context.SaveChanges();
             UpdateAvatars();
         }
+
+        private void ChangePasswordButton_Click(object sender, RoutedEventArgs e)
+        {
+            ManageProfileEnsureNotNull();
+
+            if (string.IsNullOrWhiteSpace(ManageOldPasswordBox.Password) || string.IsNullOrWhiteSpace(ManageNewPasswordBox.Password) || string.IsNullOrWhiteSpace(ManageRepPasswordBox.Password))
+            {
+                MessageBox.Show("Ви пропустили поля!\nБудь ласка, заповніть всі поля для встановлення нового паролю.",
+                    "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (!ManageNewPasswordBox.Password.Equals(ManageRepPasswordBox.Password, StringComparison.Ordinal))
+            {
+                MessageBox.Show("Повторення паролю не співпадає!",
+                    "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            try
+            {
+                App.Database.Context.UpdatePassword(App.CurrentProfile.Id, ManageOldPasswordBox.Password, ManageNewPasswordBox.Password);
+                MessageBox.Show("Ви успішно змінили пароль на новий!",
+                    "Змані паролю", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (WrongPasswordException ex)
+            {
+                MessageBox.Show(ex.Message, "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Нажаль виникла невідома помилка!",
+                    "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            ManageOldPasswordBox.Password = ManageNewPasswordBox.Password = ManageRepPasswordBox.Password = default;
+        }
     }
 }
