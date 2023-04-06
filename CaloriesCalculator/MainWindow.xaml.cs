@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using CaloriesCalculator.Controls;
 using CCLibrary.User;
 using CaloriesCalculator.Pages;
+using System.Windows.Media;
 
 namespace CaloriesCalculator
 {
@@ -29,6 +30,39 @@ namespace CaloriesCalculator
         }
 
         #region Profile header
+
+        /// <summary>
+        /// Update profile header avatar.
+        /// </summary>
+        internal void UpdateCurrentProfileAvatar(ImageSource? image = null)
+        {
+            if (App.CurrentProfile is null)
+                return;
+
+            if (App.CurrentProfile.Image is null)
+            {
+                CurrentProfileImageBrush.ImageSource = null;
+                return;
+            }
+
+            if (image is not null)
+            {
+                CurrentProfileImageBrush.ImageSource = image;
+                return;
+            }
+
+            using MemoryStream ms = new(App.CurrentProfile.Image);
+            BitmapImage avatar = new();
+            avatar.BeginInit();
+            avatar.CacheOption = BitmapCacheOption.OnLoad;
+            avatar.StreamSource = ms;
+            avatar.EndInit();
+            CurrentProfileImageBrush.ImageSource = avatar;
+        }
+
+        /// <summary>
+        /// Set new Current profile and update info on it.
+        /// </summary>
         internal void SetCurrentProfile(Profile? profile)
         {
             App.CurrentProfile = profile;
@@ -38,15 +72,7 @@ namespace CaloriesCalculator
             else
             {
                 CurrentProfileNameTextBlock.Text = profile.Name;
-                if (profile.Image is not null)
-                {
-                    BitmapImage avatar = new();
-                    using (MemoryStream ms = new(profile.Image))
-                    {
-                        avatar.StreamSource = ms;
-                    }
-                    CurrentProfileImageBrush.ImageSource = avatar;
-                }
+                UpdateCurrentProfileAvatar();
                 CurrentProfileGrid.Visibility = Visibility.Visible;
             }
 

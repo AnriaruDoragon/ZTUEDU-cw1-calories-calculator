@@ -1,7 +1,9 @@
 ﻿using CCLibrary.Exceptions;
 using CCLibrary.User;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,11 +24,12 @@ namespace CaloriesCalculator.Pages
         public ProfilePage()
         {
             InitializeComponent();
-            UpdateDisplayedGrid();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            UpdateDisplayedGrid();
+
             if (!App.Database.Context.Profiles.Any())
                 MessageBox.Show("Схоже, що на цьому пристрої відсутні користувачі.\nВам доведеться створити нового, задавши логін, пароль та секретне слово, яке може знадобитися, якщо ви забудете пароль.",
                     "Відсутні користувачі", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -42,8 +45,12 @@ namespace CaloriesCalculator.Pages
 
             if (App.CurrentProfile is not null)
             {
+                ManageProfileIDTextBlock.Text = $"# {App.CurrentProfile.Id}";
+                ManageProfileLoginTextBlock.Text = App.CurrentProfile.Login;
+                ManageProfileNameTextBox.Text = App.CurrentProfile.Name;
                 LoginGrid.Visibility = Visibility.Collapsed;
                 ManageGrid.Visibility = Visibility.Visible;
+                UpdateAvatars();
             }
             else
             {
@@ -52,6 +59,7 @@ namespace CaloriesCalculator.Pages
             }
         }
 
+        #region Login grid
         private bool CheckLoginFields()
         {
             if (string.IsNullOrWhiteSpace(LoginTextBox.Text) || string.IsNullOrWhiteSpace(LoginPasswordBox.Password))
@@ -158,6 +166,101 @@ namespace CaloriesCalculator.Pages
                 else
                     MessageBox.Show("Невідома помилка.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Ensure that profile is not null before processing with data.
+        /// </summary>
+        private void ManageProfileEnsureNotNull()
+        {
+            if (App.CurrentProfile is null)
+            {
+                MessageBox.Show("Нажаль виникла невідома помилка!\nСпробуйте увійти знову.",
+                    "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                UpdateDisplayedGrid();
+            }
+        }
+
+        private void ManageProfileNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ManageProfileEnsureNotNull();
+
+            if (App.CurrentProfile.Name.Equals(ManageProfileNameTextBox.Text, StringComparison.Ordinal) || string.IsNullOrWhiteSpace(ManageProfileNameTextBox.Text))
+                ManageProfileNameSaveButton.Visibility = Visibility.Collapsed;
+            else
+                ManageProfileNameSaveButton.Visibility = Visibility.Visible;
+        }
+
+        private void ManageProfileNameSaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            ManageProfileEnsureNotNull();
+
+            ((Button)sender).Visibility = Visibility.Collapsed;
+
+            App.CurrentProfile.Name = ManageProfileNameTextBox.Text;
+            App.Database.Context.SaveChanges();
+            ((MainWindow)Window.GetWindow(this)).CurrentProfileNameTextBlock.Text = ManageProfileNameTextBox.Text;
+        }
+
+        /// <summary>
+        /// Update avatars everywhere.
+        /// </summary>
+        private void UpdateAvatars()
+        {
+            ManageProfileEnsureNotNull();
+
+            BitmapImage? avatar = null;
+            if (App.CurrentProfile.Image is null)
+                ManageProfileImageBrush.ImageSource = null;
+            else
+            {
+                using MemoryStream ms = new(App.CurrentProfile.Image);
+                avatar = new();
+                avatar.BeginInit();
+                avatar.CacheOption = BitmapCacheOption.OnLoad;
+                avatar.StreamSource = ms;
+                avatar.EndInit();
+                ManageProfileImageBrush.ImageSource = avatar;
+            }
+
+            ((MainWindow)Window.GetWindow(this)).UpdateCurrentProfileAvatar(avatar);
+
+            if (App.CurrentProfile.Image is null)
+                DeleteAvatarButton.Visibility = Visibility.Collapsed;
+            else
+                DeleteAvatarButton.Visibility = Visibility.Visible;
+        }
+
+        private void SelectAvatarButton_Click(object sender, RoutedEventArgs e)
+        {
+            ManageProfileEnsureNotNull();
+
+            OpenFileDialog fileDialog = new()
+            {
+                Filter = "Зображення (*.jpg, *.jpeg, *.png, *.bmp)|*.jpg; *.jpeg; *.png; *.bmp"
+            };
+            bool? result = fileDialog.ShowDialog();
+
+            if (result is true)
+            {
+                using Stream stream = fileDialog.OpenFile();
+                using BinaryReader br = new(stream);
+                byte[] bytes = br.ReadBytes((int)stream.Length);
+                App.CurrentProfile.Image = bytes;
+                App.Database.Context.SaveChanges();
+                UpdateAvatars();
+            }
+        }
+
+        private void DeleteAvatarButton_Click(object sender, RoutedEventArgs e)
+        {
+            ManageProfileEnsureNotNull();
+
+            App.CurrentProfile.Image = null;
+            App.Database.Context.SaveChanges();
+            UpdateAvatars();
         }
     }
 }

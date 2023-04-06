@@ -17,20 +17,24 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="#001858"/>
+            </Style>
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="BorderBrush" Value="{x:Null}"/>
+                <Setter Property="Background" Value="#FFF582AE"/>
+                <Setter Property="Foreground" Value="#001858"/>
+            </Style>
+        </Grid.Resources>
+        
         <!-- Login elements -->
-        <Grid Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible"
+        <Grid Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Collapsed"
               x:Name="LoginGrid">
             <StackPanel>
-                <StackPanel.Resources>
-                    <Style TargetType="{x:Type Button}">
-                        <Setter Property="BorderBrush" Value="{x:Null}"/>
-                        <Setter Property="Background" Value="#FFF582AE"/>
-                        <Setter Property="Foreground" Value="#001858"/>
-                    </Style>
-                </StackPanel.Resources>
-                <TextBlock Foreground="#001858" Text="Логін:" HorizontalAlignment="Center"/>
+                <TextBlock Text="Логін:" HorizontalAlignment="Center"/>
                 <TextBox Width="150" Margin="0 0 0 10" FontSize="18" Foreground="#001858" MaxLength="128" x:Name="LoginTextBox" Background="#FF8BD3DD" BorderBrush="{x:Null}"/>
-                <TextBlock Foreground="#001858" Text="Пароль:" HorizontalAlignment="Center"/>
+                <TextBlock Text="Пароль:" HorizontalAlignment="Center"/>
                 <PasswordBox Width="150" Margin="0 0 0 10" FontSize="18" Foreground="#001858" MaxLength="128" x:Name="LoginPasswordBox" Background="#FF8BD3DD" BorderBrush="{x:Null}"/>
                 <Button x:Name="LoginButton" FontSize="18" Content="Увійти"
                         Click="LoginButton_Click"/>
@@ -42,9 +46,51 @@
         </Grid>
         
         <!-- Manage profile elements -->
-        <Grid Grid.Row="0" Grid.Column="0" Visibility="Collapsed"
-              x:Name="ManageGrid">
-            
+        <Grid Grid.Row="0" Grid.Column="0" Visibility="Visible" x:Name="ManageGrid">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Налаштування профілю" Margin="0 0 0 15" FontSize="28" FontWeight="Bold"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Grid.Row="0" Grid.Column="0" Margin="5" Text="ID: " TextAlignment="Right" FontWeight="Bold"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Margin="5" Text="Логін: " TextAlignment="Right" FontWeight="Bold"/>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Margin="5" Text="Ім'я: " TextAlignment="Right" FontWeight="Bold"/>
+                    <TextBlock Grid.Row="3" Grid.Column="0" Margin="5" Text="Аватар: " TextAlignment="Right" FontWeight="Bold"/>
+                    
+                    <TextBlock Grid.Row="0" Grid.Column="1" Margin="5" x:Name="ManageProfileIDTextBlock"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Margin="5" x:Name="ManageProfileLoginTextBlock"/>
+                    <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="5">
+                        <TextBox MaxWidth="200" Height="20" HorizontalAlignment="Left" MaxLength="64"
+                                 Foreground="#001858" Background="#FF8BD3DD" BorderBrush="{x:Null}"
+                                 x:Name="ManageProfileNameTextBox" TextChanged="ManageProfileNameTextBox_TextChanged"/>
+                        <Button Margin="5 0 0 0" Content="Зберегти" x:Name="ManageProfileNameSaveButton" Click="ManageProfileNameSaveButton_Click"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" Margin="5">
+                        <Ellipse Height="20" Width="20" StrokeThickness="1" Stroke="Black">
+                            <Ellipse.Fill>
+                                <ImageBrush x:Name="ManageProfileImageBrush" ImageSource="{x:Null}"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <Button Margin="5 0 0 0" Content="Обрати файл" Click="SelectAvatarButton_Click"/>
+                        <Button Margin="5 0 0 0" Content="Видалити аватар"
+                                x:Name="DeleteAvatarButton" Click="DeleteAvatarButton_Click"/>
+                    </StackPanel>
+                </Grid>
+                
+                <TextBlock Text="Розрахунок норми" Margin="0 0 0 15" FontSize="28" FontWeight="Bold"/>
+                <Grid>
+                    
+                </Grid>
+            </StackPanel>
         </Grid>
         
     </Grid>
