@@ -105,8 +105,10 @@
         </Grid>
 
         <!-- Menu Pages -->
-        <Frame Grid.Row="1" Grid.Column="1" Padding="10" Name="ContentFrame" Background="{StaticResource Bg2Color}" IsTabStop="True"
-               Navigated="ContentFrame_Navigated" NavigationUIVisibility="Hidden"/>
+        <ScrollViewer Grid.Row="1" Grid.Column="1" Padding="10" Background="{StaticResource Bg2Color}" 
+                      HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <Frame x:Name="ContentFrame" Navigated="ContentFrame_Navigated" IsTabStop="True" NavigationUIVisibility="Hidden"/>
+        </ScrollViewer>
 
     </Grid>
 </Window>

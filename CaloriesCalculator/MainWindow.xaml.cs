@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using System.Windows.Media.Imaging;
@@ -9,7 +10,6 @@ using System.Collections.Generic;
 using CaloriesCalculator.Controls;
 using CCLibrary.User;
 using CaloriesCalculator.Pages;
-using System.Windows.Media;
 
 namespace CaloriesCalculator
 {
