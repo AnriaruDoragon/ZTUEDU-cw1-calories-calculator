@@ -14,16 +14,17 @@ namespace CCLibrary.User
         protected float? _weight = null;
 
         [Key]
-        public long Id { get; protected set; }
+        public long Id { get; set; }
         public string Login { get; set; } = string.Empty;
         public string PasswordHash { get; set; } = string.Empty;
         public string SecretWordHash { get; set; } = string.Empty;
         public bool IsRemembered { get; set; } = false;
 
-        public string Name { get; set; } = "N/D";
+        public string Name { get; set; } = "Невідомий";
         public byte[]? Image { get; set; } = null;
         public DateTime? BirthDay { get; set; } = null;
-        public Genders Gender { get; set; } = Genders.Unknown;
+        public Sexes? Sex { get; set; } = null;
+        public Goals Goal { get; set; } = Goals.Maintaint;
         public double CaloriesGoal { get; set; } = 1000;
 
         public Profile() { }
@@ -47,9 +48,14 @@ namespace CCLibrary.User
             }
         }
 
-        public float? HeightInCm
+        public float HeightInCm
         {
-            get { return _height; }
+            get
+            {
+                if (_height is null)
+                    return 1;
+                return (float)_height;
+            }
             set
             {
                 if (value <= 0)
@@ -58,14 +64,19 @@ namespace CCLibrary.User
             }
         }
 
-        public float? WeightInKg
+        public float WeightInKg
         {
-            get { return _weight; }
+            get
+            {
+                if (_weight is null)
+                    return 1;
+                return (float)_weight * 1000;
+            }
             set
             {
                 if (value <= 0)
                     throw new ValueOutOfRangeException("Значення повинно бути додатнім!");
-                _weight = value;
+                _weight = value / 1000;
             }
         }
 
@@ -103,6 +114,40 @@ namespace CCLibrary.User
         internal void SetPassword(string newPassword)
         {
             PasswordHash = HashString(newPassword);
+        }
+
+        /// <summary>
+        /// Calculate new goal based on the preferences.
+        /// </summary>
+        public void CalculateCaloriesNorm()
+        {
+            double newGoal = 2000;
+
+            // If Height, Weight, Age and Sex are set, use Harris–Benedict equation
+            if (_height is not null && _weight is not null && BirthDay is not null && Sex is not null)
+            {
+                switch (Sex)
+                {
+                    case Sexes.Female:
+                        newGoal = 447.6 + (9.2 * WeightInKg) + (3.1 * HeightInCm) - (4.3 * Age);
+                        break;
+                    case Sexes.Male:
+                        newGoal = 88.36 + (13.4 * WeightInKg) + (4.8 * HeightInCm) - (5.7 * Age);
+                        break;
+                }
+            }
+
+            switch (Goal)
+            {
+                case Goals.Gain:
+                    newGoal += 750;
+                    break;
+                case Goals.Lose:
+                    newGoal -= 750;
+                    break;
+            }
+
+            CaloriesGoal = newGoal;
         }
     }
 }

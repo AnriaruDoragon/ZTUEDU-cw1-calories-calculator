@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="CCLibrary.Products.AlcoholDrink" Collapsed="true">
-    <Position X="2.75" Y="7" Width="1.5" />
+    <Position X="4" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAoAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Products\AlcoholDrink.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CCLibrary.Products.Consumable" Collapsed="true">
-    <Position X="5.75" Y="4" Width="1.5" />
+    <Position X="7" Y="3.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Properties" Collapsed="true" />
@@ -19,7 +19,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CCLibrary.Products.Dish" Collapsed="true">
-    <Position X="8.75" Y="4" Width="1.5" />
+    <Position X="10" Y="3.5" Width="1.5" />
     <AssociationLine Name="_ingredients" Type="CCLibrary.Products.Consumable">
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="0.36" Y="0.06" />
@@ -34,11 +34,21 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="CCLibrary.Products.Drink" Collapsed="true">
-    <Position X="4.25" Y="5.5" Width="1.5" />
-    <AssociationLine Name="_drinkType" Type="CCLibrary.Products.DrinkTypes">
+    <Position X="5.5" Y="5" Width="1.5" />
+    <AssociationLine Name="_drinkType" Type="CCLibrary.Products.DrinkTypes" FixedToPoint="true">
+      <Path>
+        <Point X="5.5" Y="5.438" />
+        <Point X="4.25" Y="5.438" />
+      </Path>
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="0.235" Y="0.06" />
       </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Type" Type="CCLibrary.Products.DrinkTypes" FixedToPoint="true">
+      <Path>
+        <Point X="5.5" Y="5.125" />
+        <Point X="4.25" Y="5.125" />
+      </Path>
     </AssociationLine>
     <TypeIdentifier>
       <HashCode>AgAAAAAAAAAAAAEAAAAAAAAAAgAAAAAAAQAAAAAAAAA=</HashCode>
@@ -46,17 +56,30 @@
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="_drinkType" />
+      <Property Name="Type" />
     </ShowAsAssociation>
   </Class>
   <Class Name="CCLibrary.Products.EnergyDrink" Collapsed="true">
-    <Position X="5.75" Y="7" Width="1.5" />
+    <Position X="7" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAgAAAAAAQIAABAAAAAAgCAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Products\EnergyDrink.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CCLibrary.Products.Food" Collapsed="true">
-    <Position X="7.25" Y="5.5" Width="1.5" />
+    <Position X="8.5" Y="5" Width="1.5" />
+    <AssociationLine Name="Type" Type="CCLibrary.Products.FoodTypes" FixedToPoint="true">
+      <Path>
+        <Point X="10" Y="5.125" />
+        <Point X="11.25" Y="5.125" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="_foodType" Type="CCLibrary.Products.FoodTypes" FixedToPoint="true">
+      <Path>
+        <Point X="10" Y="5.438" />
+        <Point X="11.25" Y="5.438" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>BAAAAAYAAAAAAAAAAAAAAAAAAgAAAAAAAQAAAAAAAAA=</HashCode>
       <FileName>Products\Food.cs</FileName>
@@ -64,29 +87,30 @@
     <ShowAsAssociation>
       <Field Name="_foodType" />
       <Property Name="Nutrition" />
+      <Property Name="Type" />
     </ShowAsAssociation>
   </Class>
   <Class Name="CCLibrary.Products.Product" Collapsed="true">
-    <Position X="7.25" Y="2.75" Width="1.5" />
+    <Position X="8.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAgACAAAAAAAAQAAgAACIAABAAAAEAAEAQ=</HashCode>
       <FileName>Products\Product.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CCLibrary.User.DailyConsumption" Collapsed="true">
-    <Position X="4" Y="2.75" Width="1.75" />
-    <AssociationLine Name="_products" Type="CCLibrary.Products.Product">
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.31" Y="0.11" />
-      </MemberNameLabel>
-    </AssociationLine>
+    <Position X="5.25" Y="2.25" Width="1.75" />
     <AssociationLine Name="Profile" Type="CCLibrary.User.Profile">
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="0.185" Y="0.11" />
       </MemberNameLabel>
     </AssociationLine>
+    <AssociationLine Name="_products" Type="CCLibrary.Products.Product">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.31" Y="0.11" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAACIAAAAAACAAAAAAEAAAAAAAAABQJAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAACIAIAAAACAAAAAAEAAAAAAAAABQJAAAAAAAAA=</HashCode>
       <FileName>User\DailyConsumption.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -97,41 +121,49 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="CCLibrary.User.Profile" Collapsed="true">
-    <Position X="1.5" Y="2.75" Width="1.5" />
+    <Position X="2.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQDAAAAAACAAACABEAAAgQAAAAIABAAABIAIIIAAAA=</HashCode>
+      <HashCode>AQCDAAAAAACABAAABEAAAgQEAAAIABAAgBIQgIAIAAQ=</HashCode>
       <FileName>User\Profile.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Gender" />
+      <Property Name="Sex" />
+      <Property Name="Goal" />
     </ShowAsAssociation>
   </Class>
   <Struct Name="CCLibrary.Products.Nutrition" Collapsed="true">
-    <Position X="10" Y="6.25" Width="1.5" />
+    <Position X="11.25" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAgAAAAAAAAAAAAAACABAAAIAAAAAAAAAAAAQ=</HashCode>
+      <HashCode>AAAAAAAAgAAAAAAAQAAAAAACABAAAIAAAAAAAAAAAAQ=</HashCode>
       <FileName>Products\Nutrition.cs</FileName>
     </TypeIdentifier>
   </Struct>
   <Enum Name="CCLibrary.Products.DrinkTypes" Collapsed="true">
-    <Position X="1.5" Y="5.5" Width="1.5" />
+    <Position X="2.75" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BAAQAAAAAAAggAAAAAAEAAAKAAAAAAAAAAAAAAAIAIA=</HashCode>
       <FileName>Products\DrinkTypes.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="CCLibrary.Products.FoodTypes" Collapsed="true">
-    <Position X="10" Y="5.5" Width="1.5" />
+    <Position X="11.25" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BAAAAgAIAAAAEAAAAAAAAAAAAACQAAAAAQAAAAAAAAA=</HashCode>
       <FileName>Products\FoodTypes.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="CCLibrary.User.Genders" Collapsed="true">
-    <Position X="1.5" Y="3.75" Width="1.5" />
+  <Enum Name="CCLibrary.User.Sexes" Collapsed="true">
+    <Position X="2.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAABA=</HashCode>
-      <FileName>User\Genders.cs</FileName>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>User\Sexes.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CCLibrary.User.Goals" Collapsed="true">
+    <Position X="2.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAgAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>User\Goals.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />

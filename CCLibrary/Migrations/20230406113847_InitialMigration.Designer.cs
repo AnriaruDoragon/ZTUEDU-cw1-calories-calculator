@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CCLibrary.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230405110146_InitialMigration")]
+    [Migration("20230406113847_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -68,10 +68,10 @@ namespace CCLibrary.Migrations
                     b.Property<double>("CaloriesGoal")
                         .HasColumnType("REAL");
 
-                    b.Property<int>("Gender")
+                    b.Property<int>("Goal")
                         .HasColumnType("INTEGER");
 
-                    b.Property<float?>("HeightInCm")
+                    b.Property<float>("HeightInCm")
                         .HasColumnType("REAL");
 
                     b.Property<byte[]>("Image")
@@ -96,7 +96,10 @@ namespace CCLibrary.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<float?>("WeightInKg")
+                    b.Property<int?>("Sex")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<float>("WeightInKg")
                         .HasColumnType("REAL");
 
                     b.HasKey("Id");

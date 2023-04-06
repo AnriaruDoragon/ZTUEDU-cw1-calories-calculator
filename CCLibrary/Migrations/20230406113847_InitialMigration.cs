@@ -48,10 +48,11 @@ namespace CCLibrary.Migrations
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     Image = table.Column<byte[]>(type: "BLOB", nullable: true),
                     BirthDay = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    Gender = table.Column<int>(type: "INTEGER", nullable: false),
+                    Sex = table.Column<int>(type: "INTEGER", nullable: true),
+                    Goal = table.Column<int>(type: "INTEGER", nullable: false),
                     CaloriesGoal = table.Column<double>(type: "REAL", nullable: false),
-                    HeightInCm = table.Column<float>(type: "REAL", nullable: true),
-                    WeightInKg = table.Column<float>(type: "REAL", nullable: true)
+                    HeightInCm = table.Column<float>(type: "REAL", nullable: false),
+                    WeightInKg = table.Column<float>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
