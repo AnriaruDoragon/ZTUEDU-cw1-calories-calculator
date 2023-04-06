@@ -3,9 +3,9 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Controls;
 using System.Windows.Navigation;
-using System.Windows.Media.Imaging;
 using System.Collections.Generic;
 using CaloriesCalculator.Pages;
 using CaloriesCalculator.Controls;
@@ -16,6 +16,7 @@ namespace CaloriesCalculator
     public partial class MainWindow : Window
     {
         private NavMenuItemControl? _lastSelectedItem;
+        private bool _isCongratulated = false;
 
         public MainWindow()
         {
@@ -127,9 +128,12 @@ namespace CaloriesCalculator
             CaloriesProgress.Value = profileConsumption.CalculateCalories();
             NutritionsMeter.Nutrition = profileConsumption.CalculateNutrition();
 
-            if (CaloriesProgress.Value >= CaloriesProgress.Max)
+            if (CaloriesProgress.Value >= CaloriesProgress.Max && !_isCongratulated)
+            {
                 MessageBox.Show("Ви досягли щоденної мети споживання калорій!",
                     "Вітаємо", MessageBoxButton.OK, MessageBoxImage.Information);
+                _isCongratulated = true;
+            }
         }
 
         private void CaloriesDate_Changed(object sender, SelectionChangedEventArgs e)
