@@ -10,7 +10,7 @@
         Loaded="Window_Loaded"
         d:DesignHeight="1080" d:DesignWidth="1920"
         MinHeight="500" MinWidth="800"
-        Height="500" Width="800">
+        Height="500" Width="850">
 
     <Window.Resources>
         <SolidColorBrush x:Key="Bg1Color">#F0EADA</SolidColorBrush>
@@ -107,7 +107,7 @@
         <!-- Menu Pages -->
         <ScrollViewer Grid.Row="1" Grid.Column="1" Padding="10" Background="{StaticResource Bg2Color}" 
                       HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <Frame x:Name="ContentFrame" Navigated="ContentFrame_Navigated" IsTabStop="True" NavigationUIVisibility="Hidden"/>
+            <Frame x:Name="ContentFrame" Navigated="ContentFrame_Navigated" HorizontalAlignment="Stretch" IsTabStop="True" NavigationUIVisibility="Hidden"/>
         </ScrollViewer>
 
     </Grid>

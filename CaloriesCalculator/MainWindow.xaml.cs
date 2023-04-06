@@ -104,7 +104,7 @@ namespace CaloriesCalculator
         /// Update calories meter on the page if profile and date is set.
         /// If profile is null - hides the meter. If date is not set - diplays zeros.
         /// </summary>
-        private void UpdateCalorieMeter()
+        internal void UpdateCalorieMeter()
         {
             if (App.CurrentProfile is null)
             {

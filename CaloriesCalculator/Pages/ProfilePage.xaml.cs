@@ -1,21 +1,12 @@
-﻿using CCLibrary.Exceptions;
-using CCLibrary.User;
-using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Microsoft.Win32;
+using CCLibrary.User;
+using CCLibrary.Exceptions;
 
 namespace CaloriesCalculator.Pages
 {
@@ -45,17 +36,48 @@ namespace CaloriesCalculator.Pages
 
             if (App.CurrentProfile is not null)
             {
+                HorizontalAlignment = HorizontalAlignment.Left;
+
+                // Restore profile settings info
                 ManageProfileIDTextBlock.Text = $"# {App.CurrentProfile.Id}";
                 ManageProfileLoginTextBlock.Text = App.CurrentProfile.Login;
                 ManageProfileNameTextBox.Text = App.CurrentProfile.Name;
                 LoginGrid.Visibility = Visibility.Collapsed;
                 ManageGrid.Visibility = Visibility.Visible;
                 UpdateAvatars();
+
+                // Restore profile preferences
+                switch (App.CurrentProfile.Sex)
+                {
+                    case Sexes.Male:
+                        ProfileMaleSexRB.IsChecked = true;
+                        break;
+                    case Sexes.Female:
+                        ProfileFemaleSexRB.IsChecked = true;
+                        break;
+                }
+                switch (App.CurrentProfile.Goal)
+                {
+                    case Goals.Lose:
+                        ProfileLoseGoalRB.IsChecked = true;
+                        break;
+                    case Goals.Maintaint:
+                        ProfileMaintaintGoalRB.IsChecked = true;
+                        break;
+                    case Goals.Gain:
+                        ProfileGainGoalRB.IsChecked = true;
+                        break;
+                }
+                ProfileBirthdatDatePicker.SelectedDate = App.CurrentProfile.BirthDay;
+                ProfileHeightTextBox.Text = App.CurrentProfile.HeightInCm.ToString();
+                ProfileWeightTextBox.Text = App.CurrentProfile.WeightInKg.ToString();
             }
             else
             {
+
                 LoginGrid.Visibility = Visibility.Visible;
                 ManageGrid.Visibility = Visibility.Collapsed;
+                HorizontalAlignment = HorizontalAlignment.Center;
             }
         }
 
@@ -167,7 +189,6 @@ namespace CaloriesCalculator.Pages
                     MessageBox.Show("Невідома помилка.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
         #endregion
 
         /// <summary>
@@ -183,6 +204,7 @@ namespace CaloriesCalculator.Pages
             }
         }
 
+        #region Manage profile tools
         private void ManageProfileNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             ManageProfileEnsureNotNull();
@@ -299,5 +321,84 @@ namespace CaloriesCalculator.Pages
 
             ManageOldPasswordBox.Password = ManageNewPasswordBox.Password = ManageRepPasswordBox.Password = default;
         }
+
+        #endregion
+
+        #region Profile preferences
+        /// <summary>
+        /// Check if all preferences are set.
+        /// </summary>
+        private bool EnsurePreferencesSet()
+        {
+            if (!(ProfileMaleSexRB.IsChecked == true || ProfileFemaleSexRB.IsChecked == true)) 
+                return false;
+
+            if (!(ProfileLoseGoalRB.IsChecked == true || ProfileMaintaintGoalRB.IsChecked == true || ProfileGainGoalRB.IsChecked == true)) 
+                return false;
+
+            if (ProfileBirthdatDatePicker.SelectedDate is null)
+                return false;
+
+            if (ProfileBirthdatDatePicker.SelectedDate >= DateTime.Today)
+                return false;
+
+            if (!(float.TryParse(ProfileHeightTextBox.Text, out _) && float.TryParse(ProfileWeightTextBox.Text, out _)))
+                return false;
+
+            return true;
+        }
+
+        private void ProfilePreferences_Updated(object sender, RoutedEventArgs e)
+        {
+            if (!EnsurePreferencesSet())
+                CalculateGoalButton.Visibility = Visibility.Collapsed;
+            else
+                CalculateGoalButton.Visibility = Visibility.Visible;
+        }
+
+        private void CalculateGoalButton_Click(object sender, RoutedEventArgs e)
+        {
+            ManageProfileEnsureNotNull();
+            
+            App.CurrentProfile.Sex = ProfileMaleSexRB.IsChecked == true ? Sexes.Male : Sexes.Female;
+
+            App.CurrentProfile.Goal = ProfileMaintaintGoalRB.IsChecked == true ? Goals.Maintaint
+                : ProfileLoseGoalRB.IsChecked == true ? Goals.Lose : Goals.Gain;
+            App.CurrentProfile.BirthDay = ProfileBirthdatDatePicker.SelectedDate;
+
+            try
+            {
+                App.CurrentProfile.HeightInCm = float.Parse(ProfileHeightTextBox.Text);
+                App.CurrentProfile.WeightInKg = float.Parse(ProfileWeightTextBox.Text);
+            }
+            catch (Exception ex)
+            {
+                if (ex is ValueOutOfRangeException)
+                    MessageBox.Show(ex.Message, "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                else
+                    MessageBox.Show("Невідома помилка.", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            App.CurrentProfile.CalculateCaloriesNorm();
+            App.Database.Context.SaveChanges();
+
+            ((MainWindow)Window.GetWindow(this)).UpdateCalorieMeter();
+        }
+
+        private void SetOwnGoalButton_Click(object sender, RoutedEventArgs e)
+        {
+            ManageProfileEnsureNotNull();
+
+            Dialogs.SetOwnGoalDialog ownGoalDialog = new();
+            bool? result = ownGoalDialog.ShowDialog();
+
+            if (result != true)
+                return;
+
+            App.CurrentProfile.CaloriesGoal = ownGoalDialog.NewGoal;
+            App.Database.Context.SaveChanges();
+            ((MainWindow)Window.GetWindow(this)).UpdateCalorieMeter();
+        }
+        #endregion
     }
 }
