@@ -22,6 +22,7 @@ namespace CaloriesCalculator.Pages
         public ProfilePage()
         {
             InitializeComponent();
+            UpdateDisplayedGrid();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -29,6 +30,26 @@ namespace CaloriesCalculator.Pages
             if (!App.Database.Context.Profiles.Any())
                 MessageBox.Show("Схоже, що на цьому пристрої відсутні користувачі.\nВам доведеться створити нового, задавши логін, пароль та секретне слово, яке може знадобитися, якщо ви забудете пароль.",
                     "Відсутні користувачі", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        /// <summary>
+        /// If profile is set for the App
+        /// </summary>
+        internal void UpdateDisplayedGrid()
+        {
+            LoginTextBox.Text = default;
+            LoginPasswordBox.Password = default;
+
+            if (App.CurrentProfile is not null)
+            {
+                LoginGrid.Visibility = Visibility.Collapsed;
+                ManageGrid.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                LoginGrid.Visibility = Visibility.Visible;
+                ManageGrid.Visibility = Visibility.Collapsed;
+            }
         }
 
         private bool CheckLoginFields()
@@ -46,8 +67,7 @@ namespace CaloriesCalculator.Pages
             if (!CheckLoginFields())
                 return;
 
-            Profile? profile = null;
-
+            Profile? profile;
             try
             {
                 profile = App.Database.Context.GetProfile(LoginTextBox.Text, LoginPasswordBox.Password);
@@ -62,6 +82,7 @@ namespace CaloriesCalculator.Pages
             }
 
             ((MainWindow)Window.GetWindow(this)).SetCurrentProfile(profile);
+            UpdateDisplayedGrid();
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)

@@ -21,6 +21,12 @@
         <Style TargetType="{x:Type TextBlock}">
             <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
         </Style>
+        
+        <ContextMenu x:Key="HeaderPopUp">
+            <MenuItem Header="Налаштувати" Click="SetupProfilePopUp_Click"/>
+            <Separator/>
+            <MenuItem Header="Вийти" Click="LogoutPopUp_Click"/>
+        </ContextMenu>
     </Window.Resources>
 
     <Grid Background="{StaticResource Bg1Color}">
@@ -65,14 +71,19 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock x:Name="PageTitleTextBlock" FontSize="20" Margin="10 0" VerticalAlignment="Center"/>
-            <Grid Grid.Column="2" Margin="10 0" VerticalAlignment="Center" x:Name="CurrentProfileGrid" Visibility="Collapsed">
+            <Grid Grid.Column="2" Margin="10 0" VerticalAlignment="Center" x:Name="CurrentProfileGrid" Visibility="Visible">
                 <StackPanel Orientation="Horizontal">
                     <Ellipse Height="32" Width="32">
                         <Ellipse.Fill>
                             <ImageBrush x:Name="CurrentProfileImageBrush" ImageSource="{x:Null}"/>
                         </Ellipse.Fill>
                     </Ellipse>
-                    <TextBlock x:Name="CurrentProfileNameTextBlock" FontSize="20" Margin="5 0 0 0" VerticalAlignment="Center"/>
+                    <Button Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="ProfileHeaderButton_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock x:Name="CurrentProfileNameTextBlock" FontSize="20" Margin="5 0 0 0" VerticalAlignment="Center"/>
+                            <Polygon Margin="15 0 0 0" Points="0,0 8,0 4,8" VerticalAlignment="Center" Fill="{StaticResource TextColor}"/>
+                        </StackPanel>
+                    </Button>
                 </StackPanel>
             </Grid>
         </Grid>

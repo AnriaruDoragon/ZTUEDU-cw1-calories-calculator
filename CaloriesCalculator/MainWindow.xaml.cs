@@ -8,12 +8,10 @@ using System.Windows.Media.Imaging;
 using System.Collections.Generic;
 using CaloriesCalculator.Controls;
 using CCLibrary.User;
+using CaloriesCalculator.Pages;
 
 namespace CaloriesCalculator
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private NavMenuItemControl? _lastSelectedItem;
@@ -30,7 +28,8 @@ namespace CaloriesCalculator
             SetCurrentProfile(App.CurrentProfile);
         }
 
-        internal void SetCurrentProfile(Profile? profile = null)
+        #region Profile header
+        internal void SetCurrentProfile(Profile? profile)
         {
             App.CurrentProfile = profile;
 
@@ -53,6 +52,26 @@ namespace CaloriesCalculator
 
             UpdateCalorieMeter();
         }
+
+        private void ProfileHeaderButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (FindResource("HeaderPopUp") is not ContextMenu headerPopUp)
+                return;
+
+            headerPopUp.PlacementTarget = sender as Button;
+            headerPopUp.IsOpen = true;
+        }
+
+        private void SetupProfilePopUp_Click(object sender, RoutedEventArgs e)
+            => Navigate("Profile", ProfileMenuItem);
+
+        private void LogoutPopUp_Click(object sender, RoutedEventArgs e)
+        {
+            SetCurrentProfile(null); 
+            if (ContentFrame.Content is ProfilePage profilePage) 
+                profilePage.UpdateDisplayedGrid();
+        }
+        #endregion
 
         /// <summary>
         /// Update calories meter on the page if profile and date is set.
