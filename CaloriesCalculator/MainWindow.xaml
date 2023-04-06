@@ -71,7 +71,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock x:Name="PageTitleTextBlock" FontSize="20" Margin="10 0" VerticalAlignment="Center"/>
-            <Grid Grid.Column="2" Margin="10 0" VerticalAlignment="Center" x:Name="CurrentProfileGrid" Visibility="Visible">
+            <Grid Grid.Column="2" Margin="10 0" VerticalAlignment="Center" x:Name="CurrentProfileGrid" Visibility="Collapsed">
                 <StackPanel Orientation="Horizontal">
                     <Ellipse Height="32" Width="32">
                         <Ellipse.Fill>
