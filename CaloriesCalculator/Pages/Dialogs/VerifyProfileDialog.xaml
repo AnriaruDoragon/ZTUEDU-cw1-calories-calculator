@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         x:Name="Dialog"
         Title="Підтвердіть данні"
-        MinHeight="180" MinWidth="300" MaxWidth="500"
+        MinHeight="160" MinWidth="300" MaxWidth="500"
         SizeToContent="WidthAndHeight" ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
     <Grid Margin="10">
@@ -24,12 +24,12 @@
         
         <Grid.Resources>
             <Style TargetType="{x:Type TextBlock}">
-                <Setter Property="Margin" Value="10"/>
+                <Setter Property="Margin" Value="5"/>
                 <Setter Property="TextAlignment" Value="Right"/>
             </Style>
         </Grid.Resources>
         
-        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" TextWrapping="Wrap" TextAlignment="Left" x:Name="NoteTextBlock"/>
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" FontSize="16" TextWrapping="Wrap" TextAlignment="Left" x:Name="NoteTextBlock"/>
         
         <TextBlock Grid.Row="1" Grid.Column="0" Text="Пароль:"/>
         <TextBlock Grid.Row="2" Grid.Column="0" Text="Тайне слово:"/>
