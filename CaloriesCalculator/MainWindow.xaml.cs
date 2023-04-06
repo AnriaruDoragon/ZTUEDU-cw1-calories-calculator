@@ -126,6 +126,10 @@ namespace CaloriesCalculator
             CaloriesProgress.Max = App.CurrentProfile.CaloriesGoal;
             CaloriesProgress.Value = profileConsumption.CalculateCalories();
             NutritionsMeter.Nutrition = profileConsumption.CalculateNutrition();
+
+            if (CaloriesProgress.Value >= CaloriesProgress.Max)
+                MessageBox.Show("Ви досягли щоденної мети споживання калорій!",
+                    "Вітаємо", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void CaloriesDate_Changed(object sender, SelectionChangedEventArgs e)
