@@ -23,8 +23,6 @@
 	- [Consumable](../../wikis/CCLibrary/Products-namespace/Consumable-class)
 	- [Food](../../wikis/CCLibrary/Products-namespace/Food-class)
 	- [Drink](../../wikis/CCLibrary/Products-namespace/Drink-class)
-	- [EnergyDrink](../../wikis/CCLibrary/Products-namespace/EnergyDrink-class)
-	- [AlcoholDrink](../../wikis/CCLibrary/Products-namespace/AlcoholDrink-class)
 - [Exceptions](../../wikis/CCLibrary/Exceptions-namespace)
 	- [SettingsException](../../wikis/CCLibrary/Exceptions-namespace#settingsexception)
 	- [ProfileAlreadyExistsException](../../wikis/CCLibrary/Exceptions-namespace#profilealreadyexistsexception)

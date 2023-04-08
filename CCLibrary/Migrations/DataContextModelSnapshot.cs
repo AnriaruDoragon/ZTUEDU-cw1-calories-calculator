@@ -149,27 +149,6 @@ namespace CCLibrary.Migrations
 
                     b.HasDiscriminator().HasValue("Food");
                 });
-
-            modelBuilder.Entity("CCLibrary.Products.AlcoholDrink", b =>
-                {
-                    b.HasBaseType("CCLibrary.Products.Drink");
-
-                    b.Property<double>("AlcoholContent")
-                        .HasColumnType("REAL");
-
-                    b.ToTable("Products");
-
-                    b.HasDiscriminator().HasValue("AlcoholDrink");
-                });
-
-            modelBuilder.Entity("CCLibrary.Products.EnergyDrink", b =>
-                {
-                    b.HasBaseType("CCLibrary.Products.Drink");
-
-                    b.ToTable("Products");
-
-                    b.HasDiscriminator().HasValue("EnergyDrink");
-                });
 #pragma warning restore 612, 618
         }
     }
