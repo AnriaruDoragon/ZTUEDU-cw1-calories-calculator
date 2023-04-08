@@ -22,7 +22,7 @@ namespace CCLibrary.Products
             get => _caloriesPerServing;
             set
             {
-                if (value <= 0)
+                if (value < 0)
                     throw new ValueOutOfRangeException("Значення повинно бути додатнім!");
                 else
                     _caloriesPerServing = value;

@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Controls;
 using CCLibrary.Products;
 
 namespace CaloriesCalculator.Controls
@@ -27,10 +17,21 @@ namespace CaloriesCalculator.Controls
         public ProductItemControl()
         {
             InitializeComponent();
+
+            SetInformation();
         }
 
         public static readonly DependencyProperty ProductProperty = 
-            DependencyProperty.Register(nameof(Product), typeof(Product), typeof(ProductItemControl));
+            DependencyProperty.Register(nameof(Product), typeof(Product), typeof(ProductItemControl),
+                new PropertyMetadata(null, ProductChangedCallback));
+
+        private static void ProductChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.NewValue is null)
+                return;
+
+            ((ProductItemControl)d).SetInformation();
+        }
 
         public Product Product
         {
@@ -54,8 +55,6 @@ namespace CaloriesCalculator.Controls
                     ? $"{drink.Type}DrawingImage"
                     : "DrinkDrawingImage";
             }
-            else if (Product is Dish)
-                iconString = "DishDrawingImage";
 
             ProductImage.Source = FindResource(iconString) as DrawingImage;
         }

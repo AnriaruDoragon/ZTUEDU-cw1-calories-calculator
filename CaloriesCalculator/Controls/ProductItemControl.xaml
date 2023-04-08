@@ -6,10 +6,12 @@
              xmlns:local="clr-namespace:CaloriesCalculator.Controls"
              x:Name="ProductItem"
              mc:Ignorable="d" 
-             Height="180" Width="100"
+             MaxHeight="200" Width="120"
              BorderBrush="#001858" BorderThickness="1" Padding="5 10">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
@@ -21,16 +23,14 @@
             </Style>
         </Grid.Resources>
         
-        <Image Height="64" Width="64" x:Name="ProductImage"/>
-        <StackPanel Grid.Row="1" Orientation="Vertical">
-            <TextBlock Text="1200 кк" FontSize="8" x:Name="CaloriesAmountTextBlock"/>
-            <TextBlock FontWeight="Bold" TextWrapping="Wrap"
-                       Text="{Binding Path=Product.Name, ElementName=ProductItem}"/>
-            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden">
-                <TextBlock FontSize="10" TextAlignment="Justify"
-                           Text="{Binding Path=Product.Description, ElementName=ProductItem}"/>
-            </ScrollViewer>
-        </StackPanel>
+        <Image Grid.Row="0" Height="64" Width="64" x:Name="ProductImage"/>
+        <TextBlock Grid.Row="1" FontSize="9" x:Name="CaloriesAmountTextBlock"/>
+        <TextBlock Grid.Row="2" FontWeight="Bold" TextWrapping="Wrap"
+                   Text="{Binding Path=Product.Name, ElementName=ProductItem}"/>
+        <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Hidden" Margin="0 5 0 0">
+            <TextBlock FontSize="10" TextAlignment="Left" TextWrapping="Wrap"
+                       Text="{Binding Path=Product.Description, ElementName=ProductItem}"/>
+        </ScrollViewer>
     </Grid>
     
     <UserControl.Resources>

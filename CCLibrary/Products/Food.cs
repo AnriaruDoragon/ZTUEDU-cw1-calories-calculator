@@ -14,9 +14,10 @@ namespace CCLibrary.Products
             Nutrition = new Nutrition();
         }
 
-        public Food(string name, double caloriesPerServing, Nutrition nutrition = new())
+        public Food(string name, double caloriesPerServing, FoodTypes foodType = FoodTypes.Other, Nutrition nutrition = new())
             : base(name, caloriesPerServing)
         {
+            _foodType = foodType;
             Nutrition = nutrition;
         }
 

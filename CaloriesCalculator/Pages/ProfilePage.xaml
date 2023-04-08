@@ -10,7 +10,8 @@
       Title="Профіль користувача"
       Loaded="Page_Loaded">
 
-    <Grid>
+    <ScrollViewer Padding="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
@@ -176,6 +177,6 @@
                 </Grid>
             </StackPanel>
         </Grid>
-        
     </Grid>
+    </ScrollViewer>
 </Page>
