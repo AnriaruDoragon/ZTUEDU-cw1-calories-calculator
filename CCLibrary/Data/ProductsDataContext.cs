@@ -9,7 +9,6 @@ namespace CCLibrary.Data
     public partial class DataContext : DbContext
     {
         public DbSet<Product> Products { get; set; }
-        public DbSet<Dish> Dishes { get; set; }
         public DbSet<Consumable> Consumables { get; set; }
         public DbSet<Food> Foods { get; set; }
         public DbSet<Drink> Drinks { get; set; }
