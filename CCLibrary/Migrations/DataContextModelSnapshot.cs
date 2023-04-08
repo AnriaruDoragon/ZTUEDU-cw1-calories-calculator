@@ -119,15 +119,6 @@ namespace CCLibrary.Migrations
                     b.HasDiscriminator().HasValue("Consumable");
                 });
 
-            modelBuilder.Entity("CCLibrary.Products.Dish", b =>
-                {
-                    b.HasBaseType("CCLibrary.Products.Product");
-
-                    b.ToTable("Products");
-
-                    b.HasDiscriminator().HasValue("Dish");
-                });
-
             modelBuilder.Entity("CCLibrary.Products.Drink", b =>
                 {
                     b.HasBaseType("CCLibrary.Products.Consumable");

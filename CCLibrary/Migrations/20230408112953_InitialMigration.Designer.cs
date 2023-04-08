@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CCLibrary.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230406185739_InitialMigration")]
+    [Migration("20230408112953_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -120,15 +120,6 @@ namespace CCLibrary.Migrations
                     b.ToTable("Products");
 
                     b.HasDiscriminator().HasValue("Consumable");
-                });
-
-            modelBuilder.Entity("CCLibrary.Products.Dish", b =>
-                {
-                    b.HasBaseType("CCLibrary.Products.Product");
-
-                    b.ToTable("Products");
-
-                    b.HasDiscriminator().HasValue("Dish");
                 });
 
             modelBuilder.Entity("CCLibrary.Products.Drink", b =>
