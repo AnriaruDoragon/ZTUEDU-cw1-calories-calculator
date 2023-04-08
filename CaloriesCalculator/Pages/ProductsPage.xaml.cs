@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CCLibrary.Products;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,14 +17,22 @@ using System.Windows.Shapes;
 
 namespace CaloriesCalculator.Pages
 {
-    /// <summary>
-    /// Interaction logic for ProductsPage.xaml
-    /// </summary>
     public partial class ProductsPage : Page
     {
+        private readonly List<Product> products;
+
         public ProductsPage()
         {
             InitializeComponent();
+
+            App.Database.Context.Products.Load();
+            products = App.Database.Context.Products.ToList();
+            ProductItems.ItemsSource = products;
+        }
+
+        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

@@ -25,7 +25,7 @@
                          Maximum="{Binding Path=Max, ElementName=CustomProgressBar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock x:Name="MaxValue" HorizontalAlignment="Center" FontSize="28" FontWeight="Bold"
                        Text="{Binding Path=Max, ElementName=CustomProgressBar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBlock HorizontalAlignment="Center" FontSize="20" Text="калорій"/>
+            <TextBlock HorizontalAlignment="Center" FontSize="20" Text="ккалорій"/>
         </StackPanel>
     </Grid>
 </UserControl>
