@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Controls;
@@ -24,6 +25,9 @@ namespace CaloriesCalculator.Controls
         public static readonly DependencyProperty ProductProperty = 
             DependencyProperty.Register(nameof(Product), typeof(Product), typeof(ProductItemControl),
                 new PropertyMetadata(null, ProductChangedCallback));
+
+        public event EventHandler? LeftClick;
+        public event EventHandler? RightClick;
 
         private static void ProductChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -59,6 +63,12 @@ namespace CaloriesCalculator.Controls
             ProductImage.Source = FindResource(iconString) as DrawingImage;
         }
 
+        public void UpdateValues()
+        {
+            DefaultSizeTextBlock.Text = $"{Product.NetMassInGrams:0.##} г";
+            CaloriesAmountTextBlock.Text = $"{Product.GetCalories():0.##} кк";
+        }
+
         private void SetInformation()
         {
             if (Product is null)
@@ -66,7 +76,17 @@ namespace CaloriesCalculator.Controls
 
             SetIcon();
 
-            CaloriesAmountTextBlock.Text = $"{Product.GetCalories()} кк";
+            UpdateValues();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            LeftClick?.Invoke(this, e);
+        }
+
+        private void Button_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            RightClick?.Invoke(this, e);
         }
     }
 }

@@ -21,7 +21,7 @@ namespace CaloriesCalculator
         public MainWindow()
         {
             InitializeComponent();
-            CaloriesDatePicker.SelectedDate = DateTime.Today;
+            CaloriesDatePicker.SelectedDate = App.SelectedDate;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -30,7 +30,7 @@ namespace CaloriesCalculator
             SetCurrentProfile(App.CurrentProfile);
         }
 
-        #region Profile header
+        #region Profile Header
 
         /// <summary>
         /// Update profile header avatar.
@@ -100,6 +100,7 @@ namespace CaloriesCalculator
         }
         #endregion
 
+        #region Calories Meter
         /// <summary>
         /// Update calories meter on the page if profile and date is set.
         /// If profile is null - hides the meter. If date is not set - diplays zeros.
@@ -121,8 +122,10 @@ namespace CaloriesCalculator
                 return;
             }
 
-            DailyConsumption profileConsumption = App.Database.Context.GetProfileConsumption(
-                App.CurrentProfile, (DateTime)CaloriesDatePicker.SelectedDate);
+            DateTime selectedDate = (DateTime)CaloriesDatePicker.SelectedDate;
+            App.SelectedDate = selectedDate;
+
+            DailyConsumption profileConsumption = App.Database.Context.GetProfileConsumption(App.CurrentProfile, selectedDate);
 
             CaloriesProgress.Max = App.CurrentProfile.CaloriesGoal;
             CaloriesProgress.Value = profileConsumption.CalculateCalories();
@@ -130,16 +133,18 @@ namespace CaloriesCalculator
 
             if (CaloriesProgress.Value >= CaloriesProgress.Max && !_isCongratulated)
             {
-                MessageBox.Show("Ви досягли щоденної мети споживання калорій!",
-                    "Вітаємо", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show($"Обрана дата: {App.SelectedDate:D}\nВи досягли щоденної мети споживання калорій!",
+                    "Увага", MessageBoxButton.OK, MessageBoxImage.Information);
                 _isCongratulated = true;
             }
         }
 
         private void CaloriesDate_Changed(object sender, SelectionChangedEventArgs e)
         {
+            _isCongratulated = false;
             UpdateCalorieMeter();
         }
+        #endregion
 
         #region Navigation
         private readonly List<(string Tag, Uri Page)> _pages = new()

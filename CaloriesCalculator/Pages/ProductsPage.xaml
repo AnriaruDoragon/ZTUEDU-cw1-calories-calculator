@@ -14,6 +14,11 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
         
         <Grid.Resources>
             <Style TargetType="{x:Type TextBlock}">
@@ -26,9 +31,29 @@
             </Style>
         </Grid.Resources>
         
-        <TextBox Grid.Row="0" Margin="0 0 0 10" x:Name="SearchBar" TextChanged="SearchBar_TextChanged"/>
-        <ScrollViewer Grid.Row="1" Padding="0 0 5 0" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-            <ItemsControl x:Name="ProductItems">
+        <TextBlock Grid.Row="0" Grid.Column="0" Margin="0 0 5 10" Text="Пошук: "/>
+        <TextBox Grid.Row="0" Grid.Column="1" Margin="0 0 0 10"
+                 x:Name="SearchBar" TextChanged="SearchBar_TextChanged"/>
+        <ComboBox Grid.Row="0" Grid.Column="2" Margin="5 0 0 10" BorderThickness="0" Foreground="#001858" SelectedIndex="0"
+                  x:Name="SortingComboBox" SelectionChanged="SortingComboBox_SelectionChanged">
+            <ComboBoxItem Content="За назвою (А-Я)"  Tag="1"/>
+            <ComboBoxItem Content="За назвою (Я-А)" Tag="2"/>
+            <ComboBoxItem Content="За зростанням калорій" Tag="3"/>
+            <ComboBoxItem Content="За зменшенням калорій" Tag="4"/>
+            <ComboBoxItem Content="За типом (Їжа-Напої)" Tag="5"/>
+            <ComboBoxItem Content="За типом (Напої-Їжа)" Tag="6"/>
+        </ComboBox>
+        
+        <ScrollViewer Grid.Row="1" Grid.ColumnSpan="3" Padding="0 0 5 0" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+            <ItemsControl x:Name="ProductItems" Loaded="ProductItems_Loaded">
+                <ItemsControl.Resources>
+                    <ContextMenu x:Key="ProductContext">
+                    <MenuItem Header="Спожити" Click="ProductContextConsume_Click"/>
+                    <MenuItem Header="Редагувати" Click="ProductContextEdit_Click"/>
+                    <Separator/>
+                    <MenuItem Header="Видалити" Click="ProductContextDelete_Click"/>
+                </ContextMenu>
+                </ItemsControl.Resources>
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel AllowDrop="True"/>
@@ -36,7 +61,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <cmc:ProductItemControl Product="{Binding}" Margin="5"/>
+                        <cmc:ProductItemControl Product="{Binding}" Margin="5" LeftClick="Product_LeftClick" RightClick="Product_RightClick"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

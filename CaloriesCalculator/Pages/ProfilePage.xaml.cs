@@ -8,6 +8,8 @@ using Microsoft.Win32;
 using CCLibrary.User;
 using CCLibrary.Exceptions;
 
+#pragma warning disable CS8602
+
 namespace CaloriesCalculator.Pages
 {
     public partial class ProfilePage : Page
@@ -194,20 +196,23 @@ namespace CaloriesCalculator.Pages
         /// <summary>
         /// Ensure that profile is not null before processing with data.
         /// </summary>
-        private void ManageProfileEnsureNotNull()
+        private bool EnsureProfileNotNull()
         {
             if (App.CurrentProfile is null)
             {
                 MessageBox.Show("Нажаль виникла невідома помилка!\nСпробуйте увійти знову.",
                     "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
                 UpdateDisplayedGrid();
+                return false;
             }
+            return true;
         }
 
         #region Manage profile tools
         private void ManageProfileNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            ManageProfileEnsureNotNull();
+            if (!EnsureProfileNotNull())
+                return;
 
             if (App.CurrentProfile.Name.Equals(ManageProfileNameTextBox.Text, StringComparison.Ordinal) || string.IsNullOrWhiteSpace(ManageProfileNameTextBox.Text))
                 ManageProfileNameSaveButton.Visibility = Visibility.Collapsed;
@@ -217,7 +222,8 @@ namespace CaloriesCalculator.Pages
 
         private void ManageProfileNameSaveButton_Click(object sender, RoutedEventArgs e)
         {
-            ManageProfileEnsureNotNull();
+            if (!EnsureProfileNotNull())
+                return;
 
             ((Button)sender).Visibility = Visibility.Collapsed;
 
@@ -231,7 +237,8 @@ namespace CaloriesCalculator.Pages
         /// </summary>
         private void UpdateAvatars()
         {
-            ManageProfileEnsureNotNull();
+            if (!EnsureProfileNotNull())
+                return;
 
             BitmapImage? avatar = null;
             if (App.CurrentProfile.Image is null)
@@ -257,7 +264,8 @@ namespace CaloriesCalculator.Pages
 
         private void SelectAvatarButton_Click(object sender, RoutedEventArgs e)
         {
-            ManageProfileEnsureNotNull();
+            if (!EnsureProfileNotNull())
+                return;
 
             OpenFileDialog fileDialog = new()
             {
@@ -278,7 +286,8 @@ namespace CaloriesCalculator.Pages
 
         private void DeleteAvatarButton_Click(object sender, RoutedEventArgs e)
         {
-            ManageProfileEnsureNotNull();
+            if (!EnsureProfileNotNull())
+                return;
 
             App.CurrentProfile.Image = null;
             App.Database.Context.SaveChanges();
@@ -287,7 +296,8 @@ namespace CaloriesCalculator.Pages
 
         private void ChangePasswordButton_Click(object sender, RoutedEventArgs e)
         {
-            ManageProfileEnsureNotNull();
+            if (!EnsureProfileNotNull())
+                return;
 
             if (string.IsNullOrWhiteSpace(ManageOldPasswordBox.Password) || string.IsNullOrWhiteSpace(ManageNewPasswordBox.Password) || string.IsNullOrWhiteSpace(ManageRepPasswordBox.Password))
             {
@@ -358,7 +368,8 @@ namespace CaloriesCalculator.Pages
 
         private void CalculateGoalButton_Click(object sender, RoutedEventArgs e)
         {
-            ManageProfileEnsureNotNull();
+            if (!EnsureProfileNotNull())
+                return;
             
             App.CurrentProfile.Sex = ProfileMaleSexRB.IsChecked == true ? Sexes.Male : Sexes.Female;
 
@@ -387,7 +398,8 @@ namespace CaloriesCalculator.Pages
 
         private void SetOwnGoalButton_Click(object sender, RoutedEventArgs e)
         {
-            ManageProfileEnsureNotNull();
+            if (!EnsureProfileNotNull())
+                return;
 
             Dialogs.SetOwnGoalDialog ownGoalDialog = new();
             bool? result = ownGoalDialog.ShowDialog();

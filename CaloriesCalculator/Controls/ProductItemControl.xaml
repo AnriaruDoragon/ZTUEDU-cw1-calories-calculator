@@ -7,31 +7,36 @@
              x:Name="ProductItem"
              mc:Ignorable="d" 
              MaxHeight="200" Width="120"
-             BorderBrush="#001858" BorderThickness="1" Padding="5 10">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+             >
+    <Button Style="{DynamicResource ProductButtonStyle}" BorderThickness="1" Padding="5 10" VerticalContentAlignment="Top"
+            Click="Button_Click" MouseRightButtonDown="Button_MouseRightButtonDown">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
         
-        <Grid.Resources>
-            <Style TargetType="{x:Type TextBlock}">
-                <Setter Property="Foreground" Value="#001858"/>
-                <Setter Property="TextAlignment" Value="Center"/>
-            </Style>
-        </Grid.Resources>
+            <Grid.Resources>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Foreground" Value="#001858"/>
+                    <Setter Property="TextAlignment" Value="Center"/>
+                </Style>
+            </Grid.Resources>
         
-        <Image Grid.Row="0" Height="64" Width="64" x:Name="ProductImage"/>
-        <TextBlock Grid.Row="1" FontSize="9" x:Name="CaloriesAmountTextBlock"/>
-        <TextBlock Grid.Row="2" FontWeight="Bold" TextWrapping="Wrap"
-                   Text="{Binding Path=Product.Name, ElementName=ProductItem}"/>
-        <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Hidden" Margin="0 5 0 0">
-            <TextBlock FontSize="10" TextAlignment="Left" TextWrapping="Wrap"
-                       Text="{Binding Path=Product.Description, ElementName=ProductItem}"/>
-        </ScrollViewer>
-    </Grid>
+            <Image Grid.Row="0" Height="64" Width="64" Margin="0 0 0 5" VerticalAlignment="Top" x:Name="ProductImage"/>
+            <TextBlock Grid.Row="1" FontSize="10" x:Name="DefaultSizeTextBlock"/>
+            <TextBlock Grid.Row="2" FontSize="10" x:Name="CaloriesAmountTextBlock"/>
+            <TextBlock Grid.Row="3" FontWeight="Bold" TextWrapping="Wrap" Margin="0 5"
+                       Text="{Binding Path=Product.Name, ElementName=ProductItem}"/>
+            <ScrollViewer Grid.Row="4" VerticalScrollBarVisibility="Hidden" VerticalAlignment="Stretch">
+                <TextBlock FontSize="10" TextAlignment="Left" TextWrapping="Wrap"
+                           Text="{Binding Path=Product.Description, ElementName=ProductItem}"/>
+            </ScrollViewer>
+        </Grid>
+    </Button>
     
     <UserControl.Resources>
         
@@ -296,6 +301,63 @@
             </DrawingGroup>
           </DrawingImage.Drawing>
         </DrawingImage>
+        
+        <!-- Button Style -->
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="Transparent"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#001858"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#F0EADA"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#F582AE"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#F582AE"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#001858"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="ProductButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         
     </UserControl.Resources>
 </UserControl>

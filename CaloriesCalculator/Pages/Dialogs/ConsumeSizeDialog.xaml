@@ -1,0 +1,48 @@
+﻿<Window x:Class="CaloriesCalculator.Pages.Dialogs.ConsumeSizeDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CaloriesCalculator.Pages.Dialogs"
+        xmlns:cmc="clr-namespace:CaloriesCalculator.Controls"
+        x:Name="ConsumeDialog"
+        mc:Ignorable="d"
+        Title="Встановлення розміру порції"
+        MinWidth="350" MaxWidth="500"
+        SizeToContent="WidthAndHeight" ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <cmc:ProductItemControl Grid.Row="0" Grid.Column="0" IsEnabled="False" x:Name="SelectedProduct"
+                                Product="{Binding Path=Product, ElementName=ConsumeDialog, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Grid Grid.Row="0" Grid.Column="1" Margin="5 0 0 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Вкажіть розмір порції (г):" Margin="0 0 0 10"/>
+            <Slider Grid.Row="1" Grid.Column="0" IsSnapToTickEnabled="False" TickPlacement="BottomRight"
+                    x:Name="SizeSlider" Value="{Binding Path=Product.NetMassInGrams, ElementName=ConsumeDialog, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Grid.Row="1" Grid.Column="1" TextChanged="SizeTextBox_TextChanged"
+                     Text="{Binding Path=Product.NetMassInGrams, ElementName=ConsumeDialog, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=0.##}" />
+        </Grid>
+        
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 10 0 0">
+            <Button Padding="5" x:Name="ConfirmButton" IsDefault="True" Click="ConfirmButton_Click" Content="Підтвердити"/>
+            <Button Margin="10 0 0 0" Padding="5" x:Name="CancelButton" IsCancel="True" Click="CancelButton_Click" Content="Скасувати"/>
+        </StackPanel>
+    </Grid>
+</Window>

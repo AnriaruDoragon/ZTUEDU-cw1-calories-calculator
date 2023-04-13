@@ -32,17 +32,17 @@
         <TextBlock Grid.Row="1" Grid.Column="0" Padding="0 0 5 0" TextAlignment="Right" Text="Білки:"/>
         <TextBlock Grid.Row="2" Grid.Column="0" Padding="0 0 5 0" TextAlignment="Right" Text="Вуглеводи:"/>
         <TextBlock Grid.Row="3" Grid.Column="0" Padding="0 0 5 0" TextAlignment="Right" Text="Волокна:"/>
-        <TextBlock Grid.Row="4" Grid.Column="0" Padding="0 0 5 0" TextAlignment="Right" Text="Натрій:"/>
+        <TextBlock Grid.Row="4" Grid.Column="0" Padding="0 0 5 0" TextAlignment="Right" Text="Сіль:"/>
 
         <TextBlock Grid.Row="0" Grid.Column="1"
-                   Text="{Binding Path=Nutrition.Fat, ElementName=NutritionsMeter, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding Path=Nutrition.Fat, ElementName=NutritionsMeter, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, StringFormat=0.###}"/>
         <TextBlock Grid.Row="1" Grid.Column="1"
-                   Text="{Binding Path=Nutrition.Protein, ElementName=NutritionsMeter, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding Path=Nutrition.Protein, ElementName=NutritionsMeter, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, StringFormat=0.###}"/>
         <TextBlock Grid.Row="2" Grid.Column="1"
-                   Text="{Binding Path=Nutrition.Carbs, ElementName=NutritionsMeter, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding Path=Nutrition.Carbs, ElementName=NutritionsMeter, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, StringFormat=0.###}"/>
         <TextBlock Grid.Row="3" Grid.Column="1"
-                   Text="{Binding Path=Nutrition.Fiber, ElementName=NutritionsMeter, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding Path=Nutrition.Fiber, ElementName=NutritionsMeter, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, StringFormat=0.###}"/>
         <TextBlock Grid.Row="4" Grid.Column="1"
-                   Text="{Binding Path=Nutrition.Sodium, ElementName=NutritionsMeter, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding Path=Nutrition.Sodium, ElementName=NutritionsMeter, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, StringFormat=0.###}"/>
     </Grid>
 </UserControl>
