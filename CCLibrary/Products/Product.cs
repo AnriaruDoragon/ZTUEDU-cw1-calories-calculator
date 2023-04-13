@@ -1,6 +1,5 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using CCLibrary.Exceptions;
 
 namespace CCLibrary.Products
 {
@@ -28,7 +27,7 @@ namespace CCLibrary.Products
             set
             {
                 if (value < 0)
-                    throw new ValueOutOfRangeException("Значення повинно бути додатнім!");
+                    value *= -1;
                 _netMass = value;
             }
         }
@@ -40,7 +39,7 @@ namespace CCLibrary.Products
             {
                 value *= 1000.0;
                 if (value < 0)
-                    throw new ValueOutOfRangeException("Значення повинно бути додатнім!");
+                    value *= -1;
                 _netMass = value;
             }
         }
@@ -52,7 +51,7 @@ namespace CCLibrary.Products
             {
                 value *= 453.6;
                 if (value < 0)
-                    throw new ValueOutOfRangeException("Значення повинно бути додатнім!");
+                    value *= -1;
                 _netMass = value;
             }
         }

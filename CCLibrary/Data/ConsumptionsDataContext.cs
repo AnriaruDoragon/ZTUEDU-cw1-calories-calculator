@@ -5,6 +5,8 @@ using CCLibrary.User;
 using CCLibrary.Products;
 using CCLibrary.Exceptions;
 
+#pragma warning disable CS8604
+
 namespace CCLibrary.Data
 {
     public partial class DataContext : DbContext
@@ -21,6 +23,7 @@ namespace CCLibrary.Data
             SqliteCommand selectCommand = new(@"
                 SELECT ProductID, ProductMass
                 FROM ProfileConsumedProducts
+                INNER JOIN Products ON Products.Id = ProfileConsumedProducts.ProductID
                 WHERE ProfileID = @Profile AND ConsumedDate = @Date;", _connection);
             selectCommand.Parameters.AddWithValue("@Profile", profile.Id);
             selectCommand.Parameters.AddWithValue("@Date", date.ToString("yyyy-MM-dd"));
@@ -82,6 +85,24 @@ namespace CCLibrary.Data
             deleteCommand.ExecuteNonQuery();
 
             _connection.Close();
+        }
+
+        /// <summary>
+        /// Checks if the products is already in use by any profile.
+        /// </summary>
+        public bool IsProductUsed(Product product)
+        {
+            Data.Database.ReopenConnection(_connection);
+
+            SqliteCommand selectCommand = new(@"
+                SELECT COUNT(ProductID) FROM ProfileConsumedProducts
+                WHERE ProductID=@ProductID;", _connection);
+            selectCommand.Parameters.AddWithValue("@ProductID", product.Id);
+            int count = Convert.ToInt32(selectCommand.ExecuteScalar());
+
+            _connection.Close();
+
+            return count > 0;
         }
     }
 }

@@ -7,7 +7,7 @@ namespace CCLibrary.Data
 {
     public static class Settings
     {
-        public static T Get<T>(string key, T defaultValue = default)
+        public static T Get<T>(string key, T defaultValue)
         {
             try
             {

@@ -118,8 +118,7 @@ namespace CCLibrary.Data
         /// </summary>
         public Profile? GetRememberedProfile()
         {
-            return Profiles.AsEnumerable()
-                .FirstOrDefault(profile => profile.IsRemembered, null);
+            return Profiles.AsEnumerable().FirstOrDefault(profile => profile.IsRemembered);
         }
     }
 }
