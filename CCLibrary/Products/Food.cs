@@ -7,7 +7,7 @@ namespace CCLibrary.Products
     {
         protected FoodTypes _foodType;
 
-        protected string JsonNutrition { get; set; } = string.Empty;
+        public string JsonNutrition { get; set; } = string.Empty;
 
         protected Food()
         {

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CCLibrary.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230408113357_InitialMigration")]
+    [Migration("20230413215308_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -140,6 +140,10 @@ namespace CCLibrary.Migrations
             modelBuilder.Entity("CCLibrary.Products.Food", b =>
                 {
                     b.HasBaseType("CCLibrary.Products.Consumable");
+
+                    b.Property<string>("JsonNutrition")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("Type")
                         .HasColumnType("INTEGER");

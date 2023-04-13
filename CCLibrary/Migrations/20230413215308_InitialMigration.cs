@@ -27,6 +27,7 @@ namespace CCLibrary.Migrations
                     ServingSizeInGrams = table.Column<double>(type: "REAL", nullable: true),
                     IsCarbonated = table.Column<bool>(type: "INTEGER", nullable: true),
                     Type = table.Column<int>(type: "INTEGER", nullable: true),
+                    JsonNutrition = table.Column<string>(type: "TEXT", nullable: true),
                     Food_Type = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>

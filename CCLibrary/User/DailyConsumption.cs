@@ -43,7 +43,7 @@ namespace CCLibrary.User
             Nutrition nutrition = new();
 
             foreach (Food food in _products.OfType<Food>())
-                nutrition += food.Nutrition;
+                nutrition += food.Nutrition * food.NetMassInGrams / food.ServingSizeInGrams;
 
             return nutrition;
         }

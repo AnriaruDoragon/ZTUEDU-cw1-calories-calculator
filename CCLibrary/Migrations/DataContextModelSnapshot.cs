@@ -138,6 +138,10 @@ namespace CCLibrary.Migrations
                 {
                     b.HasBaseType("CCLibrary.Products.Consumable");
 
+                    b.Property<string>("JsonNutrition")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("Type")
                         .HasColumnType("INTEGER");
 
