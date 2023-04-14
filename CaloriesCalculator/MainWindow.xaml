@@ -58,6 +58,7 @@
             <StackPanel Grid.Row="1" Margin="0 25 0 0">
                 <cmc:NavMenuItemControl Icon="Profile" Text="Профіль" Tag="Profile" x:Name="ProfileMenuItem" Click="NavMenuItemControl_Click"/>
                 <cmc:NavMenuItemControl Icon="Food" Text="Продукти" Tag="Products" Click="NavMenuItemControl_Click"/>
+                <cmc:NavMenuItemControl Icon="History" Text="Історія" Tag="History" Click="NavMenuItemControl_Click"/>
             </StackPanel>
             <cmc:NavMenuItemControl Grid.Row="2" Icon="Gear" Text="Опції" Tag="Settings" Click="NavMenuItemControl_Click"/>
         </Grid>

@@ -151,7 +151,8 @@ namespace CaloriesCalculator
         {
             ("Settings", new Uri("Pages/SettingsPage.xaml", UriKind.Relative)),
             ("Profile", new Uri("Pages/ProfilePage.xaml", UriKind.Relative)),
-            ("Products", new Uri("Pages/ProductsPage.xaml", UriKind.Relative))
+            ("Products", new Uri("Pages/ProductsPage.xaml", UriKind.Relative)),
+            ("History", new Uri("Pages/ConsumptionHistoryPage.xaml", UriKind.Relative))
         };
 
         /// <summary>

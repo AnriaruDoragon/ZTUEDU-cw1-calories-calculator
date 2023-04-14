@@ -6,11 +6,10 @@
       xmlns:local="clr-namespace:CaloriesCalculator.Pages"
       mc:Ignorable="d" 
       d:DesignWidth="380"
-      MaxWidth="400"
       Title="Профіль користувача"
       Loaded="Page_Loaded">
 
-    <ScrollViewer Padding="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+    <ScrollViewer Padding="0" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -62,7 +61,7 @@
         </Grid>
         
         <!-- Manage profile elements -->
-        <Grid Grid.Row="0" Grid.Column="0" Visibility="Visible" x:Name="ManageGrid">
+        <Grid Grid.Row="0" Grid.Column="0" Visibility="Visible" HorizontalAlignment="Stretch" x:Name="ManageGrid">
             <StackPanel Orientation="Vertical">
                 <TextBlock Text="Налаштування профілю" Margin="0 0 0 5" FontSize="28" FontWeight="Bold" TextWrapping="Wrap"/>
                 <Grid>
@@ -168,12 +167,12 @@
                              x:Name="ProfileHeightTextBox" TextChanged="ProfilePreferences_Updated"/>
                     <TextBox Grid.Row="4" Grid.Column="1" Margin="5" Width="250" HorizontalAlignment="Left"
                              x:Name="ProfileWeightTextBox" TextChanged="ProfilePreferences_Updated"/>
-                    <Grid Grid.Row="5" Grid.ColumnSpan="2" Margin="5" MaxWidth="360">
-                        <Button Content="Розрахувати мету автоматично" HorizontalAlignment="Left" FontWeight="Bold" Padding="5"
+                    <WrapPanel Grid.Row="5" Grid.ColumnSpan="2" Margin="5">
+                        <Button Content="Розрахувати мету автоматично" FontWeight="Bold" Padding="5"
                                 x:Name="CalculateGoalButton" Click="CalculateGoalButton_Click" Visibility="Collapsed"/>
-                        <Button Content="Встановити власну мету"  HorizontalAlignment="Right" FontWeight="Bold" Padding="5"
+                        <Button Content="Встановити власну мету" FontWeight="Bold" Padding="5" Margin="25 0 0 0"
                                 Click="SetOwnGoalButton_Click"/>
-                    </Grid>
+                    </WrapPanel>
                 </Grid>
             </StackPanel>
         </Grid>

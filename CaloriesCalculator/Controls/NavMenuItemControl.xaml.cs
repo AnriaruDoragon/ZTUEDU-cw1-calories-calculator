@@ -12,7 +12,8 @@ namespace CaloriesCalculator.Controls
         {
             {"Gear", "GearDrawingImage"},
             {"Profile", "ProfileDrawingImage"},
-            {"Food", "FoodDrawingImage"}
+            {"Food", "FoodDrawingImage"},
+            {"History", "HistoryDrawingImage"}
         };
 
         public NavMenuItemControl()

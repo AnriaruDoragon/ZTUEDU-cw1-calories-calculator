@@ -94,7 +94,7 @@ namespace CaloriesCalculator.Pages
                 SortingMethods.Descending => products.OrderByDescending(p => p.GetCalories()),
                 SortingMethods.ByTypeA => products.OrderBy(p => p, new ProductTypeComparer()),
                 SortingMethods.ByTypeZ => products.OrderByDescending(p => p, new ProductTypeComparer()),
-                _ => products.OrderBy(p => p.Name),
+                _ => products.OrderBy(p => p.Name)
             };
             return sortedProducts;
         }
@@ -108,16 +108,20 @@ namespace CaloriesCalculator.Pages
             return _products.Where(p => regex.IsMatch(p.Name) || regex.IsMatch(p.Description));
         }
 
-        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        private void SetSearchedProducts()
         {
             if (ProductItems is not null)
                 ProductItems.ItemsSource = GetSortedProducts(GetSortingMethod(), FilterProducts(SearchBar.Text));
         }
 
+        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            SetSearchedProducts();
+        }
+
         private void SortingComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (ProductItems is not null)
-                ProductItems.ItemsSource = GetSortedProducts(GetSortingMethod(), FilterProducts(SearchBar.Text));
+            SetSearchedProducts();
         }
         #endregion
 
@@ -169,7 +173,7 @@ namespace CaloriesCalculator.Pages
             if (_targetedProductControl is null)
                 return;
 
-            
+            // TODO
         }
 
         private void ProductContextDelete_Click(object sender, RoutedEventArgs e)
