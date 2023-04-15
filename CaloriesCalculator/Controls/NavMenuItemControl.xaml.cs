@@ -58,7 +58,7 @@ namespace CaloriesCalculator.Controls
             try
             {
                 Image img = ((NavMenuItemControl)d).IconImage;
-                img.Source = img.FindResource(_icons[(string)e.NewValue]) as DrawingImage;
+                img.Source = Application.Current.Resources[_icons[(string)e.NewValue]] as DrawingImage;
             }
             catch
             {

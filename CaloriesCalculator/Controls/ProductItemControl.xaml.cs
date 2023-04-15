@@ -60,7 +60,7 @@ namespace CaloriesCalculator.Controls
                     : "DrinkDrawingImage";
             }
 
-            ProductImage.Source = FindResource(iconString) as DrawingImage;
+            ProductImage.Source = Application.Current.Resources[iconString] as DrawingImage;
         }
 
         public void UpdateValues()

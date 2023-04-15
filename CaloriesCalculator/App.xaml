@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:CaloriesCalculator"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+         <ResourceDictionary>
+             <ResourceDictionary.MergedDictionaries>
+                 <ResourceDictionary Source="Resources/MenuIconsDictionary.xaml"/>
+                 <ResourceDictionary Source="Resources/ProductIconsDictionary.xaml"/>
+             </ResourceDictionary.MergedDictionaries>
+         </ResourceDictionary>
     </Application.Resources>
 </Application>
