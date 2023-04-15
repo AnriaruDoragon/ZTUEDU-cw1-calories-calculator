@@ -96,6 +96,15 @@ namespace CCLibrary.Data
             SaveChanges();
         }
 
+        public void ForgetRememberedProfile()
+        {
+            Profile? remembered = GetRememberedProfile();
+            if (remembered is null)
+                return;
+            remembered.IsRemembered = false;
+            SaveChanges();
+        }
+
         /// <summary>
         /// RememberProfile profile for auto login.
         /// </summary>
@@ -106,9 +115,8 @@ namespace CCLibrary.Data
                 .FirstOrDefault(profile => profile.Id == id)
                     ?? throw new ProfiletNotFoundException();
 
-            Profile? remembered = GetRememberedProfile();
-            if (remembered is not null)
-                remembered.IsRemembered = false;
+            ForgetRememberedProfile();
+
             profile.IsRemembered = true;
             SaveChanges();
         }

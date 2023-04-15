@@ -82,6 +82,7 @@
                     <TextBlock Grid.Row="1" Grid.Column="0" Margin="5" Text="Логін: " TextAlignment="Right" FontWeight="Bold"/>
                     <TextBlock Grid.Row="2" Grid.Column="0" Margin="5" Text="Ім'я: " TextAlignment="Right" FontWeight="Bold"/>
                     <TextBlock Grid.Row="3" Grid.Column="0" Margin="5" Text="Аватар: " TextAlignment="Right" FontWeight="Bold"/>
+                    <TextBlock Grid.Row="4" Grid.Column="0" Margin="5" Text="Вхід: " TextAlignment="Right" FontWeight="Bold"/>
 
                     <TextBlock Grid.Row="0" Grid.Column="1" Margin="5" x:Name="ManageProfileIDTextBlock"/>
                     <TextBlock Grid.Row="1" Grid.Column="1" Margin="5" x:Name="ManageProfileLoginTextBlock"/>
@@ -100,7 +101,10 @@
                         <Button Margin="5 0 0 0" Content="Видалити аватар"
                                 x:Name="DeleteAvatarButton" Click="DeleteAvatarButton_Click"/>
                     </StackPanel>
-                    <Grid Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Left">
+                    <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" Margin="5">
+                        <Button Content="Обрати файл" x:Name="AutoLoginButton" Click="AutoLoginButton_Click"/>
+                    </StackPanel>
+                    <Grid Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Left">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>

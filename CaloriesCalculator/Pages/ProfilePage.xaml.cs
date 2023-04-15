@@ -47,6 +47,7 @@ namespace CaloriesCalculator.Pages
                 LoginGrid.Visibility = Visibility.Collapsed;
                 ManageGrid.Visibility = Visibility.Visible;
                 UpdateAvatars();
+                UpdateRememberButton();
 
                 // Restore profile preferences
                 switch (App.CurrentProfile.Sex)
@@ -292,6 +293,30 @@ namespace CaloriesCalculator.Pages
             App.CurrentProfile.Image = null;
             App.Database.Context.SaveChanges();
             UpdateAvatars();
+        }
+
+        private void UpdateRememberButton()
+        {
+            if (!EnsureProfileNotNull())
+                return;
+
+            if (App.CurrentProfile.IsRemembered)
+                AutoLoginButton.Content = "Вимкнути автоматичний вхід";
+            else
+                AutoLoginButton.Content = "Входити автоматично";
+        }
+
+        private void AutoLoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!EnsureProfileNotNull())
+                return;
+
+            if (App.CurrentProfile.IsRemembered)
+                App.Database.Context.ForgetRememberedProfile();
+            else
+                App.Database.Context.RememberProfile(App.CurrentProfile.Id);
+
+            UpdateRememberButton();
         }
 
         private void ChangePasswordButton_Click(object sender, RoutedEventArgs e)

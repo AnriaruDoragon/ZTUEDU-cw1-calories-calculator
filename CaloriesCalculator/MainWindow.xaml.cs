@@ -141,7 +141,8 @@ namespace CaloriesCalculator
 
         private void CaloriesDate_Changed(object sender, SelectionChangedEventArgs e)
         {
-            _isCongratulated = false;
+            if (CaloriesDatePicker.SelectedDate != App.SelectedDate)
+                _isCongratulated = false;
             UpdateCalorieMeter();
         }
         #endregion
