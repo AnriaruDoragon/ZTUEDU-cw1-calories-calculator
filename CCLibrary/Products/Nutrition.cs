@@ -2,11 +2,11 @@
 {
     public struct Nutrition
     {
-        public double Fat { get; private set; }
-        public double Protein { get; private set; }
-        public double Carbs { get; private set; }
-        public double Fiber { get; private set; }
-        public double Sodium { get; private set; }
+        public double Fat { get; set; }
+        public double Protein { get; set; }
+        public double Carbs { get; set; }
+        public double Fiber { get; set; }
+        public double Sodium { get; set; }
 
         public Nutrition(double fat = 0, double protein = 0, double carbs = 0,
             double fiber = 0, double sodium = 0)

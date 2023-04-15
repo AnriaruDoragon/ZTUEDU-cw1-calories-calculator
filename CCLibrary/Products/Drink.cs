@@ -17,7 +17,7 @@
         public DrinkTypes Type
         {
             get => _drinkType;
-            protected set
+            set
             {
                 _drinkType = value;
                 IsCarbonated = value switch

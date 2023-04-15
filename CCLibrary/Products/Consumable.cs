@@ -62,5 +62,12 @@ namespace CCLibrary.Products
         {
             return _caloriesPerServing * _netMass / _servingSize;
         }
+
+        public void SetCalories(double value)
+        {
+            if (value <= 0)
+                throw new ValueOutOfRangeException("Значення повинно бути додатнім!");
+            _caloriesPerServing = value;
+        }
     }
 }

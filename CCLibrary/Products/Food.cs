@@ -24,7 +24,7 @@ namespace CCLibrary.Products
         public FoodTypes Type
         {
             get => _foodType;
-            protected set => _foodType = value;
+            set => _foodType = value;
         }
 
         [NotMapped]
@@ -47,14 +47,6 @@ namespace CCLibrary.Products
                 Type = this.Type,
                 Nutrition = this.Nutrition
             };
-        }
-
-        /// <summary>
-        /// Set new Nutrition facts for this product.
-        /// </summary>
-        public void UpdateNutrition(Nutrition nutrition)
-        {
-            Nutrition = nutrition;
         }
     }
 }

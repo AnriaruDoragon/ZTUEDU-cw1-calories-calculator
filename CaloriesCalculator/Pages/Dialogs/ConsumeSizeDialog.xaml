@@ -10,7 +10,7 @@
         Title="Встановлення розміру порції"
         MinWidth="350" MaxWidth="500"
         SizeToContent="WidthAndHeight" ResizeMode="NoResize"
-        WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="True">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -37,7 +37,7 @@
             <Slider Grid.Row="1" Grid.Column="0" IsSnapToTickEnabled="False" TickPlacement="BottomRight"
                     x:Name="SizeSlider" Value="{Binding Path=Product.NetMassInGrams, ElementName=ConsumeDialog, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <TextBox Grid.Row="1" Grid.Column="1" TextChanged="SizeTextBox_TextChanged"
-                     Text="{Binding Path=Product.NetMassInGrams, ElementName=ConsumeDialog, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=0.##}" />
+                     Text="{Binding Path=Product.NetMassInGrams, ElementName=ConsumeDialog, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" />
         </Grid>
         
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 10 0 0">

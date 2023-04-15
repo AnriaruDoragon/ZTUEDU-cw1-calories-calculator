@@ -11,12 +11,12 @@ namespace CaloriesCalculator.Pages.Dialogs
 
         public ConsumeSizeDialog(Product product)
         {
-            Product = product;
+            Product = product.Copy();
 
             InitializeComponent();
 
             SizeSlider.Minimum = Product.NetMassInGrams / 10;
-            SizeSlider.Maximum = Product.NetMassInGrams * 10;
+            SizeSlider.Maximum = Product.NetMassInGrams * 2;
         }
 
         private void ProductControl_Loaded(object sender, RoutedEventArgs e)

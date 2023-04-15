@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using CCLibrary.Products;
 using CCLibrary.Exceptions;
@@ -60,10 +59,13 @@ namespace CCLibrary.Data
         /// <exception cref="ProductNotFoundException"></exception>
         public void ModifyProduct(Product product)
         {
-            if (!Products.Contains(product))
-                throw new ProductNotFoundException();
+            Product? existingProduct = Products.Find(product.Id)
+                ?? throw new ProductNotFoundException();
 
-            Products.Update(product);
+            var entry = Entry(existingProduct);
+            entry.CurrentValues.SetValues(product);
+
+            SaveChanges();
         }
     }
 }

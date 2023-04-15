@@ -139,6 +139,7 @@ namespace CaloriesCalculator.Pages
                 bool? result = sizeDialog.ShowDialog();
                 if (result != true)
                     return;
+                clickedProduct = sizeDialog.Product;
             }
 
             if (clickedProduct.NetMassInGrams <= 0)
@@ -173,7 +174,23 @@ namespace CaloriesCalculator.Pages
             if (_targetedProductControl is null)
                 return;
 
-            // TODO
+            Product clickedProduct = _targetedProductControl.Product;
+            bool isUsed = App.Database.Context.IsProductUsed(clickedProduct);
+            if (isUsed)
+                MessageBox.Show("Цей продукт вже використовується!\nЗміна калорійності, порції та інших показників вплине на результат днів, коли споживався цей продукт.",
+                    "Зверніть увагу!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+
+            Dialogs.EditProductDialog editDialog = new(clickedProduct);
+            bool? result = editDialog.ShowDialog();
+            if (result != true)
+                return;
+
+            App.Database.Context.ModifyProduct(editDialog.Product);
+            UpdateProductsList();
+            ((MainWindow)Window.GetWindow(this)).UpdateCalorieMeter();
+
+            MessageBox.Show($"Продукт \"{clickedProduct.Name}\" було успішно оновлено.{(isUsed ? "\nЦі зміни можуть вплинути на результат деяких днів." : "")}",
+                "Успіх", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void ProductContextDelete_Click(object sender, RoutedEventArgs e)
