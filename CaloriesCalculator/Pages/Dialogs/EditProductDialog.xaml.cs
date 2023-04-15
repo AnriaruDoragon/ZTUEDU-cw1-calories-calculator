@@ -16,9 +16,12 @@ namespace CaloriesCalculator.Pages.Dialogs
 
         public Product Product { get; set; }
 
-        public EditProductDialog(Product product)
+        public EditProductDialog(Product product, bool copy = true)
         {
-            Product = product.Copy();
+            if (copy)
+                Product = product.Copy();
+            else
+                Product = product;
 
             InitializeComponent();
 
@@ -153,7 +156,7 @@ namespace CaloriesCalculator.Pages.Dialogs
         private void CancelButton_Click(object sender, RoutedEventArgs e)
             => DialogResult = false;
 
-        private double? CheckPositiveValue(object sender, bool zero = false)
+        private static double? CheckTextBoxValue(object sender, bool zero = false)
         {
             TextBox textBox = (TextBox)sender;
             if (double.TryParse(textBox.Text, out double value))
@@ -168,7 +171,7 @@ namespace CaloriesCalculator.Pages.Dialogs
 
         private void CaloriesTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var value = CheckPositiveValue(sender);
+            var value = CheckTextBoxValue(sender, zero:true);
             if (value is null)
                 return;
             _calories = (double)value;
@@ -176,7 +179,7 @@ namespace CaloriesCalculator.Pages.Dialogs
 
         private void ServingSizeTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var value = CheckPositiveValue(sender);
+            var value = CheckTextBoxValue(sender);
             if (value is null)
                 return;
             _servingSize = (double)value;
@@ -184,7 +187,7 @@ namespace CaloriesCalculator.Pages.Dialogs
 
         private void NetMassTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var value = CheckPositiveValue(sender);
+            var value = CheckTextBoxValue(sender);
             if (value is null)
                 return;
             _mass = (double)value;
@@ -205,7 +208,7 @@ namespace CaloriesCalculator.Pages.Dialogs
 
         private void NutritionTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var value = CheckPositiveValue(sender, true);
+            var value = CheckTextBoxValue(sender, zero:true);
             if (value is null)
                 return;
             switch (((TextBox)sender).Name)

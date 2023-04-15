@@ -18,6 +18,7 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         
         <Grid.Resources>
@@ -43,8 +44,10 @@
             <ComboBoxItem Content="За типом (Їжа-Напої)" Tag="5"/>
             <ComboBoxItem Content="За типом (Напої-Їжа)" Tag="6"/>
         </ComboBox>
+        <Button Grid.Row="0" Grid.Column="3" Margin="5 0 0 10" Padding="5 0" BorderThickness="0" Background="#FFF582AE" Foreground="#001858"
+                Content="Новий продукт +" Click="NewProductButton_Click"/>
         
-        <ScrollViewer Grid.Row="1" Grid.ColumnSpan="3" Padding="0 0 5 0" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Grid.Row="1" Grid.ColumnSpan="4" Padding="0 0 5 0" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
             <ItemsControl x:Name="ProductItems" Loaded="ProductItems_Loaded">
                 <ItemsControl.Resources>
                     <ContextMenu x:Key="ProductContext">

@@ -1,0 +1,61 @@
+﻿<Window x:Class="CaloriesCalculator.Pages.Dialogs.NewProductDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CaloriesCalculator.Pages.Dialogs"
+        mc:Ignorable="d"
+        Title="Створення нового продукту"
+        MinWidth="350" MaxWidth="500"
+        SizeToContent="WidthAndHeight" ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="True">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="TextAlignment" Value="Center"/>
+                <Setter Property="Foreground" Value="#001858"/>
+            </Style>
+        </Grid.Resources>
+        
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Оберіть тип продукту" Margin="0 0 0 5"/>
+        
+        <Button Grid.Row="1" Grid.Column="0" Margin="5" Padding="5 10"
+                Click="FoodButton_Click">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0" Height="64" Margin="0 0 0 15" Source="{StaticResource ProductDrawingImage}"/>
+                <TextBlock Grid.Row="1" Text="Їжа"/>
+            </Grid>
+        </Button>
+        
+        <Button Grid.Row="1" Grid.Column="1" Margin="5" Padding="5 10"
+                Click="DrinkButton_Click">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0" Height="64" Margin="0 0 0 15" Source="{StaticResource DrinkDrawingImage}"/>
+                <TextBlock Grid.Row="1" Text="Напій"/>
+            </Grid>
+        </Button>
+        
+        <Button Grid.Row="2" Grid.ColumnSpan="2" Margin="0 5 0 0" Padding="5" HorizontalAlignment="Right"
+                x:Name="CancelButton" Click="CancelButton_Click" IsCancel="True" Content="Скасувати"/>
+    </Grid>
+</Window>

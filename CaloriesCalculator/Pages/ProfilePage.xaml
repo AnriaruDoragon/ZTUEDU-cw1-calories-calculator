@@ -102,7 +102,7 @@
                                 x:Name="DeleteAvatarButton" Click="DeleteAvatarButton_Click"/>
                     </StackPanel>
                     <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" Margin="5">
-                        <Button Content="Обрати файл" x:Name="AutoLoginButton" Click="AutoLoginButton_Click"/>
+                        <Button x:Name="AutoLoginButton" Click="AutoLoginButton_Click"/>
                     </StackPanel>
                     <Grid Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Left">
                         <Grid.RowDefinitions>

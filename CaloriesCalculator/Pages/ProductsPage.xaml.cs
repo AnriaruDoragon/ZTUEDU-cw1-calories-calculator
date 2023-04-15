@@ -136,8 +136,7 @@ namespace CaloriesCalculator.Pages
             if (Settings.Get("AskForSize", true))
             {
                 Dialogs.ConsumeSizeDialog sizeDialog = new(clickedProduct);
-                bool? result = sizeDialog.ShowDialog();
-                if (result != true)
+                if (sizeDialog.ShowDialog() != true)
                     return;
                 clickedProduct = sizeDialog.Product;
             }
@@ -169,6 +168,23 @@ namespace CaloriesCalculator.Pages
                 Product_LeftClick(_targetedProductControl, e);
         }
 
+        private void NewProductButton_Click(object sender, RoutedEventArgs e)
+        {
+            Dialogs.NewProductDialog newDialog = new();
+            if (newDialog.ShowDialog() != true)
+                return;
+
+            Dialogs.EditProductDialog editDialog = new(newDialog.Product, copy:false);
+            if (editDialog.ShowDialog() != true)
+                return;
+
+            App.Database.Context.AddProduct(editDialog.Product);
+            UpdateProductsList();
+
+            MessageBox.Show($"Продукт \"{editDialog.Product.Name}\" було успішно створено.",
+                "Успіх", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
         private void ProductContextEdit_Click(object sender, RoutedEventArgs e)
         {
             if (_targetedProductControl is null)
@@ -181,8 +197,7 @@ namespace CaloriesCalculator.Pages
                     "Зверніть увагу!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 
             Dialogs.EditProductDialog editDialog = new(clickedProduct);
-            bool? result = editDialog.ShowDialog();
-            if (result != true)
+            if (editDialog.ShowDialog() != true)
                 return;
 
             App.Database.Context.ModifyProduct(editDialog.Product);
