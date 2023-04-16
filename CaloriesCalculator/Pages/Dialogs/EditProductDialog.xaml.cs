@@ -11,7 +11,6 @@ namespace CaloriesCalculator.Pages.Dialogs
         private double _calories;
         private double _servingSize;
         private double _mass;
-
         private Nutrition _nutrition;
 
         public Product Product { get; set; }
@@ -24,7 +23,10 @@ namespace CaloriesCalculator.Pages.Dialogs
                 Product = product;
 
             InitializeComponent();
+        }
 
+        private void EditDialog_Loaded(object sender, RoutedEventArgs e)
+        {
             CaloriesTextBox.Text = ((Consumable)Product).CaloriesPerServing.ToString("0.##");
             ServingSizeTextBox.Text = ((Consumable)Product).ServingSizeInGrams.ToString("0.##");
             NetMassTextBox.Text = Product.NetMassInGrams.ToString("0.##");

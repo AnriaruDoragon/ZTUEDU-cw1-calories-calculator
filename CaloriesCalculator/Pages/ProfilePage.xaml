@@ -61,7 +61,7 @@
         </Grid>
         
         <!-- Manage profile elements -->
-        <Grid Grid.Row="0" Grid.Column="0" Visibility="Visible" HorizontalAlignment="Stretch" x:Name="ManageGrid">
+        <Grid Grid.Row="0" Grid.Column="0" Margin="10" Visibility="Visible" HorizontalAlignment="Stretch" x:Name="ManageGrid">
             <StackPanel Orientation="Vertical">
                 <TextBlock Text="Налаштування профілю" Margin="0 0 0 5" FontSize="28" FontWeight="Bold" TextWrapping="Wrap"/>
                 <Grid>

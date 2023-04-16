@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using CaloriesCalculator.Controls;
 using CCLibrary.Products;
 
 namespace CaloriesCalculator.Pages.Dialogs
@@ -14,15 +13,12 @@ namespace CaloriesCalculator.Pages.Dialogs
             Product = product.Copy();
 
             InitializeComponent();
-
-            SizeSlider.Minimum = Product.NetMassInGrams / 10;
-            SizeSlider.Maximum = Product.NetMassInGrams * 2;
         }
 
-        private void ProductControl_Loaded(object sender, RoutedEventArgs e)
+        private void ConsumeDialog_Loaded(object sender, RoutedEventArgs e)
         {
-            ProductItemControl itemControl = (ProductItemControl)sender;
-            itemControl.Product = Product;
+            SizeSlider.Minimum = Product.NetMassInGrams / 10;
+            SizeSlider.Maximum = Product.NetMassInGrams * 2;
         }
 
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)

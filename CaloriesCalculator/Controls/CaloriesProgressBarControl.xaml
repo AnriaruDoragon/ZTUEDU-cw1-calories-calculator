@@ -8,20 +8,23 @@
              mc:Ignorable="d" 
              d:DesignHeight="150" d:DesignWidth="150"
              Height="150" Width="150">
+    
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+        </Style>
+        <Style TargetType="{x:Type ProgressBar}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource BtnBgColor}"/>
+        </Style>
+    </UserControl.Resources>
+    
     <Grid>
-        
-        <Grid.Resources>
-            <Style TargetType="{x:Type TextBlock}">
-                <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
-            </Style>
-        </Grid.Resources>
-        
         <StackPanel Orientation="Vertical" VerticalAlignment="Center">
             <TextBlock HorizontalAlignment="Center" FontSize="20" Text="Всього"/>
             <TextBlock x:Name="CurrentValue" HorizontalAlignment="Center" FontSize="28" FontWeight="Bold"
                        Text="{Binding Path=Value, ElementName=CustomProgressBar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <ProgressBar Background="{x:Null}" Foreground="{StaticResource BtnBgColor}"
-                         Value="{Binding Path=Value, ElementName=CustomProgressBar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            <ProgressBar Value="{Binding Path=Value, ElementName=CustomProgressBar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Maximum="{Binding Path=Max, ElementName=CustomProgressBar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock x:Name="MaxValue" HorizontalAlignment="Center" FontSize="28" FontWeight="Bold"
                        Text="{Binding Path=Max, ElementName=CustomProgressBar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>

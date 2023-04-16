@@ -15,19 +15,17 @@ namespace CaloriesCalculator.Controls
             "Energy", "Alcohol", "Juice", "Coffee", "Tea", "Milk"
         };
 
-        public ProductItemControl()
-        {
-            InitializeComponent();
-
-            SetInformation();
-        }
+        public event EventHandler? LeftClick;
+        public event EventHandler? RightClick;
 
         public static readonly DependencyProperty ProductProperty = 
             DependencyProperty.Register(nameof(Product), typeof(Product), typeof(ProductItemControl),
                 new PropertyMetadata(null, ProductChangedCallback));
 
-        public event EventHandler? LeftClick;
-        public event EventHandler? RightClick;
+        public ProductItemControl() => InitializeComponent();
+
+        private void ProductItem_Loaded(object sender, RoutedEventArgs e)
+            => SetInformation();
 
         private static void ProductChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {

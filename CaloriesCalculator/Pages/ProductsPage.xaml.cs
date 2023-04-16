@@ -23,8 +23,6 @@ namespace CaloriesCalculator.Pages
             _products = App.Database.Context.Products.ToList();
             
             InitializeComponent();
-
-            ProductItems.ItemsSource = _products;
         }
 
         private void ProductItems_Loaded(object sender, RoutedEventArgs e)
@@ -39,7 +37,7 @@ namespace CaloriesCalculator.Pages
             {
                 ProductItems.IsEnabled = false;
                 MessageBox.Show("Для початку увійдіть в ваш профіль!",
-                    "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    "Помилка", MessageBoxButton.OK, MessageBoxImage.Information);
                 return false;
             }
             ProductItems.IsEnabled = true;

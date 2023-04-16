@@ -18,14 +18,12 @@ namespace CaloriesCalculator
         private NavMenuItemControl? _lastSelectedItem;
         private bool _isCongratulated = false;
 
-        public MainWindow()
-        {
-            InitializeComponent();
-            CaloriesDatePicker.SelectedDate = App.SelectedDate;
-        }
+        public MainWindow() => InitializeComponent();
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            CaloriesDatePicker.SelectedDate = App.SelectedDate;
+
             Navigate("Profile", ProfileMenuItem);
             SetCurrentProfile(App.CurrentProfile);
         }

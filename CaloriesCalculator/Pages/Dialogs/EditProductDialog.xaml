@@ -10,7 +10,8 @@
         MinWidth="350" MaxWidth="500"
         SizeToContent="WidthAndHeight" ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="True"
-        Background="{StaticResource Bg1Color}">
+        Background="{StaticResource Bg1Color}"
+        Loaded="EditDialog_Loaded">
     
     <Window.Resources>
         <Style TargetType="{x:Type Button}">

@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:CaloriesCalculator.Controls"
              x:Name="ProductItem"
              mc:Ignorable="d" 
-             MaxHeight="200" Width="120"
-             >
+             MaxHeight="210" Width="110"
+             Loaded="ProductItem_Loaded">
     <Button Style="{DynamicResource ProductButtonStyle}" BorderThickness="1" Padding="5 10" VerticalContentAlignment="Top"
             Click="Button_Click" MouseRightButtonDown="Button_MouseRightButtonDown">
         <Grid>
