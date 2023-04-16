@@ -12,7 +12,7 @@
         
         <Grid.Resources>
             <Style TargetType="{x:Type TextBlock}">
-                <Setter Property="Foreground" Value="#001858"/>
+                <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
             </Style>
         </Grid.Resources>
         
@@ -20,7 +20,7 @@
             <TextBlock HorizontalAlignment="Center" FontSize="20" Text="Всього"/>
             <TextBlock x:Name="CurrentValue" HorizontalAlignment="Center" FontSize="28" FontWeight="Bold"
                        Text="{Binding Path=Value, ElementName=CustomProgressBar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <ProgressBar Background="{x:Null}" Foreground="#FFF582AE"
+            <ProgressBar Background="{x:Null}" Foreground="{StaticResource BtnBgColor}"
                          Value="{Binding Path=Value, ElementName=CustomProgressBar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Maximum="{Binding Path=Max, ElementName=CustomProgressBar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock x:Name="MaxValue" HorizontalAlignment="Center" FontSize="28" FontWeight="Bold"

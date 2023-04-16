@@ -8,6 +8,21 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Продукти">
+    
+    <Page.Resources>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="{StaticResource FieldBgColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+        </Style>
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+        </Style>
+    </Page.Resources>
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -21,21 +36,10 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         
-        <Grid.Resources>
-            <Style TargetType="{x:Type TextBlock}">
-                <Setter Property="Foreground" Value="#001858"/>
-            </Style>
-            <Style TargetType="{x:Type TextBox}">
-                <Setter Property="BorderThickness" Value="0"/>
-                <Setter Property="Background" Value="#FF8BD3DD"/>
-                <Setter Property="Foreground" Value="#001858"/>
-            </Style>
-        </Grid.Resources>
-        
         <TextBlock Grid.Row="0" Grid.Column="0" Margin="0 0 5 10" Text="Пошук: "/>
         <TextBox Grid.Row="0" Grid.Column="1" Margin="0 0 0 10"
                  x:Name="SearchBar" TextChanged="SearchBar_TextChanged"/>
-        <ComboBox Grid.Row="0" Grid.Column="2" Margin="5 0 0 10" BorderThickness="0" Foreground="#001858" SelectedIndex="0"
+        <ComboBox Grid.Row="0" Grid.Column="2" Margin="5 0 0 10" SelectedIndex="0"
                   x:Name="SortingComboBox" SelectionChanged="SortingComboBox_SelectionChanged">
             <ComboBoxItem Content="За назвою (А-Я)"  Tag="1"/>
             <ComboBoxItem Content="За назвою (Я-А)" Tag="2"/>

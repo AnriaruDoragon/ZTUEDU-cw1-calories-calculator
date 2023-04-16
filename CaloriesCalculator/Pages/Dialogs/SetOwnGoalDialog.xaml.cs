@@ -7,10 +7,7 @@ namespace CaloriesCalculator.Pages.Dialogs
     {
         public double NewGoal { get; set; }
 
-        public SetOwnGoalDialog()
-        {
-            InitializeComponent();
-        }
+        public SetOwnGoalDialog() => InitializeComponent();
 
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
             => DialogResult = true;

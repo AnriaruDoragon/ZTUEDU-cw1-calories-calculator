@@ -9,7 +9,7 @@ namespace CaloriesCalculator.Controls
 {
     public partial class ProductItemControl : UserControl
     {
-        private readonly List<string> _icons = new()
+        private static readonly List<string> _icons = new()
         {
             "Fruit", "Vegetable", "Meat", "Fish", "Baking", "Cereals",
             "Energy", "Alcohol", "Juice", "Coffee", "Tea", "Milk"
@@ -80,13 +80,9 @@ namespace CaloriesCalculator.Controls
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            LeftClick?.Invoke(this, e);
-        }
+            => LeftClick?.Invoke(this, e);
 
         private void Button_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            RightClick?.Invoke(this, e);
-        }
+            => RightClick?.Invoke(this, e);
     }
 }

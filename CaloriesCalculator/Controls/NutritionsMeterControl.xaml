@@ -24,7 +24,7 @@
         <Grid.Resources>
             <Style TargetType="{x:Type TextBlock}">
                 <Setter Property="FontSize" Value="20"/>
-                <Setter Property="Foreground" Value="#001858"/>
+                <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
             </Style>
         </Grid.Resources>
         

@@ -9,7 +9,8 @@
              Height="48"
              d:DesignHeight="48" d:DesignWidth="128">
     
-    <Button Template="{DynamicResource NavMenuItemButton}" Background="#00000000" BorderBrush="#F582AE" BorderThickness="0" Padding="0" 
+    <Button Template="{DynamicResource NavMenuItemButton}" Background="#00000000"
+            BorderBrush="{StaticResource BtnBgColor}" BorderThickness="0" Padding="0" 
             HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
             Name="MainButton" Click="ButtonBase_OnClick">
         <Grid>
@@ -19,7 +20,7 @@
             </Grid.ColumnDefinitions>
             <Image Height="28" Width="28" Margin="8 0 8 0" Name="IconImage"/>
             <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="0 0 8 0"
-                       TextTrimming="CharacterEllipsis" FontWeight="Bold" Foreground="#001858" FontSize="14" FontFamily="Arial"
+                       TextTrimming="CharacterEllipsis" FontWeight="Bold" Foreground="{StaticResource TextColor}" FontSize="14" FontFamily="Arial"
                        Text="{Binding Path=Text, ElementName=UserControl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
     </Button>

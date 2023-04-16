@@ -16,10 +16,7 @@ namespace CaloriesCalculator.Controls
             {"History", "HistoryDrawingImage"}
         };
 
-        public NavMenuItemControl()
-        {
-            InitializeComponent();
-        }
+        public NavMenuItemControl() => InitializeComponent();
 
         public static readonly DependencyProperty TextProperty = 
             DependencyProperty.Register(nameof(Text), typeof(string), typeof(NavMenuItemControl),
@@ -89,8 +86,7 @@ namespace CaloriesCalculator.Controls
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            Click?.Invoke(this, EventArgs.Empty);
-        }
+            => Click?.Invoke(this, EventArgs.Empty);
+        
     }
 }

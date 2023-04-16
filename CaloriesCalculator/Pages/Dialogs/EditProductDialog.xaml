@@ -9,7 +9,36 @@
         Title="Редагування продукту"
         MinWidth="350" MaxWidth="500"
         SizeToContent="WidthAndHeight" ResizeMode="NoResize"
-        WindowStartupLocation="CenterOwner" ShowInTaskbar="True">
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="True"
+        Background="{StaticResource Bg1Color}">
+    
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="{StaticResource BtnBgColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+        </Style>
+        <Style TargetType="{x:Type CheckBox}">
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+        </Style>
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="{StaticResource FieldBgColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="TextAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0 2.5 5 2.5"/>
+        </Style>
+    </Window.Resources>
+    
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -32,17 +61,6 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            
-            <Grid.Resources>
-                <Style TargetType="{x:Type TextBlock}">
-                    <Setter Property="TextAlignment" Value="Right"/>
-                    <Setter Property="VerticalAlignment" Value="Center"/>
-                    <Setter Property="Margin" Value="0 2.5 5 2.5"/>
-                </Style>
-                <Style TargetType="{x:Type TextBox}">
-                    <Setter Property="VerticalAlignment" Value="Center"/>
-                </Style>
-            </Grid.Resources>
             
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Назва:"/>
             <TextBlock Grid.Row="1" Grid.Column="0" Text="Опис:"/>
@@ -100,15 +118,15 @@
                 <TextBlock Grid.Row="4" Grid.Column="0" Text="Сіль: "/>
                     
                 <TextBox Grid.Row="0" Grid.Column="1" Width="100" HorizontalAlignment="Left" BorderBrush="Red" BorderThickness="0"
-                            x:Name="FatTextBox" TextChanged="NutritionTextBox_TextChanged"/>
+                         x:Name="FatTextBox" TextChanged="NutritionTextBox_TextChanged"/>
                 <TextBox Grid.Row="1" Grid.Column="1" Width="100" HorizontalAlignment="Left" BorderBrush="Red" BorderThickness="0"
-                            x:Name="ProteintTextBox" TextChanged="NutritionTextBox_TextChanged"/>
+                         x:Name="ProteintTextBox" TextChanged="NutritionTextBox_TextChanged"/>
                 <TextBox Grid.Row="2" Grid.Column="1" Width="100" HorizontalAlignment="Left" BorderBrush="Red" BorderThickness="0"
-                            x:Name="CarbsTextBox" TextChanged="NutritionTextBox_TextChanged"/>
+                         x:Name="CarbsTextBox" TextChanged="NutritionTextBox_TextChanged"/>
                 <TextBox Grid.Row="3" Grid.Column="1" Width="100" HorizontalAlignment="Left" BorderBrush="Red" BorderThickness="0"
-                            x:Name="FiberTextBox" TextChanged="NutritionTextBox_TextChanged"/>
+                         x:Name="FiberTextBox" TextChanged="NutritionTextBox_TextChanged"/>
                 <TextBox Grid.Row="4" Grid.Column="1" Width="100" HorizontalAlignment="Left" BorderBrush="Red" BorderThickness="0"
-                            x:Name="SodiumTextBox" TextChanged="NutritionTextBox_TextChanged"/>
+                         x:Name="SodiumTextBox" TextChanged="NutritionTextBox_TextChanged"/>
             </Grid>
         </Grid>
         

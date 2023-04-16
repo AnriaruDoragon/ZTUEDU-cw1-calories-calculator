@@ -9,7 +9,32 @@
         Title="Підтвердіть данні"
         MinHeight="160" MinWidth="300" MaxWidth="500"
         SizeToContent="WidthAndHeight" ResizeMode="NoResize"
-        WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
+        Background="{StaticResource Bg1Color}">
+    
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="{StaticResource BtnBgColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="{StaticResource FieldBgColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+        </Style>
+        <Style TargetType="{x:Type PasswordBox}">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="{StaticResource FieldBgColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+        </Style>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="TextAlignment" Value="Right"/>
+        </Style>
+    </Window.Resources>
+    
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -21,13 +46,6 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        
-        <Grid.Resources>
-            <Style TargetType="{x:Type TextBlock}">
-                <Setter Property="Margin" Value="5"/>
-                <Setter Property="TextAlignment" Value="Right"/>
-            </Style>
-        </Grid.Resources>
         
         <TextBlock Grid.Row="0" Grid.ColumnSpan="2" FontSize="16" TextWrapping="Wrap" TextAlignment="Left" x:Name="NoteTextBlock"/>
         

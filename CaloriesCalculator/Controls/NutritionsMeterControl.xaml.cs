@@ -6,10 +6,7 @@ namespace CaloriesCalculator.Controls
 {
     public partial class NutritionsMeterControl : UserControl
     {
-        public NutritionsMeterControl()
-        {
-            InitializeComponent();
-        }
+        public NutritionsMeterControl() => InitializeComponent();
 
         public static readonly DependencyProperty NutritionProperty = 
             DependencyProperty.Register(nameof(Nutrition), typeof(Nutrition), typeof(NutritionsMeterControl),

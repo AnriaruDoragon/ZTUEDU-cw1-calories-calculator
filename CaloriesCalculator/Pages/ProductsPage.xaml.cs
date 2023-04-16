@@ -115,14 +115,10 @@ namespace CaloriesCalculator.Pages
         }
 
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            SetSearchedProducts();
-        }
+            => SetSearchedProducts();
 
         private void SortingComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            SetSearchedProducts();
-        }
+            => SetSearchedProducts();
         #endregion
 
         #region Products controls

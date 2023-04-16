@@ -8,7 +8,23 @@
         Title="Створення нового продукту"
         MinWidth="350" MaxWidth="500"
         SizeToContent="WidthAndHeight" ResizeMode="NoResize"
-        WindowStartupLocation="CenterOwner" ShowInTaskbar="True">
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="True"
+        Background="{StaticResource Bg1Color}">
+    
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="{StaticResource BtnBgColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+        </Style>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+    
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -19,15 +35,6 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        
-        <Grid.Resources>
-            <Style TargetType="{x:Type TextBlock}">
-                <Setter Property="FontSize" Value="18"/>
-                <Setter Property="FontWeight" Value="Bold"/>
-                <Setter Property="TextAlignment" Value="Center"/>
-                <Setter Property="Foreground" Value="#001858"/>
-            </Style>
-        </Grid.Resources>
         
         <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Оберіть тип продукту" Margin="0 0 0 5"/>
         

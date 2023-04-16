@@ -10,7 +10,25 @@
         Title="Встановлення розміру порції"
         MinWidth="350" MaxWidth="500"
         SizeToContent="WidthAndHeight" ResizeMode="NoResize"
-        WindowStartupLocation="CenterOwner" ShowInTaskbar="True">
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="True"
+        Background="{StaticResource Bg1Color}">
+    
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="{StaticResource BtnBgColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="{StaticResource FieldBgColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+        </Style>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+        </Style>
+    </Window.Resources>
+    
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -34,9 +52,9 @@
             </Grid.ColumnDefinitions>
             
             <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Вкажіть розмір порції (г):" Margin="0 0 0 10"/>
-            <Slider Grid.Row="1" Grid.Column="0" IsSnapToTickEnabled="False" TickPlacement="BottomRight"
+            <Slider Grid.Row="1" Grid.Column="0" IsSnapToTickEnabled="False"
                     x:Name="SizeSlider" Value="{Binding Path=Product.NetMassInGrams, ElementName=ConsumeDialog, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox Grid.Row="1" Grid.Column="1" TextChanged="SizeTextBox_TextChanged"
+            <TextBox Grid.Row="1" Grid.Column="1" MinWidth="35" TextChanged="SizeTextBox_TextChanged"
                      Text="{Binding Path=Product.NetMassInGrams, ElementName=ConsumeDialog, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" />
         </Grid>
         

@@ -14,10 +14,7 @@ namespace CaloriesCalculator.Pages
 {
     public partial class ProfilePage : Page
     {
-        public ProfilePage()
-        {
-            InitializeComponent();
-        }
+        public ProfilePage() => InitializeComponent();
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {

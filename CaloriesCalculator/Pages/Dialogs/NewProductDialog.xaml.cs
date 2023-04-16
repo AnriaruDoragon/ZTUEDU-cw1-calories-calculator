@@ -7,10 +7,7 @@ namespace CaloriesCalculator.Pages.Dialogs
     {
         public Product Product { get; set; }
 
-        public NewProductDialog()
-        {
-            InitializeComponent();
-        }
+        public NewProductDialog() => InitializeComponent();
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
             => DialogResult = false;

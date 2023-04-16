@@ -32,8 +32,6 @@ namespace CaloriesCalculator.Pages.Dialogs
             => DialogResult = false;
 
         private void SizeTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            SelectedProduct.UpdateValues();
-        }
+            => SelectedProduct.UpdateValues();
     }
 }
