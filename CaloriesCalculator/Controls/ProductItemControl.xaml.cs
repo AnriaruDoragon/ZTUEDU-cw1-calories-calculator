@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Controls;
 using CCLibrary.Products;
+using CaloriesCalculator.Pages;
 
 namespace CaloriesCalculator.Controls
 {
@@ -41,24 +42,27 @@ namespace CaloriesCalculator.Controls
             set => SetValue(ProductProperty, value);
         }
 
-        private void SetIcon()
+        /// <summary>
+        /// Returns a DrawingImage of an Icon if it's in resources and specified.
+        /// </summary>
+        public static DrawingImage GetIconImage(Product product)
         {
             string iconString = "ProductDrawingImage";
 
-            if (Product is Food food)
+            if (product is Food food)
             {
                 iconString = _icons.Contains(food.Type.ToString())
                     ? $"{food.Type}DrawingImage"
                     : "ProductDrawingImage";
             }
-            else if (Product is Drink drink)
+            else if (product is Drink drink)
             {
                 iconString = _icons.Contains(drink.Type.ToString())
                     ? $"{drink.Type}DrawingImage"
                     : "DrinkDrawingImage";
             }
 
-            ProductImage.Source = Application.Current.Resources[iconString] as DrawingImage;
+            return Application.Current.Resources[iconString] as DrawingImage;
         }
 
         public void UpdateValues()
@@ -72,7 +76,7 @@ namespace CaloriesCalculator.Controls
             if (Product is null)
                 return;
 
-            SetIcon();
+            ProductImage.Source = GetIconImage(Product);
 
             UpdateValues();
         }

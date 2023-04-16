@@ -18,6 +18,8 @@ namespace CaloriesCalculator
         private NavMenuItemControl? _lastSelectedItem;
         private bool _isCongratulated = false;
 
+        public event EventHandler? DateChanged;
+
         public MainWindow() => InitializeComponent();
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -142,6 +144,8 @@ namespace CaloriesCalculator
             if (CaloriesDatePicker.SelectedDate != App.SelectedDate)
                 _isCongratulated = false;
             UpdateCalorieMeter();
+
+            DateChanged?.Invoke(sender, e);
         }
         #endregion
 

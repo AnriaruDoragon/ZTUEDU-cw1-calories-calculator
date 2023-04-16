@@ -34,7 +34,7 @@ namespace CCLibrary.Data
                 try
                 {
                     Product product = GetProduct(reader.GetInt64(0));
-                    product.NetMassInGrams = reader.GetInt32(1);
+                    product.NetMassInGrams = reader.GetDouble(1);
                     consumption.Consume(product);
                 }
                 catch (ProductNotFoundException)
@@ -76,8 +76,13 @@ namespace CCLibrary.Data
 
             SqliteCommand deleteCommand = new(@"
                 DELETE FROM ProfileConsumedProducts
-                WHERE ProfileID=@ProfileID AND ProductID=@ProductID
-                    AND ProductMass=@ProductMass AND ConsumedDate=@ConsumedDate;", _connection);
+                WHERE rowid IN
+                    (SELECT rowid FROM ProfileConsumedProducts
+                     WHERE ProfileID=@ProfileID
+                        AND ProductID=@ProductID
+                        AND ProductMass=@ProductMass
+                        AND ConsumedDate=@ConsumedDate
+                     LIMIT 1);", _connection);
             deleteCommand.Parameters.AddWithValue("@ProfileID", profile.Id);
             deleteCommand.Parameters.AddWithValue("@ProductID", product.Id);
             deleteCommand.Parameters.AddWithValue("@ProductMass", product.NetMassInGrams);
