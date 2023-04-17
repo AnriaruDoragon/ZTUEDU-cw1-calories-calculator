@@ -5,20 +5,19 @@ using CCLibrary.User;
 
 #pragma warning disable CA2211
 
-namespace CaloriesCalculator
+namespace CaloriesCalculator;
+
+public partial class App : Application
 {
-    public partial class App : Application
+    public static Database Database = new();
+
+    public static Profile? CurrentProfile;
+    public static DateTime SelectedDate = DateTime.Today;
+
+    public App()
     {
-        public static Database Database = new();
+        InitializeComponent();
 
-        public static Profile? CurrentProfile;
-        public static DateTime SelectedDate = DateTime.Today;
-
-        public App()
-        {
-            InitializeComponent();
-
-            CurrentProfile = Database.Context.GetRememberedProfile();
-        }
+        CurrentProfile = Database.Context.GetRememberedProfile();
     }
 }
