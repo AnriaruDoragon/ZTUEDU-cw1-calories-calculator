@@ -354,6 +354,38 @@ namespace CaloriesCalculator.Pages
             ManageOldPasswordBox.Password = ManageNewPasswordBox.Password = ManageRepPasswordBox.Password = default;
         }
 
+        private void DeleteProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!EnsureProfileNotNull())
+                return;
+
+            if (MessageBox.Show("Ви впевнені що хочете видалити цей профіль?\nВидалення призведе до втрати інформації, яку неможливо буде відновити.", "Зверніть увагу", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes)
+                return;
+
+            Dialogs.VerifyProfileDialog verifyProfileDialog = new(note:"Будь ласка, підтвердіть пароль для видалення профілю.", withSecret:false);
+            bool? result = verifyProfileDialog.ShowDialog();
+            if (result != true)
+                return;
+
+            try
+            {
+                App.Database.Context.DeleteProfile(App.CurrentProfile.Login, verifyProfileDialog.Password);
+            }
+            catch (WrongPasswordException ex)
+            {
+                MessageBox.Show(ex.Message, "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Нажаль виникла невідома помилка!",
+                    "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            ((MainWindow)Window.GetWindow(this)).SetCurrentProfile(null);
+            UpdateDisplayedGrid();
+        }
         #endregion
 
         #region Profile preferences

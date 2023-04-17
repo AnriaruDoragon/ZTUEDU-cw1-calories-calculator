@@ -8,10 +8,13 @@ namespace CaloriesCalculator.Pages.Dialogs
         public string Password { get; set; } = string.Empty;
         public string SecretWord { get; set; } = string.Empty;
 
-        public VerifyProfileDialog(string note = "")
+        public VerifyProfileDialog(string note = "", bool withSecret = true)
         {
             InitializeComponent();
             NoteTextBlock.Text = note;
+
+            if (!withSecret)
+                SecretWordTextBlock.Visibility = SecretWordTextBox.Visibility = Visibility.Collapsed;
         }
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)

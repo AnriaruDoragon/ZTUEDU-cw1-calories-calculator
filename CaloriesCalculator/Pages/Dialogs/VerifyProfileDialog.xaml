@@ -50,9 +50,10 @@
         <TextBlock Grid.Row="0" Grid.ColumnSpan="2" FontSize="16" TextWrapping="Wrap" TextAlignment="Left" x:Name="NoteTextBlock"/>
         
         <TextBlock Grid.Row="1" Grid.Column="0" Text="Пароль:"/>
-        <TextBlock Grid.Row="2" Grid.Column="0" Text="Тайне слово:"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Тайне слово:" x:Name="SecretWordTextBlock"/>
+        
         <PasswordBox Grid.Row="1" Grid.Column="1" Margin="5" PasswordChanged="PasswordBox_PasswordChanged"/>
-        <TextBox Grid.Row="2" Grid.Column="1" Margin="5"
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="5" Name="SecretWordTextBox"
                  Text="{Binding Path=SecretWord, ElementName=Dialog, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         
         <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
