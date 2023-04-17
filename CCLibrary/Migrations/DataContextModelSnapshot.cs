@@ -38,10 +38,7 @@ namespace CCLibrary.Migrations
                     b.Property<double>("NetMassInGrams")
                         .HasColumnType("REAL");
 
-                    b.Property<double>("NetMassInKilos")
-                        .HasColumnType("REAL");
-
-                    b.Property<double>("NetMassInPounds")
+                    b.Property<double>("NetMassInKg")
                         .HasColumnType("REAL");
 
                     b.HasKey("Id");

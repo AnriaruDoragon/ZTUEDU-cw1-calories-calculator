@@ -1,10 +1,9 @@
 ﻿using System;
 
-namespace CCLibrary.Exceptions
+namespace CCLibrary.Exceptions;
+
+public class ProductNotFoundException : Exception
 {
-    public class ProductNotFoundException : Exception
-    {
-        private const string message = "Продукт не знайдено!";
-        public ProductNotFoundException(string message = message) : base(message) { }
-    }
+    private const string message = "Продукт не знайдено!";
+    public ProductNotFoundException(string message = message) : base(message) { }
 }

@@ -1,13 +1,12 @@
-﻿namespace CCLibrary.Products
+﻿namespace CCLibrary.Products;
+
+public enum FoodTypes
 {
-    public enum FoodTypes
-    {
-        Fruit,
-        Vegetable,
-        Meat,
-        Fish,
-        Baking,
-        Cereals,
-        Other
-    }
+    Fruit,
+    Vegetable,
+    Meat,
+    Fish,
+    Baking,
+    Cereals,
+    Other
 }

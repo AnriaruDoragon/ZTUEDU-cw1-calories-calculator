@@ -1,8 +1,7 @@
-﻿namespace CCLibrary.User
+﻿namespace CCLibrary.User;
+
+public enum Sexes
 {
-    public enum Sexes
-    {
-        Male,
-        Female
-    }
+    Male,
+    Female
 }

@@ -1,10 +1,9 @@
 ﻿using System;
 
-namespace CCLibrary.Exceptions
+namespace CCLibrary.Exceptions;
+
+public class ProfiletNotFoundException : Exception
 {
-    public class ProfiletNotFoundException : Exception
-    {
-        private const string message = "Профіль не знайдено!";
-        public ProfiletNotFoundException(string message = message) : base(message) { }
-    }
+    private const string message = "Профіль не знайдено!";
+    public ProfiletNotFoundException(string message = message) : base(message) { }
 }

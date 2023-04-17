@@ -1,10 +1,9 @@
 ﻿using System;
 
-namespace CCLibrary.Exceptions
+namespace CCLibrary.Exceptions;
+
+public class ProfileAlreadyExistsException : Exception
 {
-    public class ProfileAlreadyExistsException : Exception
-    {
-        private const string message = "Профіль вже існує!";
-        public ProfileAlreadyExistsException(string message = message) : base(message) { }
-    }
+    private const string message = "Профіль вже існує!";
+    public ProfileAlreadyExistsException(string message = message) : base(message) { }
 }

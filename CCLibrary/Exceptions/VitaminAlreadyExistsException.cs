@@ -1,11 +1,9 @@
 ﻿using System;
 
-namespace CCLibrary.Exceptions
+namespace CCLibrary.Exceptions;
+
+public class VitaminAlreadyExistsException : Exception
 {
-    public class VitaminAlreadyExistsException : Exception
-    {
-        private const string message = "Вітамін з такою назвою вже існує!";
-        public VitaminAlreadyExistsException(string message = message)
-            : base(message) { }
-    }
+    private const string message = "Вітамін з такою назвою вже існує!";
+    public VitaminAlreadyExistsException(string message = message) : base(message) { }
 }

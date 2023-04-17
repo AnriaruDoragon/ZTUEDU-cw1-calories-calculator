@@ -1,10 +1,9 @@
 ﻿using System;
 
-namespace CCLibrary.Exceptions
+namespace CCLibrary.Exceptions;
+
+public class WrongPasswordException : Exception
 {
-    public class WrongPasswordException : Exception
-    {
-        private const string message = "Невірний пароль!";
-        public WrongPasswordException(string message = message) : base(message) { }
-    }
+    private const string message = "Невірний пароль!";
+    public WrongPasswordException(string message = message) : base(message) { }
 }

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CCLibrary.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230413215308_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20230417131511_FinalMigration")]
+    partial class FinalMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,10 +41,7 @@ namespace CCLibrary.Migrations
                     b.Property<double>("NetMassInGrams")
                         .HasColumnType("REAL");
 
-                    b.Property<double>("NetMassInKilos")
-                        .HasColumnType("REAL");
-
-                    b.Property<double>("NetMassInPounds")
+                    b.Property<double>("NetMassInKg")
                         .HasColumnType("REAL");
 
                     b.HasKey("Id");

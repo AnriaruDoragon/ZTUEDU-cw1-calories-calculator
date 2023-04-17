@@ -1,73 +1,70 @@
 ﻿using CCLibrary.Exceptions;
 
-namespace CCLibrary.Products
+namespace CCLibrary.Products;
+
+public class Consumable : Product
 {
-    public class Consumable : Product
+    protected double _caloriesPerServing;
+    protected double _servingSize = 100;
+
+    protected Consumable() { }
+
+    public Consumable(string name, double caloriesPerServing) : base(name)
+        => CaloriesPerServing = caloriesPerServing;
+
+    /// <summary>
+    /// Specifies the amount of calories per serving size (g).
+    /// </summary>
+    public double CaloriesPerServing
     {
-        protected double _caloriesPerServing;
-        protected double _servingSize = 100;
-
-        protected Consumable() { }
-
-        public Consumable(string name, double caloriesPerServing) : base(name)
+        get => _caloriesPerServing;
+        set
         {
-            CaloriesPerServing = caloriesPerServing;
+            if (value < 0)
+                throw new ValueOutOfRangeException("Значення повинно бути додатнім!");
+            else
+                _caloriesPerServing = value;
         }
+    }
 
-        /// <summary>
-        /// Specifies the amount of calories per serving size (g).
-        /// </summary>
-        public double CaloriesPerServing
-        {
-            get => _caloriesPerServing;
-            set
-            {
-                if (value < 0)
-                    throw new ValueOutOfRangeException("Значення повинно бути додатнім!");
-                else
-                    _caloriesPerServing = value;
-            }
-        }
-
-        /// <summary>
-        /// <para>The declared serving size for calories calculations in grams.</para>
-        /// <para>Specifies the mass that contains N amount of calories.</para>
-        /// By default set to 100g.
-        /// </summary>
-        public double ServingSizeInGrams
-        {
-            get => _servingSize;
-            set
-            {
-                if (value <= 0)
-                    throw new ValueOutOfRangeException("Значення повинно бути додатнім!");
-                _servingSize = value;
-            }
-        }
-
-        public override Product Copy()
-        {
-            return new Consumable
-            {
-                Id = this.Id,
-                Name = this.Name,
-                Description = this.Description,
-                NetMassInGrams = this.NetMassInGrams,
-                CaloriesPerServing = this.CaloriesPerServing,
-                ServingSizeInGrams = this.ServingSizeInGrams
-            };
-        }
-
-        public override double GetCalories()
-        {
-            return _caloriesPerServing * _netMass / _servingSize;
-        }
-
-        public void SetCalories(double value)
+    /// <summary>
+    /// <para>The declared serving size for calories calculations in grams.</para>
+    /// <para>Specifies the mass that contains N amount of calories.</para>
+    /// By default set to 100g.
+    /// </summary>
+    public double ServingSizeInGrams
+    {
+        get => _servingSize;
+        set
         {
             if (value <= 0)
                 throw new ValueOutOfRangeException("Значення повинно бути додатнім!");
-            _caloriesPerServing = value;
+            _servingSize = value;
         }
+    }
+
+    public override Product Copy()
+    {
+        return new Consumable
+        {
+            Id = this.Id,
+            Name = this.Name,
+            Description = this.Description,
+            NetMassInGrams = this.NetMassInGrams,
+            CaloriesPerServing = this.CaloriesPerServing,
+            ServingSizeInGrams = this.ServingSizeInGrams
+        };
+    }
+
+    public override double GetCalories()
+    {
+        return _caloriesPerServing * _netMass / _servingSize;
+    }
+
+    public void SetCalories(double value)
+    {
+        if (value <= 0)
+            throw new ValueOutOfRangeException("Значення повинно бути додатнім!");
+        _caloriesPerServing = value;
     }
 }

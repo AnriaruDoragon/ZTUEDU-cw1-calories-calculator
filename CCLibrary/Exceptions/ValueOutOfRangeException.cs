@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace CCLibrary.Exceptions
+namespace CCLibrary.Exceptions;
+
+public class ValueOutOfRangeException : Exception
 {
-    public class ValueOutOfRangeException : Exception
-    {
-        public ValueOutOfRangeException(string message) : base(message) { }
-    }
+    public ValueOutOfRangeException(string message) : base(message) { }
 }

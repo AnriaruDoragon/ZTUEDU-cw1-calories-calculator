@@ -1,15 +1,14 @@
-﻿namespace CCLibrary.Products
+﻿namespace CCLibrary.Products;
+
+public enum DrinkTypes
 {
-    public enum DrinkTypes
-    {
-        Tap,
-        Soda,
-        Energy,
-        Alcohol,
-        Juice,
-        Coffee,
-        Tea,
-        Milk,
-        Other
-    }
+    Tap,
+    Soda,
+    Energy,
+    Alcohol,
+    Juice,
+    Coffee,
+    Tea,
+    Milk,
+    Other
 }

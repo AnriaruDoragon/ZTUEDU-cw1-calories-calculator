@@ -1,9 +1,8 @@
-﻿namespace CCLibrary.User
+﻿namespace CCLibrary.User;
+
+public enum Goals
 {
-    public enum Goals
-    {
-        Maintaint,
-        Gain,
-        Lose
-    }
+    Maintaint,
+    Gain,
+    Lose
 }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CCLibrary.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class FinalMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -20,8 +20,7 @@ namespace CCLibrary.Migrations
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     Description = table.Column<string>(type: "TEXT", nullable: false),
                     NetMassInGrams = table.Column<double>(type: "REAL", nullable: false),
-                    NetMassInKilos = table.Column<double>(type: "REAL", nullable: false),
-                    NetMassInPounds = table.Column<double>(type: "REAL", nullable: false),
+                    NetMassInKg = table.Column<double>(type: "REAL", nullable: false),
                     Discriminator = table.Column<string>(type: "TEXT", nullable: false),
                     CaloriesPerServing = table.Column<double>(type: "REAL", nullable: true),
                     ServingSizeInGrams = table.Column<double>(type: "REAL", nullable: true),
