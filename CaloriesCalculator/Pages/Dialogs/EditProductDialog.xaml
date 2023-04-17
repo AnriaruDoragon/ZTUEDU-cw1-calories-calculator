@@ -20,6 +20,8 @@
             <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
         </Style>
         <Style TargetType="{x:Type CheckBox}">
+            <Setter Property="BorderBrush" Value="{StaticResource FieldBgColor}"/>
+            <Setter Property="Background" Value="{StaticResource FieldBgColor}"/>
             <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
         </Style>
         <Style TargetType="{x:Type ComboBox}">

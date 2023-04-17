@@ -1,28 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using CCLibrary.Data;
 
 namespace CaloriesCalculator.Pages
 {
-    /// <summary>
-    /// Interaction logic for SettingsPage.xaml
-    /// </summary>
     public partial class SettingsPage : Page
     {
-        public SettingsPage()
+        public SettingsPage() => InitializeComponent();
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            InitializeComponent();
+            AskForSize.IsChecked = Settings.Get(AskForSize.Name, true);
+        }
+
+        private void Setting_Changed(object sender, RoutedEventArgs e)
+        {
+            CheckBox setting = (CheckBox)sender;
+            Settings.Set(setting.Name, setting.IsChecked);
         }
     }
 }

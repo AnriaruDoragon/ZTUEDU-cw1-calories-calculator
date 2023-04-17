@@ -5,10 +5,28 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CaloriesCalculator.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Налаштування">
+      d:DesignWidth="410"
+      Title="Налаштування"
+      Loaded="Page_Loaded">
+    
+    <Page.Resources>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+        </Style>
+        <Style TargetType="{x:Type CheckBox}">
+            <Setter Property="BorderBrush" Value="{StaticResource FieldBgColor}"/>
+            <Setter Property="Background" Value="{StaticResource FieldBgColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="Margin" Value="0 0 10 10"/>
+        </Style>
+    </Page.Resources>
 
-    <Grid>
-        <TextBlock Text="Settings" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48"/>
-    </Grid>
+    <ScrollViewer Padding="10" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="Продукти" FontSize="20" FontWeight="Bold"/>
+            <WrapPanel Margin="15 15 0 0">
+                <CheckBox Content="Запитувати розмір порції при кожному споживанні" x:Name="AskForSize" Checked="Setting_Changed" Unchecked="Setting_Changed"/>
+            </WrapPanel>
+        </StackPanel>
+    </ScrollViewer>
 </Page>
