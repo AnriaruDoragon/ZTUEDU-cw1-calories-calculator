@@ -42,10 +42,9 @@ public class Database
     private void Initialize()
     {
         if (Context.Database.GetPendingMigrations().Any())
+        {
             Context.Database.Migrate();
 
-        if (!Context.Database.CanConnect())
-        {
             ReopenConnection(Connection);
             new SqliteCommand(@"
                     CREATE TABLE IF NOT EXISTS ProfileConsumedProducts (
