@@ -3,7 +3,6 @@ using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using CCLibrary.User;
 using CCLibrary.Products;
-using CCLibrary.Exceptions;
 
 #pragma warning disable CS8604
 
@@ -31,16 +30,9 @@ public partial class DataContext : DbContext
 
         while (reader.Read())
         {
-            try
-            {
-                Product product = GetProduct(reader.GetInt64(0));
-                product.NetMassInGrams = reader.GetDouble(1);
-                consumption.Consume(product);
-            }
-            catch (ProductNotFoundException)
-            {
-                // ignored
-            }
+            Product product = GetProduct(reader.GetInt64(0));
+            product.NetMassInGrams = reader.GetDouble(1);
+            consumption.Consume(product);
         }
 
         _connection.Close();
