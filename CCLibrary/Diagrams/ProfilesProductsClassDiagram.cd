@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CCLibrary.User.Profile">
+    <Position X="22.5" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AQCDAAAAAACABAAABEAAAgQEAAAIABAAgBIQgIAIAAQ=</HashCode>
+      <FileName>User\Profile.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Sex" />
+      <Property Name="Goal" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CCLibrary.User.DailyConsumption">
+    <Position X="19.75" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACIAIAAAAAAAAAAAEAAAAAAAAABQJAAAAAAAAA=</HashCode>
+      <FileName>User\DailyConsumption.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Profile" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="_products" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="CCLibrary.Products.Product">
+    <Position X="16.5" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAAIAAAQAAgAACIAABAAAAAAAEAQ=</HashCode>
+      <FileName>Products\Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CCLibrary.Products.Consumable">
+    <Position X="12.75" Y="3.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAIAAAAAAAAAAAEAAAggACAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Products\Consumable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CCLibrary.Products.Drink">
+    <Position X="14.25" Y="7" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAEAAAAAAAAAAgAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Products\Drink.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Type" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CCLibrary.Products.Food">
+    <Position X="11.75" Y="7" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAYAAAAAAAAAAAAAAAAAAgAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Products\Food.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Type" />
+      <Property Name="Nutrition" />
+    </ShowAsAssociation>
+  </Class>
+  <Struct Name="CCLibrary.Products.Nutrition">
+    <Position X="9.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAYAQAAAACABAAAIAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Products\Nutrition.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="CCLibrary.User.Sexes">
+    <Position X="25.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>User\Sexes.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CCLibrary.User.Goals">
+    <Position X="25.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAgAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>User\Goals.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CCLibrary.Products.DrinkTypes">
+    <Position X="14.25" Y="9.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>BAAQAAAAAAAggAAAAAAEAAAKAAAAAAAAAAAAAAAIAIA=</HashCode>
+      <FileName>Products\DrinkTypes.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CCLibrary.Products.FoodTypes">
+    <Position X="11.75" Y="9.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>BAAAAgAIAAAAEAAAAAAAAAAAAACQAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Products\FoodTypes.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
