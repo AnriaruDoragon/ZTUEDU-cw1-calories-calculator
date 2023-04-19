@@ -129,10 +129,10 @@ public class Profile
             switch (Sex)
             {
                 case Sexes.Female:
-                    newGoal = 447.6 + (9.2 * WeightInKg) + (3.1 * HeightInCm) - (4.3 * Age);
+                    newGoal = 447.593 + (9.247 * WeightInKg) + (3.098 * HeightInCm) - (4.330 * Age);
                     break;
                 case Sexes.Male:
-                    newGoal = 88.36 + (13.4 * WeightInKg) + (4.8 * HeightInCm) - (5.7 * Age);
+                    newGoal = 88.362 + (13.397 * WeightInKg) + (4.799 * HeightInCm) - (5.677 * Age);
                     break;
             }
         }
