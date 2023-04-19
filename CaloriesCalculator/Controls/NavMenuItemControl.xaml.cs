@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using CaloriesCalculator.Resources;
 
 namespace CaloriesCalculator.Controls;
 

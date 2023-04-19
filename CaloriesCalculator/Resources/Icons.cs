@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Media;
 using CCLibrary.Products;
 
-namespace CaloriesCalculator;
+namespace CaloriesCalculator.Resources;
 
 public static class Icons
 {
