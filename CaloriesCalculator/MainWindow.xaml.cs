@@ -97,6 +97,8 @@ public partial class MainWindow : Window
         SetCurrentProfile(null); 
         if (ContentFrame.Content is ProfilePage profilePage) 
             profilePage.UpdateDisplayedGrid();
+        else
+            Navigate("Profile", ProfileMenuItem);
     }
     #endregion
 
