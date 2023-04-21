@@ -5,6 +5,8 @@ using System.Windows.Controls;
 using CCLibrary.User;
 using CCLibrary.Products;
 
+#pragma warning disable CS8604, CS8618
+
 namespace CaloriesCalculator.Pages;
 
 public partial class ConsumptionHistoryPage : Page
@@ -76,15 +78,13 @@ public partial class ConsumptionHistoryPage : Page
         try
         {
             App.Database.Context.RemoveProfileConsumption(App.CurrentProfile, listProduct, _consumption.Date);
+            _products.Remove(listProduct);
         }
-        catch (Exception ex)
+        catch
         {
-            MessageBox.Show(ex.Message,
-                "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
-            return;
+            // ignored
         }
 
-        _products.Remove(listProduct);
         ConsumeHistoryListView.Items.Refresh();
         ((MainWindow)Window.GetWindow(this)).UpdateCalorieMeter();
     }

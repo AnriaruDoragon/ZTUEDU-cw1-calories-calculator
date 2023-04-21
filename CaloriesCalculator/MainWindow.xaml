@@ -72,22 +72,21 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock x:Name="PageTitleTextBlock" FontSize="20" Margin="10 0" VerticalAlignment="Center"/>
-            <Grid Grid.Column="2" Margin="10 0" VerticalAlignment="Center" x:Name="CurrentProfileGrid" Visibility="Collapsed">
+            <TextBlock x:Name="PageTitleTextBlock" Text="Page Title" FontSize="20" Margin="10 0" VerticalAlignment="Center"/>
+            
+            <Button Grid.Column="2" Margin="10 0" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}"
+                    x:Name="ProfileHeader" Click="ProfileHeader_Click" Visibility="Visible">
                 <StackPanel Orientation="Horizontal">
                     <Ellipse Height="32" Width="32">
                         <Ellipse.Fill>
                             <ImageBrush x:Name="CurrentProfileImageBrush" ImageSource="{x:Null}"/>
                         </Ellipse.Fill>
                     </Ellipse>
-                    <Button Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="ProfileHeaderButton_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock x:Name="CurrentProfileNameTextBlock" FontSize="20" Margin="5 0 0 0" VerticalAlignment="Center"/>
-                            <Polygon Margin="15 0 0 0" Points="0,0 8,0 4,8" VerticalAlignment="Center" Fill="{StaticResource TextColor}"/>
-                        </StackPanel>
-                    </Button>
+                    <TextBlock x:Name="CurrentProfileNameTextBlock" Text="Username" FontSize="20" Margin="5 0 0 0" VerticalAlignment="Center"/>
+                    <Polygon Margin="15 0 0 0" Points="0,0 8,0 4,8" VerticalAlignment="Center" Fill="{StaticResource TextColor}"/>
                 </StackPanel>
-            </Grid>
+            </Button>
+
         </Grid>
 
         <!-- Calories Meter -->
@@ -107,8 +106,8 @@
 
         <!-- Menu Pages -->
         <Frame Grid.Row="1" Grid.Column="1" Background="{StaticResource Bg2Color}"
-                   HorizontalAlignment="Stretch" IsTabStop="True" NavigationUIVisibility="Hidden"
-                   x:Name="ContentFrame" Navigated="ContentFrame_Navigated"/>
+               HorizontalAlignment="Stretch" IsTabStop="True" NavigationUIVisibility="Hidden"
+               x:Name="ContentFrame" Navigated="ContentFrame_Navigated"/>
 
     </Grid>
 </Window>

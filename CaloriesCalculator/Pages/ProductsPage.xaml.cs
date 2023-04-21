@@ -48,8 +48,7 @@ public partial class ProductsPage : Page
     {
         App.Database.Context.Products.Load();
         _products = App.Database.Context.Products.ToList();
-        if (ProductItems is not null)
-            ProductItems.ItemsSource = GetSortedProducts(GetSortingMethod(), FilterProducts(SearchBar.Text));
+        SetSearchedProducts();
     }
 
     #region Sorting and searching
@@ -67,6 +66,15 @@ public partial class ProductsPage : Page
     {
         ComboBoxItem item = (ComboBoxItem)SortingComboBox.SelectedItem;
         return (SortingMethods)int.Parse(item.Tag.ToString());
+    }
+
+    private IEnumerable<Product> FilterProducts(string query)
+    {
+        if (string.IsNullOrWhiteSpace(query))
+            return _products;
+
+        Regex regex = new(query, RegexOptions.IgnoreCase);
+        return _products.Where(p => regex.IsMatch(p.Name) || regex.IsMatch(p.Description));
     }
 
     private class ProductTypeComparer : IComparer<Product?>
@@ -97,15 +105,6 @@ public partial class ProductsPage : Page
         return sortedProducts;
     }
 
-    private IEnumerable<Product> FilterProducts(string query)
-    {
-        if (string.IsNullOrWhiteSpace(query))
-            return _products;
-
-        Regex regex = new(query, RegexOptions.IgnoreCase);
-        return _products.Where(p => regex.IsMatch(p.Name) || regex.IsMatch(p.Description));
-    }
-
     private void SetSearchedProducts()
     {
         if (ProductItems is not null)
@@ -120,6 +119,23 @@ public partial class ProductsPage : Page
     #endregion
 
     #region Products controls
+    private void NewProductButton_Click(object sender, RoutedEventArgs e)
+    {
+        Dialogs.NewProductDialog newDialog = new();
+        if (newDialog.ShowDialog() != true)
+            return;
+
+        Dialogs.EditProductDialog editDialog = new(newDialog.Product, copy:false);
+        if (editDialog.ShowDialog() != true)
+            return;
+
+        App.Database.Context.AddProduct(editDialog.Product);
+        UpdateProductsList();
+
+        MessageBox.Show($"Продукт \"{editDialog.Product.Name}\" було успішно створено.",
+            "Успіх", MessageBoxButton.OK, MessageBoxImage.Information);
+    }
+
     private void Product_LeftClick(object sender, EventArgs e)
     {
         if (!EnsureProfileNotNull())
@@ -145,6 +161,7 @@ public partial class ProductsPage : Page
         ((MainWindow)Window.GetWindow(this)).UpdateCalorieMeter();
     }
 
+    // Context menu
     private ProductItemControl _targetedProductControl;
     private void Product_RightClick(object sender, EventArgs e)
     {
@@ -160,23 +177,6 @@ public partial class ProductsPage : Page
     {
         if (_targetedProductControl is not null)
             Product_LeftClick(_targetedProductControl, e);
-    }
-
-    private void NewProductButton_Click(object sender, RoutedEventArgs e)
-    {
-        Dialogs.NewProductDialog newDialog = new();
-        if (newDialog.ShowDialog() != true)
-            return;
-
-        Dialogs.EditProductDialog editDialog = new(newDialog.Product, copy:false);
-        if (editDialog.ShowDialog() != true)
-            return;
-
-        App.Database.Context.AddProduct(editDialog.Product);
-        UpdateProductsList();
-
-        MessageBox.Show($"Продукт \"{editDialog.Product.Name}\" було успішно створено.",
-            "Успіх", MessageBoxButton.OK, MessageBoxImage.Information);
     }
 
     private void ProductContextEdit_Click(object sender, RoutedEventArgs e)
@@ -196,7 +196,8 @@ public partial class ProductsPage : Page
 
         App.Database.Context.ModifyProduct(editDialog.Product);
         UpdateProductsList();
-        ((MainWindow)Window.GetWindow(this)).UpdateCalorieMeter();
+        if (isUsed)
+            ((MainWindow)Window.GetWindow(this)).UpdateCalorieMeter();
 
         MessageBox.Show($"Продукт \"{clickedProduct.Name}\" було успішно оновлено.{(isUsed ? "\nЦі зміни можуть вплинути на результат деяких днів." : "")}",
             "Успіх", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -218,7 +219,8 @@ public partial class ProductsPage : Page
 
         App.Database.Context.DeleteProduct(clickedProduct.Id);
         UpdateProductsList();
-        ((MainWindow)Window.GetWindow(this)).UpdateCalorieMeter();
+        if (isUsed)
+            ((MainWindow)Window.GetWindow(this)).UpdateCalorieMeter();
 
         MessageBox.Show($"Продукт \"{clickedProduct.Name}\" було успішно видалено.{(isUsed ? "\nЦе видалення вплине на результат деяких днів." : "")}",
             "Успіх", MessageBoxButton.OK, MessageBoxImage.Information);

@@ -44,7 +44,6 @@ public partial class EditProductDialog : Window
         else
         {
             CarbonatedCheckBox.IsChecked = ((Drink)Product).IsCarbonated;
-            CarbonatedCheckBox.Visibility = Visibility.Visible;
             NutritionsRow.MaxHeight = 0;
         }
 

@@ -69,18 +69,18 @@ public partial class MainWindow : Window
         App.CurrentProfile = profile;
 
         if (profile is null)
-            CurrentProfileGrid.Visibility = Visibility.Collapsed;
+            ProfileHeader.Visibility = Visibility.Collapsed;
         else
         {
             CurrentProfileNameTextBlock.Text = profile.Name;
             UpdateCurrentProfileAvatar();
-            CurrentProfileGrid.Visibility = Visibility.Visible;
+            ProfileHeader.Visibility = Visibility.Visible;
         }
 
         UpdateCalorieMeter();
     }
 
-    private void ProfileHeaderButton_Click(object sender, RoutedEventArgs e)
+    private void ProfileHeader_Click(object sender, RoutedEventArgs e)
     {
         if (FindResource("HeaderPopUp") is not ContextMenu headerPopUp)
             return;

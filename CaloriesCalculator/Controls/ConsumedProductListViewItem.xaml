@@ -34,9 +34,9 @@
         </Grid.ColumnDefinitions>
         
         <Image Grid.Column="0" Height="32" Width="32" Margin="0 0 10 0" x:Name="IconImage"/>
-        <TextBlock Grid.Column="1" FontWeight="Bold" Margin="0 0 10 0" x:Name="NameTextBlock"/>
+        <TextBlock Grid.Column="1" FontWeight="Bold" Margin="0 0 10 0" x:Name="NameTextBlock" Text="Product"/>
         
-        <TextBlock Grid.Column="3" Margin="0 0 10 0" x:Name="MassTextBlock"/>
+        <TextBlock Grid.Column="3" Margin="0 0 10 0" x:Name="MassTextBlock" Text="Mass"/>
         <Button Grid.Column="4" Height="32" Width="32" Click="DeleteButton_Click">
             <Path Data="M0,0L16,16M16,0L0,16" Width="16" Height="16"/>
         </Button>

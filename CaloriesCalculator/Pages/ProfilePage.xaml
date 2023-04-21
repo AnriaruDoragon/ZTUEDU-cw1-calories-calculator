@@ -5,8 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CaloriesCalculator.Pages"
       mc:Ignorable="d" 
-      d:DesignWidth="410"
+      d:DesignWidth="410" d:Background="#52FFFFFF"
       Title="Профіль користувача"
+      HorizontalAlignment="Stretch"
       Loaded="Page_Loaded">
     
     <Page.Resources>
@@ -172,11 +173,11 @@
                             <RadioButton GroupName="ProfileGoal" Checked="ProfilePreferences_Updated" x:Name="ProfileGainGoalRB" Content="Набрати"/>
                         </StackPanel>
                         <DatePicker Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"
-                                    SelectedDateFormat="Long" Width="250" BorderThickness="0"
+                                    SelectedDateFormat="Long" Width="235" BorderThickness="0"
                                     x:Name="ProfileBirthdatDatePicker" SelectedDateChanged="ProfilePreferences_Updated"/>
-                        <TextBox Grid.Row="3" Grid.Column="1" Margin="5" Width="250" HorizontalAlignment="Left"
+                        <TextBox Grid.Row="3" Grid.Column="1" Margin="5" Width="230" HorizontalAlignment="Left"
                                  x:Name="ProfileHeightTextBox" TextChanged="ProfilePreferences_Updated"/>
-                        <TextBox Grid.Row="4" Grid.Column="1" Margin="5" Width="250" HorizontalAlignment="Left"
+                        <TextBox Grid.Row="4" Grid.Column="1" Margin="5" Width="230" HorizontalAlignment="Left"
                                  x:Name="ProfileWeightTextBox" TextChanged="ProfilePreferences_Updated"/>
                         <WrapPanel Grid.Row="5" Grid.ColumnSpan="2" Margin="5">
                             <Button Content="Розрахувати мету автоматично" FontWeight="Bold" Margin="0 0 25 0"
