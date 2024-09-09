@@ -7,6 +7,8 @@
 
 ---
 
+# Copyright (c) 2024 Anriaru Doragon
+
 ---
 
 # Структура та документація [CCLibrary (wiki)](../../wikis/CCLibrary):
